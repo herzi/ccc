@@ -60,6 +60,7 @@ camera_canvas_new(void)
 	CcItem* canvas = cc_item_new();
 	CcItem* demo   = demo_canvas_create();
 	CcItem* camera = cc_camera_new_root(demo);
+	cc_view_set_zoom(CC_VIEW(camera), 0.25);
 	cc_item_append(canvas, demo);
 	cc_item_append(canvas, camera);
 	return canvas;

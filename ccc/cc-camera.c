@@ -27,6 +27,7 @@
 
 struct CcCameraPrivate {
 	CcItem* root;
+	gdouble zoom;
 };
 #define P(i) (G_TYPE_INSTANCE_GET_PRIVATE((i), CC_TYPE_CAMERA, struct CcCameraPrivate))
 
@@ -119,7 +120,13 @@ static void
 camera_set_zoom(CcCamera* self,
 		gdouble   zoom)
 {
-	// FIXME: implement
+	if(P(self)->zoom == zoom) {
+		return;
+	}
+
+	P(self)->zoom = zoom;
+	g_object_notify(G_OBJECT(self), "zoom");
+	// FIXME: queue draw
 }
 
 static void
@@ -168,13 +175,12 @@ camera_render(CcItem * item,
 
 	surface = cairo_surface_create_similar(cairo_get_target(cr),
 					       CAIRO_CONTENT_COLOR_ALPHA,
-					       101, 101);
+					       100, 100);
 	surface_cr = cairo_create(surface);
 	cairo_save(surface_cr);
 	  cairo_rectangle(surface_cr, 0.0, 0.0, 101.0, 101.0);
 	  cairo_set_source_rgba(surface_cr, 0.0, 0.0, 0.0, 0.5);
 	  cairo_fill(surface_cr);
-	  // FIXME: render the canvas
 	  cc_item_render(P(item)->root, CC_VIEW(item), surface_cr);
 	cairo_restore(surface_cr);
 	cairo_destroy(surface_cr);
@@ -214,10 +220,10 @@ cc_camera_class_init(CcCameraClass* self_class)
 
 /* CcViewIface */
 static void
-camera_init_matrix(cairo_matrix_t* matrix)
+camera_init_matrix(CcCamera* self, cairo_matrix_t* matrix)
 {
 	cairo_matrix_init_translate(matrix, 0.0, 0.0);
-	cairo_matrix_init_scale(matrix, 0.25, 0.25);
+	cairo_matrix_init_scale(matrix, P(self)->zoom, P(self)->zoom);
 }
 
 static void
@@ -229,7 +235,7 @@ camera_world_to_window(CcView * view,
 	gdouble real_x = x ? *x : 0.0,
 		real_y = y ? *y : 0.0;
 
-	camera_init_matrix(&matrix);
+	camera_init_matrix(CC_CAMERA(view), &matrix);
 	cairo_matrix_transform_point(&matrix, &real_x, &real_y);
 
 	if(x) {
@@ -248,7 +254,7 @@ camera_world_to_window_distance(CcView * view,
 	cairo_matrix_t matrix;
 	gdouble real_x = x ? *x : 0.0,
 		real_y = y ? *y : 0.0;
-	camera_init_matrix(&matrix);
+	camera_init_matrix(CC_CAMERA(view), &matrix);
 	cairo_matrix_transform_distance(&matrix, &real_x, &real_y);
 	if(x) {
 		*x = real_x;
