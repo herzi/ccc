@@ -1,0 +1,8 @@
+Makefile
+Makefile.in
+cccanvasmodule.c
+cccanvas_la-cccanvas.lo
+cccanvas_la-cccanvasmodule.lo
+cccanvas.override
+cccanvas.la
+cccanvas.c

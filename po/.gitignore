@@ -1,0 +1,4 @@
+stamp-it
+*.gmo
+POTFILES
+Makefile*

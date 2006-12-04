@@ -1,0 +1,4 @@
+#!/bin/sh
+
+LTDL_LIBRARY_PATH=/usr/lib/debug:$LTDL_LIBRARY_PATH
+../libtool --mode=execute gdb --args ./ccc-demo --g-fatal-warnings $@

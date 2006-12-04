@@ -1,0 +1,9 @@
+<gapi-parser-input>
+  <api filename="libccc.xml">
+    <library name="libccc.dll">
+      <namespace name="Ccc">
+        <dir>../ccc</dir>
+      </namespace>
+    </library>
+  </api>
+</gapi-parser-input>

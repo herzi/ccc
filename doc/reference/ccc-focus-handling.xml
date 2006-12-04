@@ -1,0 +1,90 @@
+<chapter id="ccc-Focus-Handling">
+  <title>Focus Handling</title>
+
+  <para>
+    This chapter describes the implementation of focus handling in the canvas,
+    which is used for the criawips presentation application.
+  </para>
+
+  <sect1 id="ccc-Focus-Handling-Introduction">
+    <title>Introduction</title>
+
+    <para>
+      The focus is a meta-information, which is correctly called 'the focused
+      item'. The focused item is the one which receives keyboard events. The
+      focus can be moved by using the keys up, down, left, right, tab and
+      shift-tab (usually also available with ctrl if the keys are used for
+      other things - like text editing).
+    </para>
+
+    <para>
+      The focus is view-dependent, there may even be views (like the tree or
+      pixbuf renderers) which don't have a focus at all. This make the focus
+      implementation slightly harder than GnomeCanvas' focus handling has been.
+    </para>
+
+    <para>
+      The focus list (which is the list starting with the focused item and then
+      mentioning all its parents up to the root of the view - which might not
+      always be the root of the model) is very important as we need to know
+      which items already were focused and which were not. As we cannot store
+      the focused elements in the model - which was possible with the
+      GnomeCanvas - we need to store it in the view. So the view needs to take
+      care about the focus list.
+    </para>
+  </sect1>
+
+  <sect1 id="ccc-Focus-Handling-The-focus-Signal">
+    <title>The focus signal</title>
+
+    <para>
+      The focus signal is used to let the focus switch between elements in a
+      way as easy as possible. FIXME: be more verbose here
+    </para>
+
+    <sect2 id="ccc-Focus-handling-The-Beginning">
+      <title>The Beginning</title>
+
+      <para>
+        At the beginning, there is no focus. So, once the focus enters the
+	view, it emits the 'focus' signal on the root, FIXME: continue here
+      </para>
+    </sect2>
+
+    <sect2 id="ccc-Focus-Handling-The-Sequel">
+      <title>The Sequel</title>
+
+      <para>
+        If there is a focus, we can easily find out which element the focus
+	has, the we can move up the canvas tree and find the next item to be
+	focused.
+      </para>
+
+      <sect3 id="ccc-Focus-Handling-Focus-Chain">
+        <title>The Focus Chain</title>
+
+	<para>
+	  Emit CcItem::focus-next - which actually gets the focus chain, finds
+	  out which child currently has he focus and then steps through the
+	  list to find the next focus-able child.
+	</para>
+
+	<para>
+	  If there is no focus chain, the canvas uses the list of child
+	  elements from top to bottom.
+	</para>
+      </sect3>
+    </sect2>
+
+    <sect2 id="ccc-Focus-Handling-The-Final">
+      <title>The Final</title>
+
+      <para>
+        Once there's no item which can take the focus in a cycle, we just
+	return FALSE, so the parent's signal handler for the focus event can
+	take the focus off us and move it on to the next element.
+      </para>
+    </sect2>
+  </sect1>
+  
+</chapter>

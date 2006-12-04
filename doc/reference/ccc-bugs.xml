@@ -1,0 +1,22 @@
+<chapter id="ccc-Known-Bugs">
+  <title>Known Bugs</title>
+
+  <para>
+    This chapter provides a brief list of bugs or misbehaviour that libccc exibits.
+  </para>
+
+  <sect1 id="ccc-Rendering-Bugs">
+    <title>Rendering Bugs</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <structname>CcText</structname> always renders as if it had the
+          <literal>CC_GRID_ALIGNED</literal> flag set. That's the way pango
+          works.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+  
+</chapter>

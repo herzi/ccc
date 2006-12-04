@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<book id="index" xmlns:xi="http://www.w3.org/2003/XInclude">
+  <bookinfo>
+    <title>libccc Reference Manual</title>
+  </bookinfo>
+
+  <part id="ccc-Working-with-the-Canvas">
+    <title>Working with the Canvas</title>
+    <para>
+      This part describes several aspects of the canvas that people will be
+      confronted with when developing applications with this canvas.
+    </para>
+    <xi:include href="ccc-bugs.xml"/>
+    <xi:include href="ccc-custom-items.xml"/>
+  </part>
+
+  <part id="ccc-Internals">
+    <title>Internals</title>
+
+    <xi:include href="ccc-bounds.xml"/>
+    <xi:include href="ccc-events.xml"/>
+    <xi:include href="ccc-focus-handling.xml"/>
+    <xi:include href="xml/hashmap.xml"/>
+    <xi:include href="ccc-zoom-and-scroll.xml"/>
+    <xi:include href="ccc-bugs.xml"/>
+  </part>
+
+  <part id="ccc-API-Reference">
+    <title>API Reference</title>
+    <!--<xi:include href="xml/object_index.sgml"/>-->
+      
+    <chapter id="ccc-Object-Hierarchy">
+      <title>Object Hierarchy</title>
+      <xi:include href="xml/tree_index.sgml"/>
+    </chapter>
+
+    <chapter id="ccc-Fundamentals">
+      <title>Fundamentals</title>
+      <xi:include href="xml/brush.xml"/>
+      <xi:include href="xml/brush-color.xml"/>
+      <xi:include href="xml/color.xml"/>
+      <xi:include href="xml/d-rect.xml"/>
+      <xi:include href="xml/utils.xml"/>
+    </chapter>
+    
+    <chapter id="ccc-Canvas-Items">
+      <title>Canvas Items</title>
+      <xi:include href="xml/item.xml"/>
+      <xi:include href="xml/shape.xml"/>
+      <xi:include href="xml/line.xml"/>
+      <xi:include href="xml/circle.xml"/>
+      <xi:include href="xml/rectangle.xml"/>
+      <xi:include href="xml/rounded-rectangle.xml"/>
+      <xi:include href="xml/pixbuf.xml"/>
+      <xi:include href="xml/text.xml"/>
+      <xi:include href="xml/camera.xml"/>
+    </chapter>
+
+    <chapter id="ccc-View-Elements">
+      <title>View Elements</title>
+      <xi:include href="xml/item-view.xml"/>
+      <xi:include href="xml/view.xml"/>
+      <xi:include href="xml/view-cell-renderer.xml"/>
+      <xi:include href="xml/view-widget.xml"/>
+      <xi:include href="xml/printer.xml"/>
+      <xi:include href="xml/png-writer.xml"/>
+    </chapter>
+  </part>
+</book>

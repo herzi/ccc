@@ -1,0 +1,54 @@
+# translation of libccc.
+# Copyright (C) 2006 Sven Herzberg
+# This file is distributed under the same license as the libccc package.
+# Sven Herzberg <herzi@gnome-de.org>, 2006.
+# , fuzzy
+# 
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: libccc 0.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-01-22 13:50+0100\n"
+"PO-Revision-Date: 2006-01-19 13:13+0100\n"
+"Last-Translator:  <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../ccc/cc-enumerations.c:18
+msgid "disposed"
+msgstr ""
+
+#: ../ccc/cc-enumerations.c:19
+msgid "grid-aligned"
+msgstr ""
+
+#: ../ccc/cc-enumerations.c:20
+msgid "no-search-children"
+msgstr ""
+
+#: ../ccc/cc-enumerations.c:36
+msgid "pixels"
+msgstr "Pixel"
+
+#: ../ccc/cc-enumerations.c:37
+msgid "width"
+msgstr "Breite"
+
+#: ../ccc/cc-enumerations.c:38
+msgid "height"
+msgstr "Höhe"
+
+#: ../ccc/cc-enumerations.c:39
+msgid "auto"
+msgstr "Automatisch"
+
+#. TRANSLATORS: this is for "%s.pdf" as the default file name of the
+#. * printer, you might want to have a lowercase only word here, even if
+#. * the correct translation would have been a capitalized word in your
+#. * language.
+#: ../ccc/cc-printer.c:61
+msgid "output"
+msgstr "ausgabe"

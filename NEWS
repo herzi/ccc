@@ -1,0 +1,24 @@
+libccc 0.0.3
+============
+
+Changes since 0.0.2:
+ * improve applications performance by limiting redraws to ~33 FPS
+ * added python bindings from Yves Combe
+ * improve the redraw behavior of the circle item
+ * fix drawing of multiple paths in sequence
+ * CcText derives from CcShape to inherit fill and border properties
+
+libccc 0.0.2
+============
+
+Changes since 0.0.1:
+ * Added a skeleton to become a canvas editor
+ * Fixed the license headers to always mention LGPL
+ * Improved view (un)registration (CcItem)
+ * Fixed Cursor Position (CcText)
+ * Added image rendering (CcPixbuf)
+ * Lines disappear correctly (CcLine)
+ * Fixed a Segmentation fault in the demo application
+   (patch by "Mardy", closes bug 335803)
+ * Don't round widths smaller than 1.0 to avoid disappearing of thin lines
+

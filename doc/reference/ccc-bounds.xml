@@ -1,0 +1,45 @@
+<chapter id="ccc-Bounds-Handling">
+  <title>Bounds Handling</title>
+
+  <para>
+    This chapter describes the way bounds are used in libccc.
+  </para>
+  
+  <sect1 id="ccc-Bounds-Caching">
+    <title>Bound Caching</title>
+
+    <para>
+      Every item stores three bounding rectangles. The easiest one is it's own
+      extents; this one the the one that items set before emitting the
+      'notify::bounds' signal.
+    </para>
+
+    <para>
+      Then there is the rectangle which contains the union on all the
+      children's rectangles. This one is automatically updated when child items
+      emit the 'notify::all-bounds' signal. If it changes, the
+      'notify::children-bounds' signal will get emitted.
+    </para>
+
+    <para>
+      If one of the former two changes, the third one will be updated
+      automatically, as it is the rectangle which contains both the items
+      extents and the ones from its children. If this rectangle changes, the
+      'notify::all-bounds' signal gets emitted.
+    </para>
+
+    <para>
+      Custom item implementations don't need to take care about the last two.
+      These are updated automatically by the CcItem class, so you really care
+      only about the extents of your implemented item.
+    </para>
+  </sect1>
+
+  <sect1 id="ccc-Redrawing">
+    <title>Redrawing</title>
+
+    <para>
+      Text...
+    </para>
+  </sect1>
+</chapter>

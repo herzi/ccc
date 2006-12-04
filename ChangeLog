@@ -1,0 +1,1429 @@
+2006-12-03  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/Makefile.am: updated
+	* ccc/cc-caret.c,
+	* ccc/cc-caret.h: added a class for a text cursor
+	* ccc/cc-line.c: fixed a bug about the item's bounding box
+	* ccc/cc-shape.c,
+	* ccc/cc-shape.h: improved the width query function
+	* ccc/cc-text.c: use the new CcCaret as the text cursor
+
+2006-12-03  Sven Herzberg  <herzi@gnome-de.org>
+
+	* python/cccanvas.override,
+	* python/cccanvasmodule.c: fixed warnings in the python wrapper
+
+2006-12-03  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-camera.c: implemented the camera for a first demo
+	* ccc/cc-item.c: added some documentation
+	* ccc/cc-text.c: fixed a potential crasher
+	* ccc/cc-utils.h: added a macro to check a class for an implementation
+	* ccc/cc-view.c: use the macros for a more advanced warning
+	* demo/main.c: added the camera demo to the working ones
+	* doc/reference/ccc-sections.txt: updated and made the iterfaces work
+
+2006-12-03  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-camera.c: started implementation
+	* demo/camera.c,
+	* demo/crossing.c,
+	* demo/demo-window.c,
+	* demo/fifteen-item.c,
+	* demo/fifteen.c,
+	* demo/line.c,
+	* demo/pixbuf-demo.c,
+	* demo/text-demo.c: improved the code
+	* doc/reference/ccc-docs.sgml,
+	* doc/reference/ccc-sections.txt,
+	* doc/reference/ccc.types: updated
+
+2006-12-03  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/Makefile.am: updated
+	* ccc/ccc.h: updated
+	* ccc/cc-camera.c,
+	* ccc/cc-camera.h: started camera code
+	* demo/Makefile.am:
+	* demo/camera.c: started working on a camera demo
+	* demo/credits.c: updated
+	* demo/credits.h: removed (content is in main.h now)
+	* demo/demo-window.c: made the code a bit more robust
+	* demo/main.c: conditionally build unfinished demos
+	* demo/main.h: added license, camera and credits demo
+	* demo/zoom-and-scroll.c: added a shadow to the frame of the scrolled
+	window
+	* doc/reference/ccc-docs.sgml,
+	* doc/reference/ccc-sections.txt: added camera stuff
+
+2006-11-29  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-text.c: added a property for the caret brush
+	* demo/text-demo.c: put the border around the text item
+
+2006-11-29  Sven Herzberg  <herzi@gnome-de.org>
+
+	* configure.in: added printing dependencies
+	* demo/Makefile.am,
+	* demo/main.c,
+	* demo/main.h,
+	* demo/printer-demo.c: started working on the printer demo
+	* demo/pixbuf-demo.c,
+	* demo/text-demo.c: updated
+	* demo/text-demo.h: removed
+
+2006-11-28  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-line.c: some code cleanup; improved the behaviour
+	* ccc/cc-text.c: don't create a new CcLine for each rendering cycle,
+	do it just once
+	* demo/line.c: fixed an illegal assertion
+
+2006-11-28  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-line.c: slightly increased the performance
+	* ccc/cc-text.c: render the caret with a CcLine now
+	* doc/reference/ccc-sections.txt: reordered some items
+
+2006-11-27  Sven Herzberg  <herzi@gnome-de.org>
+
+	* doc/reference/ccc-sections.txt,
+	* doc/reference/ccc.types: completed the documentation registration
+
+2006-11-26  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-text.c: fixed a bug pointed out by Jean Bréfort
+
+2006-11-26  Sven Herzberg  <herzi@gnome-de.org>
+
+	* README:
+	* ccc/cc-rectangle.c: include the border into the bbox
+	* configure.in: fixing the check test; preparing for the c# bindings
+	* Makefile.am,
+	* csharp/Makefile.am: started stuff for the c# bindings
+
+2006-11-25  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-d-rect.h: define the CcDRect earlier. Fixes bug #337488
+	(Reported by Alberto Mardegan)
+
+2006-11-25  Sven Herzberg  <herzi@gnome-de.org>
+
+	* README: added a nice description
+	* ccc/cc-view-cell-renderer.c: Removed debugging statements
+	* ccc/cc-view-widget.c: tries to fix some illegal memory access
+	* demo/demo-polygon.c: removed debugging statement
+	* ruby/Makefile.am: compile with -fPIC. Fixes bug #378900 (Reported by
+	Jean Bréfort)
+
+2006-11-19  Sven Herzberg  <herzi@gnome-de.org>
+
+	* test/m-ccc.c: small cleanup
+	* test/t-text-utf8-editing.c: improved the tests
+
+2006-11-19  Sven Herzberg  <herzi@gnome-de.org>
+
+	* configure.in: improved the check test
+	* test/Makefile.am: updated
+	* test/glib-helpers.h,
+	* test/gtk-helpers.c,
+	* test/gtk-helpers.h: added
+	* test/m-ccc.c: added test suite
+	* test/s-text.c,
+	* test/s-text.h: added text test suite
+	* test/t-text-utf8-editing.c: added some test cases
+
+2006-11-19  Sven Herzberg  <herzi@gnome-de.org>
+
+	* Makefile.am: updated
+	* configure.in: test for check
+	* ccc/cc-color-hsv.c: fixed private usage
+	* demo/text-demo.c: have a nicer text frame in case of focus
+	* doc/reference/ccc-sections.txt: updated
+	* test/Makefile.am: new
+	* test/dummy-test.c: added dummy test
+
+2006-11-19  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-color-hsv.c,
+	* ccc/cc-color-rgb.c,
+	* ccc/cc-color.h: use GTypePrivate for colors, declare GTypes for them
+	* ccc/cc-item.c: updated documentation
+	* ccc/cc-text.c: print a warning when trying to use markup
+	* ccc/cc-text.h: fixed c++ breakage
+	* ccc/cc-view-png.h: fixed a typo
+	* doc/reference/ccc-docs.sgml,
+	* doc/reference/ccc-sections.txt,
+	* doc/reference/ccc.types: improved documentation
+
+2006-11-19  Sven Herzberg  <herzi@gnome-de.org>
+
+	* TODO: updated
+	* demo/demo-polygon.c: added border and content color as well as line
+	width; fixed the bounding box to include all of the border
+	* demo/main.h: added tree demo
+	* demo/pixbuf-demo.c: added X and Y test controls
+	* demo/tree-integration.c: tried to add dnd support
+
+2006-11-19  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-pixbuf.c,
+	* ccc/cc-pixbuf.h: implemented X and Y properties
+	* ccc/cc-view-cell-renderer.c,
+	* ccc/cc-view-cell-renderer.h: started to implement the cell renderer
+	properly
+	* demo/Makefile.am: updated
+	* demo/demo-polygon.c,
+	* demo/demo-polygon.h: added new class
+	* demo/main.c: display the tree view demo
+	* demo/main.h: extended for tree demo
+	* demo/tree-integration.c: extended for polygon support in the tree
+	* demo/tree-integration.h: removed
+
+2006-11-19  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-pixbuf.c: improve rotation and scaling
+
+# 0.0.4
+
+2006-11-19  Sven Herzberg  <herzi@gnome-de.org>
+
+	* configure.in: release 0.0.4
+
+2006-11-19  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-line.c: fix private use
+
+2006-11-19  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-line.c,
+	* ccc/cc-line.h: use GTypePrivate
+
+2006-11-18  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-pixbuf.c: got the bounds management for this item right
+
+2006-11-18  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-pixbuf.c: added rotation property and set_dirty() function
+	* demo/pixbuf-demo.c: added GtkSpinButton for the rotation; fixed a
+	tab label's title
+
+2006-11-18  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-pixbuf.c,
+	* ccc/cc-pixbuf.h: started to add rotation support; improved the
+	internal width handling
+
+2006-11-18  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-pixbuf.c: added code to also manage automatic sizing
+	* demo/pixbuf-demo.c: removed size setting code to check automatic
+	size as well
+
+2006-11-18  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-pixbuf.c,
+	* ccc/cc-pixbuf.h: use GTypePrivate
+	* demo/Makefile.am: updated
+	* demo/main.c: added pixbuf demo
+	* demo/main.h: added new header
+	* demo/pixbuf-demo.c: added pixbuf demo
+	* demo/text-demo.c: use static "global" variables
+
+2006-11-18  Sven Herzberg  <herzi@gnome-de.org>
+
+	* macros/python.m4: fixed a problem with an underquoted definition
+
+2006-10-21  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-brush.c: changed the code to make gapi2-parser work 
+	* csharp/libccc.sources: added foundation for c sharp bindings
+
+2006-09-04  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-view-widget.c: reduce the maximum frame rate to 25 FPS
+	* ccc/gobject-helpers.h: added missing include
+	* editor/ce-window.c: hide the Close menu item
+	* editor/herzi-main-window.c: fix the function name
+
+# 0.0.3
+
+2006-09-03  Sven Herzberg  <herzi@gnome-de.org>
+
+	* NEWS,
+	* configure.in: release version 0.0.3
+
+2006-08-11  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-shape.c: fix drawing multiple paths one after the other
+	* ccc/cc-text.c,
+	* ccc/cc-text.h: derive from CcShape to inherit fill/border properties
+	and path handling code
+
+2006-08-09  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: removed the old NO_SEARCH_CHILDREN flag
+	* ccc/cc-view-widget.c: only request a redraw if the widget is visible
+	* configure.in: fix python stuff
+	* demo/fifteen-item.c,
+	* doc/reference/ccc-sections.txt: removed NO_SEARCH_CHILDREN
+
+2006-07-14  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-line.c,
+	* ccc/cc-line.h: added line_clear()
+	* ccc/cc-view-widget.c: fixed delayed drawing to draw with 33 and not
+	3.3 frames per second
+
+2006-06-29  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-circle.c: redraw the item properly after changing the anchor
+	point
+
+2006-06-26  Sven Herzberg  <herzi@gnome-de.org>
+
+	* Makefile.am,
+	* ccc/cc-item.c,
+	* ccc/cc-view.h,
+	* configure.in,
+	* macros/python.m4,
+	* python/Makefile.am,
+	* python/cccanvas.defs,
+	* python/cccanvas.override,
+	* python/cccanvasmodule.c,
+	* python/demo/crossing.py,
+	* python/demo/demo.py,
+	* python/demo/demo_canvas.py,
+	* python/demo/fifteen.py,
+	* python/demo/fifteen_grid.py,
+	* python/demo/fifteen_item.py,
+	* python/demo/herzi_combo.py,
+	* python/demo/herzi_properties.py,
+	* python/demo/herzi_properties_group.py,
+	* python/demo/herzi_properties_groups.py,
+	* python/demo/line.py,
+	* python/demo/page.py,
+	* python/demo/text_demo.py,
+	* python/demo/zoom.py: added python bindings from Yves Combe
+
+2006-06-13  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-view-widget.c,
+	* ccc/cc-view-widget.h: implement a maximum FPS
+
+2006-05-13  Sven Herzberg  <herzi@gnome-de.org>
+
+	* NEWS: added release notes for libccc 0.0.2
+	* macros/herzi-ruby.m4: only execute ruby if it was found
+
+2006-05-11  Sven Herzberg  <herzi@gnome-de.org>
+
+	* demo/fifteen-grid.c: fix a crasher
+
+2006-05-01  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-utils.c: don't round widths smaller than 1.0; this makes
+	pages look a lot better in memoranda when the zoom becomes quite
+	small
+
+2006-05-01  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-line.c: fixed a bug about line items not disappearing
+	correctly (this fixes page switching in memoranda)
+
+2006-04-07  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item-view.c: fixed a typo
+	* ccc/cc-item.c: added correct view registration
+
+2006-03-24  Sven Herzberg  <herzi@gnome-de.org>
+
+	* demo/demo-window.c: avoid a segmentation fault (patch by "Mardy",
+	closes bug 335803)
+
+2006-03-19  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-hash-map.c,
+	* ccc/cc-hash-map.h: finished renaming from MemorandahashMap to
+	CCHashMap
+	* ccc/cc-view.c: fixed a warning
+
+2006-03-12  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item.c: fix a double free reported in one of my demo
+	applications
+
+2006-03-11  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-text.c, 
+	* ccc/cc-text.h: fix emission of the notify::text signal and add
+	get_text() function
+	* demo/text-demo.c: update the GtkEntry from edited canvas text
+	* editor/ce-canvas-tree-model.c: fix compilation
+
+2006-03-06  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-text.c: fix the cursor position
+
+2006-03-06  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/Makefile.am: updated
+	* ccc/cc-item-view.c: use the new view registration API
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: added signals for view (un)registration
+	* ccc/cc-text.c,
+	* ccc/cc-text.h: implemented optional text editing
+	* ccc/cc-view-widget.c: added a warning
+	* ccc/glib-helpers.c: new
+	* ccc/glib-helpers.h: added g_utf8_length_next()
+	* demo/text-demo.c: let the text element be editable
+
+2006-03-03  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-view.c,
+	* ccc/cc-view.h: made the argument of get_focus() const
+
+2006-03-02  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item-view.c,
+	* ccc/cc-item-view.h: listen for item-added and item-deleted
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: new signals: item-added and item-deleted
+	* ccc/cc-text.c: fix text rendering
+	* ccc/marshallers.list: updated
+	* editor/ce-canvas-tree-model.c,
+	* editor/ce-canvas-tree-model.h: started a tree model for a canvas
+	* editor/demo-canvas.c,
+	* editor/demo-canvas.h: linked
+
+2006-03-02  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/ccc.h,
+	* ccc/cc-brush.c,
+	* ccc/cc-brush.h,
+	* ccc/cc-brush-color.c,
+	* ccc/cc-brush-color.h,
+	* ccc/cc-color.c,
+	* ccc/cc-color.h,
+	* ccc/cc-color-hsv.c,
+	* ccc/cc-color-rgb.c,
+	* ccc/cc-d-rect.c,
+	* ccc/cc-d-rect.h,
+	* ccc/cc-item.c,
+	* ccc/cc-item.h,
+	* ccc/cc-item-view.c,
+	* ccc/cc-item-view.h,
+	* ccc/cc-rectangle.c,
+	* ccc/cc-rectangle.h,
+	* ccc/cc-rounded-rectangle.c,
+	* ccc/cc-rounded-rectangle.h,
+	* ccc/cc-shape.c,
+	* ccc/cc-shape.h,
+	* ccc/cc-text.c,
+	* ccc/cc-text.h,
+	* ccc/cc-utils.c,
+	* ccc/cc-utils.h,
+	* ccc/cc-view.c,
+	* ccc/cc-view.h,
+	* ccc/cc-view-cell-renderer.c,
+	* ccc/cc-view-cell-renderer.h,
+	* ccc/cc-view-widget.h,
+	* ccc/glib-helpers.h,
+	* ccc/pango-helpers.c,
+	* ccc/pango-helpers.h,
+	* cdebug/cdebug.c,
+	* cdebug/cdebug.h,
+	* demo/credits.c,
+	* demo/credits.h,
+	* demo/demo-canvas.c,
+	* demo/demo-canvas.h,
+	* demo/demo-page.c,
+	* demo/demo-page.h,
+	* demo/demo-window.c,
+	* demo/demo-window.h,
+	* demo/fifteen.c,
+	* demo/fifteen.h,
+	* demo/fifteen-grid.c,
+	* demo/fifteen-grid.h,
+	* demo/fifteen-item.c,
+	* demo/fifteen-item.h,
+	* demo/line.c,
+	* demo/line.h,
+	* demo/main.c,
+	* demo/tree-integration.c,
+	* demo/tree-integration.h,
+	* demo/zoom-and-scroll.c,
+	* demo/zoom-and-scroll.h,
+	* editor/gtk-helpers.c,
+	* editor/gtk-helpers.h,
+	* ruby/ccc.c,
+	* ruby/ccc.rb: fixed license header to always talk mention LGPL
+
+	* ccc/minilgpl.h,
+	* ruby/minilgpl.rb: removed
+
+	* ccc/cc-view-widget.c: fixed license header to always mention LGPL;
+	display nicer scrollbars when there's no canvas set
+	* configure.in: increased version
+	* editor/Makefile.am: updated
+	* editor/ce-window.c,
+	* editor/ce-window.h: added a tree model of the canvas; create a new
+	canvas when clicking on the just added new button; sync the canvas
+	that's displayed with the treeview; renamed the file menu; 
+	* editor/herzi-main-window.c,
+	* editor/herzi-main-window.h: fixed license header to always mention
+	LGPL; fixed signed vs. unsigned warning
+
+2006-03-02  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-pixbuf.c,
+	* ccc/cc-pixbuf.h: implemented proper width and height settings
+
+2006-03-02  Sven Herzberg  <herzi@gnome-de.org>
+
+	* Makefile.am: fix distcheck
+	* ccc/Makefile.am: fix distcheck
+	* ccc/cc-pixbuf.c,
+	* ccc/cc-pixbuf.h: new (not working)
+	* ccc/ccc.h: updated
+	* ccc/glib-helpers.h: updated
+	* configure.in: update glib requirement, build editor
+	* demo/demo-page.c,
+	* demo/demo-page.h: added a missing function
+	* doc/reference/Makefile.am:
+	* editor/Makefile.am: new
+	* editor/ce-main.c: new
+	* editor/ce-window.c,
+	* editor/ce-window.h: new
+	* editor/config.h: new
+	* editor/glib-helpers.h: new
+	* editor/gtk-helpers.c,
+	* editor/gtk-helpers.h: new
+	* editor/herzi-main-window.c,
+	* editor/herzi-main-window.h: new
+
+2006-02-28  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-line.c: added grid-align
+	* ccc/cc-text.c: let text elements scale
+	* demo/text-demo.c: use grid alignment for the lines
+
+2006-02-28  Sven Herzberg  <herzi@gnome-de.org>
+
+	* Makefile.am: added po to the subdirs
+	* ccc/cc-text.c: fix scaling text
+	* ccc/cc-view-widget.c: fix a warning
+	* demo/Makefile.am: updated
+	* demo/main.c: updated
+	* demo/planets.c,
+	* demo/planets.h: new (to be used for show/hide)
+
+2006-02-23  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item.c,
+	* ccc/cc-item.h,
+	* ccc/cc-printer.c,
+	* ccc/cc-view-cell-renderer.c,
+	* ccc/cc-view-widget.c,
+	* ccc/cc-view-widget.h,
+	* ccc/cc-view.c,
+	* ccc/cc-view.h,
+	* demo/fifteen-item.c: implemented focus and key handling events
+
+2006-02-23  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-circle.c,
+	* ccc/cc-item-view.c,
+	* ccc/cc-item-view.h,
+	* ccc/cc-item.c,
+	* ccc/cc-item.h,
+	* ccc/cc-line.c,
+	* ccc/cc-rectangle.c,
+	* ccc/cc-rounded-rectangle.c,
+	* ccc/cc-shape.c,
+	* ccc/cc-text.c,
+	* ccc/cc-view-widget.c: finish the bounds-per-view code
+
+2006-02-22  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item-view.c: removed unnecessary code, some cleanup
+	* ccc/cc-item.c: added more checks, some cleanup
+	* ccc/cc-text.c: removed unused variables
+
+2006-02-21  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-circle.c,
+	* ccc/cc-item-view.c,
+	* ccc/cc-item.c,
+	* ccc/cc-item.h,
+	* ccc/cc-line.c,
+	* ccc/cc-rectangle.c,
+	* ccc/cc-text.c,
+	* ccc/cc-view-widget.c: implemented the new bound updating code
+	* demo/crossing.c: added scrolled region
+	* demo/demo-window.c: whitespace fixes
+	* demo/line.c: display bounding rectangle
+	* demo/text-demo.c: display boundsing rectangle and anchor point
+
+2006-02-20  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: added new API for bound calculation
+	* ccc/cc-view-widget.c: fix the order of interface implementation
+	* ccc/cc-view.c: require CcItemView to be implemented too
+	* ccc/gobject-helpers.h: added support for code passages within
+	interface's get_type implementation
+
+2006-02-20  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item-view.c: only add CcView implementations to the item's
+	list of the views
+	* ccc/cc-view.c: force the implementation of CcItemView for all
+	CcViews
+
+2006-02-20  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item.c: removed the children-bounds and the bounds properties
+
+2006-02-20  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item-view.c,
+	* ccc/cc-item-view.h: adjusted function prototypes, 
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: removed the all-bounds property, created an
+	"all-bounds-changed" signal to replace to notification,
+	get_all_bounds() takes the view now as an additional parameter,
+	updated function prototypes
+	* ccc/cc-view-widget.c: updated method signatures
+	* ccc/marshallers.list: added void:object,boxed
+
+2006-02-20  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/Makefile.am: updated
+	* ccc/cc-hash-map.c,
+	* ccc/cc-hash-map.h: new
+	* ccc/cc-circle.c,
+	* ccc/cc-item-view.c,
+	* ccc/cc-item.c,
+	* ccc/cc-item.h,
+	* ccc/cc-line.c,
+	* ccc/cc-rectangle.c,
+	* ccc/cc-rounded-rectangle.c,
+	* ccc/cc-shape.c,
+	* ccc/cc-text.c,
+	* ccc/cc-view-widget.c: the bounds are now stored within hash maps, so
+	it is possible to modify the code to support bounds-per-view; fixed
+	some brokeness of the last commit
+	* ccc/glib-helpers.h: updated to the version of my other projects
+
+2006-02-20  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-circle.c,
+	* ccc/cc-item.c,
+	* ccc/cc-item.h,
+	* ccc/cc-line.c,
+	* ccc/cc-rectangle.c,
+	* ccc/cc-text.c: implemented a working bound caching mechanism, which
+	works a lot faster than the old code and which matches the
+	specification of the ccc-bounds.xml document
+
+2006-02-20  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: added the documented properties "bounds" and
+	"children-bounds"
+	* doc/reference/ccc-bounds.xml: mention the children-bounds stuff
+
+2006-02-20  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-circle.c,
+	* ccc/cc-item-view.c,
+	* ccc/cc-item-view.h,
+	* ccc/cc-item.c,
+	* ccc/cc-item.h,
+	* ccc/cc-line.c,
+	* ccc/cc-rectangle.c,
+	* ccc/cc-text.c,
+	* ccc/cc-view-widget.c: renamed the "extents" property to "all-bounds"
+	* doc/reference/ccc-bounds.xml: added the documentation of my new idea
+	for bound caching - which needs more recalculation, but makes the
+	recalculation a LOT faster. So this is the desired way
+
+2006-02-18  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: added is_child()
+	* ccc/cc-view-widget.c,
+	* ccc/cc-view-widget.h: fix the grab and enter/leave signals
+
+2006-02-18  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-printer.c: updated
+	* ccc/cc-view-cell-renderer.c: updated
+	* ccc/cc-view-widget.c,
+	* ccc/cc-view-widget.h: implemented scroll region
+	* ccc/cc-view.c,
+	* ccc/cc-view.h: added scroll region
+	* demo/demo-canvas.c,
+	* demo/demo-canvas.h,
+	* demo/zoom-and-scroll.c: add scroll region code
+
+2006-02-18  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-brush-color.c,
+	* ccc/cc-brush.c,
+	* ccc/cc-brush.h,
+	* ccc/cc-color.c,
+	* ccc/cc-color.h,
+	* ccc/cc-item.c,
+	* ccc/cc-item.h,
+	* ccc/cc-printer.c,
+	* ccc/cc-printer.h,
+	* ccc/cc-shape.c,
+	* ccc/cc-view-png.c,
+	* ccc/cc-view-png.h,
+	* ccc/cc-view-widget.c,
+	* demo/crossing.c,
+	* demo/demo-canvas.c,
+	* demo/fifteen-grid.c,
+	* demo/fifteen-item.c: use floating references
+
+2006-02-18  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-view-widget.c: fix the code layout for the changes, should
+	perform better when changing invisible items or changing two small
+	items which have a lot of space between them
+
+2006-02-18  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-view-widget.c,
+	* ccc/cc-view-widget.h: improved redraw performance; fix auto-zoom for
+	the scrolled region changes we had
+
+2006-02-18  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-view-widget.c: fix setting the scroll region in a way that
+	the current canvas is displayed right now
+
+2006-02-17  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/Makefile.am: updated
+	* ccc/cc-circle.c: repair implementation
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: prepared focus implementation, added enter/leave
+	notify events, added an additional check for cc_item_distance() to
+	report broken distance() handlers, documentation fixes
+	* ccc/cc-text.c: fix the pango stuff for now - that stuff got broken by
+	pango 1.11
+	* ccc/cc-view-png.c,
+	* ccc/cc-view-png.h: new
+	* ccc/cc-view-widget.c: support enter/leave pairs on children prepared
+	focus stuff
+	* ccc/cc-view.c,
+	* ccc/cc-view.h: fix grab item prototype, add some type checks
+	* ccc/ccc.h: updated
+	* ccc/marshallers.list: added bool:object,enum
+	* demo/Makefile.am: updated
+	* demo/crossing.c,
+	* demo/crossing.h: added demo for the motion events
+	* demo/main.c: added crossing demo
+
+2006-02-01  Sven Herzberg  <herzi@gnome-de.org>
+
+	* TODO: updated
+	* ccc/Makefile.am: updated
+	* ccc/cc-circle.c,
+	* ccc/cc-circle.h: new
+	* ccc/cc-rounded-rectangle.c: removed unused coordinates
+	* ccc/cc-view-widget.c: ignore proximity events; fix a segfault
+	* ccc/ccc.h: updated
+
+2006-01-31  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-line.c,
+	* ccc/cc-rectangle.c,
+	* ccc/cc-rounded-rectangle.c,
+	* ccc/cc-shape.c,
+	* ccc/cc-shape.h: started to make the bounds-information
+	view-dependent
+
+2006-01-31  Sven Herzberg  <herzi@gnome-de.org>
+
+	* TODO: updated
+	* ccc/cc-line.c: emit redraw signals; fix memory usage
+	* ccc/cc-utils.c: fix that broken accumulator that always returned
+	TRUE
+	* ccc/cc-view-widget.c: accelerate redraws; fix item grabbing and
+	event handling (hey, it works now exactly the way it should)
+	* demo/Makefile.am: updated
+	* demo/line.c,
+	* demo/line.h: new
+	* demo/main.c: added line demo
+
+2006-01-31  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item-view.c: redraw when children disappear
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: improve insert; emit items to parents too
+	* ccc/cc-shape.c: only unref brushes if they have been set
+	* ccc/cc-view-widget.c,
+	* ccc/cc-view-widget.h: improve performance; implement (un)grab_item
+	* ccc/cc-view.c,
+	* ccc/cc-view.h: added (un)grab_item
+
+2006-01-30  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/Makefile.am: updated
+	* ccc/cc-line.c,
+	* ccc/cc-line.h: new
+	* ccc/cc-view-widget.c: play around with the motion hint mask
+	* ccc/ccc.h: updated
+
+2006-01-29  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: added the motion-notify-event; 
+	* ccc/cc-rounded-rectangle.c: small fixup and now we don't get
+	artefacts
+	* ccc/cc-shape.c: initialize temporary variables
+	* ccc/cc-view-widget.c,
+	* ccc/cc-view-widget.h: handle motion-notify-event; 
+	* doc/reference/Makefile.am: updated
+	* doc/reference/ccc-docs.sgml: updated
+	* doc/reference/ccc-events.xml: started section about event handling
+
+2006-01-23  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-view-widget.c,
+	* ccc/cc-view-widget.h: expose the zoom mode with accessors
+
+2006-01-23  Sven Herzberg  <herzi@gnome-de.org>
+
+	* configure.in: set the GTK+ version we depend on, added a commented
+	test for the PS surface in cairo
+	* ccc/cc-text.c,
+	* ccc/cc-text.h: let the text element to be able to zoom with the
+	canvas
+	* ccc/cc-view-widget.c: implement world_to_window_distance
+	* ccc/cc-view.c,
+	* ccc/cc-view.h: added world_to_window_distance
+	* demo/Makefile.am: updated
+	* demo/demo-canvas.c: check that the positions are really the ones
+	we'd like to have
+	* demo/gdb-ccc-demo: set LTDL_LIBRARY_PATH
+	* demo/herzi-properties-group.c,
+	* demo/herzi-properties-group.h,
+	* demo/herzi-properties.c,
+	* demo/herzi-properties.h: new
+	* demo/main.c: added the text demo, disabled the credits demo
+	* demo/text-demo.c,
+	* demo/text-demo.h: new
+
+2006-01-22  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-printer.c: added a translator comment
+
+2006-01-22  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/Makefile.am: updated
+	* ccc/cc-printer.c,
+	* ccc/cc-printer.h: new
+	* ccc/ccc.h: updated
+
+2006-01-21  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-rounded-rectangle.c,
+	* ccc/cc-rounded-rectangle.h: implemented the rounded rectangle
+	* ccc/cc-utils.c: be a bit easier to use
+
+2006-01-19  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/Makefile.am: updated
+	* ccc/cc-rectangle.c,
+	* ccc/cc-rectangle.h: extracted some code into the shape class
+	* ccc/cc-rounded-rectangle.c,
+	* ccc/cc-rounded-rectangle.h: new
+	* ccc/cc-shape.c,
+	* ccc/cc-shape.h: new
+	* ccc/cc-view-widget.c: support NULL parameters for transformation
+	* ccc/ccc.h: updated
+	* demo/demo-canvas.c,
+	* demo/fifteen-grid.c,
+	* demo/fifteen-item.c: updated API usage
+
+2006-01-19  Sven Herzberg  <herzi@gnome-de.org>
+
+	* configure.in: added intltool, gprof and gettext support
+	* ccc/Makefile.am: updated
+	* ccc/cc-enumerations.c.in,
+	* ccc/cc-enumerations.h.in: new
+	* ccc/cc-utils.h: added zoom mode
+	* ccc/cc-view-cell-renderer.c,
+	* ccc/cc-view-widget.c,
+	* ccc/cc-view-widget.h: implement zoom-mode, clip on redraws
+	* ccc/cc-view.c,
+	* ccc/cc-view.h: added zoom-mode
+	* ccc/ccc.h: updated
+	* ccc/glib-helpers.h: update
+	* demo/Makefile.am: updated
+	* demo/herzi-enum-combo.c,
+	* demo/herzi-enum-combo.h,
+	* demo/herzi-enum-model.c,
+	* demo/herzi-enum-model.h: new
+	* demo/zoom-and-scroll.c: added auto-zoom code
+	* macros/herzi-gettext.m4: new
+	* macros/herzi-gprof.m4: new
+	* po/POTFILES.in: new
+	* po/de.po: added German translation
+
+2006-01-17  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-view-widget.c: make center_view overwritable by init
+	functions
+	* demo/fifteen.c: let the widget be able to receive the focus
+	* doc/reference/Makefile.am,
+	* doc/reference/ccc-docs.sgml,
+	* doc/reference/ccc-focus-handling.xml: added the focus handling
+	documentation
+
+2006-01-16  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc.pc.in: added the missing template
+	* ccc/cc-view-widget.c: improve performance, allow widgets to shrink
+
+2006-01-16  Sven Herzberg  <herzi@gnome-de.org>
+
+	* configure.in,
+	* Makefile.am,
+	* ccc/Makefile.am,
+	* cdebug/Makefile.am,
+	* doc/reference/Makefile.am,
+	* macros/herzi-prefix.m4,
+	* macros/herzi-ruby.m4,
+	* ruby/Makefile.am: support installation and distcheck
+
+2006-01-16  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item.c: fix bounds calculation to also respect the items own
+	bounds
+	* ccc/cc-rectangle.c: use the border brush
+	* ccc/cc-text.c: fix the position calculation for now
+	* demo/demo-window.c: fix a double free
+	* doc/reference/Makefile.am: build cleanly
+
+2006-01-16  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-text.c,
+	* ccc/cc-text.h: added setMarkup(), updated some calculations
+	* ccc/cc-view-widget.c: fix a crash
+
+2006-01-05  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-view-widget.c: fixed two things: center view with scroll
+	adjustments; center view if the zoom is not 100%
+
+2006-01-04  Sven Herzberg  <herzi@gnome-de.org>
+
+	* Makefile.am: added the debug dir
+	* ccc/Makefile.am: added the debugging stuff
+	* ccc/cc-item.c: added some debugging code, a new task, finish the
+	notify_extents handler extraction
+	* ccc/cc-view-widget.c: center the display area by default
+	* cdebug/Makefile.am: new
+	* cdebug/cdebug.c,
+	* cdebug/cdebug.h: new
+	* configure.in: added tasks and the debugging directory
+	* demo/zoom-and-scroll.c: added a checkbox for the center-view
+	behaviour
+	* doc/reference/Makefile.am: added the bugs section
+	* doc/reference/ccc-docs.sgml: added the bugs section
+
+2006-01-03  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item-view.h: whitespace fix
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: updated notify_extents implementation
+	* ccc/cc-rectangle.c,
+	* ccc/cc-rectangle.h: added public coordinate setters
+	* ccc/cc-text.c: added a task
+	* demo/zoom-and-scroll.c: improve the look and feel of the zoom label
+
+2006-01-03  Sven Herzberg  <herzi@gnome-de.org>
+
+	* demo/fifteen-grid.c,
+	* demo/fifteen-grid.h: added a font description property
+	* demo/fifteen.c: use the widget's default font for the movable pieces
+
+2006-01-03  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-color-hsv.c,
+	* ccc/cc-color.h: fixed the order of arguments, so we get to see the
+	expected results actually
+
+2006-01-03  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-text.c,
+	* ccc/cc-text.h: made athe code a bit easier to understand; disabled
+	some broken notifications; added setFontDescription(); added some
+	documentation
+
+2005-12-29  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-text.c,
+	* ccc/cc-text.h: fix bound update, added setText(), if the view is a
+	widget, set the font from it if it's not already set
+	* ccc/cc-view-widget.c: added a performance task, cleaned up the code,
+	fix a crash
+	* ccc/glib-helpers.h: added some useful macros
+
+2005-12-03  Sven Herzberg  <herzi@gnome-de.org>
+
+	* Makefile.am: added the ruby directory
+	* ccc/cc-brush.c,
+	* ccc/cc-brush.h: added documentation
+	* ccc/cc-item.c: added documentation
+	* configure.in: check for ruby too
+	* demo/Makefile.am: added the credits files to the distribution
+	* demo/credits.c,
+	* demo/credits.h: added a demo page for the upcoming 'animated credits'
+	* demo/main.c: added the credits page
+	* doc/reference/ccc-bugs.xml,
+	* doc/reference/ccc-docs.sgml: added some documentation about known
+	bugs and limitations
+	* macros/herzi-ruby.m4: added a set up M4 macros for the ruby
+	detection (shared with another local project)
+	* ruby/Makefile.am: added build rules for the ruby module
+	* ruby/ccc.c: added a ruby module for now
+	* ruby/ccc.rb: added the foundation for the ruby module
+	* ruby/codewrapper: added a skeleton for the upcoming wrapper writer
+	* ruby/minilgpl.rb: added ruby template
+
+2005-11-29  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-view-widget.c,
+	* ccc/cc-view-widget.h: added the 'center view' property, added
+	documentation
+	* doc/reference/ccc-sections.txt: updated
+
+2005-11-29  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-rectangle.c: use new rounding API
+	* ccc/cc-text.c: use new rounding API
+	* ccc/cc-utils.c,
+	* ccc/cc-utils.h: made the rounding API simpler by not providing
+	directions (they broke exact alignment if the top-left cornder of a
+	rectangle got other rounded coordinates as the same point when being a
+	bottom-right coordinate)
+	* ccc/cc-view-widget.c: improved the size request and rendering
+	* demo/fifteen-item.c: fix item's positions
+	* doc/reference/ccc-sections.txt: removed the grid align direction
+
+2005-11-29  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: added a button-release-event, handle double and
+	tripple clicks too, added documentation, added accumulators to
+	signals
+	* ccc/cc-text.c,
+	* ccc/cc-text.h: improve includes
+	* ccc/cc-utils.c,
+	* ccc/cc-utils.h: added an accumulator for the item#s signals
+	* demo/fifteen.c: improved the layout
+	* doc/reference/ccc-sections.txt: updated to be complete
+
+2005-11-28  Sven Herzberg  <herzi@gnome-de.org>
+
+	* demo/fifteen-grid.c,
+	* demo/fifteen-grid.h,
+	* demo/fifteen.c: added grid scrambling
+
+2005-11-28  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-view-widget.c: require the space to display the whole canvas
+	if there's no scrolling
+
+2005-11-28  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: added item events, added distance()
+	* ccc/cc-rectangle.c: implement distance()
+	* ccc/cc-view-widget.c: improve redrawing, added event handling for
+	the items
+	* ccc/marshallers.list: added BOOLEAN:OBJECT,BOXED for the item events
+	* demo/fifteen-grid.c,
+	* demo/fifteen-item.c: implemented the fifteen game (without
+	scrambling yet)
+
+2005-11-28  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item-view.c: fix a NULL pointer warning
+	* ccc/cc-rectangle.c: improve the redraw requests
+	* ccc/cc-view-widget.c: update correctly
+	* demo/Makefile.am: added new files
+	* demo/fifteen-grid.c,
+	* demo/fifteen-grid.h,
+	* demo/fifteen-item.c,
+	* demo/fifteen-item.h,
+	* demo/fifteen.c,
+	* demo/fifteen.h: added the rendering code for the fifteen game,
+	interactivity will follow
+	* demo/main.c: added the fifteen game, disable the non-implemented
+	tree page for now
+
+2005-11-28  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item-view.c: update to new bounds code
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: improve the bounds checking code
+	* ccc/cc-rectangle.c: improve bounds checking
+	* ccc/cc-text.c: removed a debuggin statement, fixed position (at
+	least for the currect non-scaled situation)
+	* ccc/cc-view-widget.c: update to new bounds code
+	* doc/reference/Makefile.am: added the new file
+	* doc/reference/ccc-bounds.xml: added chapter about bounds-checking
+	* doc/reference/ccc-docs.sgml: added chapter about bounds-checking
+
+2005-11-28  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item.h: added a rectangle for the items' own bounds
+	* ccc/cc-text.c,
+	* ccc/cc-text.h: added lots of cool stuff
+	* demo/demo-canvas.c: center the text
+
+2005-11-27  Sven Herzberg:  <herzi@gnome-de.org>
+
+	* doc/reference/Makefile.am: build the templates if they don't exist
+
+2005-11-27  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/Makefile.am: added the new source files
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: added a flags for the disposed state, set it while
+	disposing
+	* ccc/cc-rectangle.c,
+	* ccc/cc-rectangle.h: use the disposed flags now
+	* ccc/cc-text.c,
+	* ccc/cc-text.h: added a text object
+	* ccc/ccc.h: added cc-text.h
+	* ccc/pango-helpers.c,
+	* ccc/pango-helpers.h: added a routine to get a cairo layout without a
+	cairo context (makes the life cycles easier manageable)
+	* demo/alleyoop-ccc-demo:
+	* demo/demo-canvas.c: added a text item in the middle of the
+	rectangles
+	* doc/reference/Makefile.am: ignore the pango-helpers header
+	* doc/reference/ccc-docs.sgml: include the documentation about the
+	CcText class
+	* doc/reference/ccc-sections.txt: added the text symbols and the
+	disposed flag for the item
+	* doc/reference/ccc.types: added cc_text_get_type
+
+2005-11-26  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-view-widget.c: added zoom support
+	* demo/zoom-and-scroll.c: enabled the zooming stuff
+
+2005-11-26  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-rectangle.c: updated to the new transformation API
+	* ccc/cc-view-cell-renderer.c,
+	* ccc/cc-view-cell-renderer.h: added skeleton for zoom support
+	* ccc/cc-view-widget.c,
+	* ccc/cc-view-widget.h: rewrote scrolling code to use a transformation
+	matrix, added the zoom property, updated to the new transformation API
+	* ccc/cc-view.c,
+	* ccc/cc-view.h: added a zoom property, changed tranformation API
+	* demo/demo-window.c,
+	* demo/demo-window.h: don't leak memory (even sample code should be
+	clean)
+	* demo/tree-integration.c: don't leak memory here
+	* demo/zoom-and-scroll.c: added some code for zooming (which is
+	disabled right now)
+	* doc/reference/Makefile.am: added the zoom and scroll document and a
+	rule to publish the manual to my web server
+	* doc/reference/ccc-docs.sgml: added the zoom and scroll passage
+	* doc/reference/ccc-sections.txt: added the zoom access functions for
+	the view class
+	* doc/reference/ccc-zoom-and-scroll.xml: added some text about zooming
+	and scrolling
+
+2005-11-22  Sven Herzberg  <herzi@gnome-de.org>
+
+	* configure.in: added check for glib-genmarshal
+	* ccc/Makefile.am: added marshal build rules
+	* ccc/cc-view-widget.c,
+	* ccc/cc-view-widget.h: implement item view, added scrolling
+	* ccc/cc-view.c,
+	* ccc/cc-view.h: coordinate conversion functions are virtual now
+	* ccc/marshallers.list: added VOID:BOXED,BOXED
+	* demo/gdb-ccc-demo: added a script to easily execute ccc-demo in gdb
+	with libtool (you get it)
+	* doc/reference/Makefile.am: ignore the cc-marshaller.h header
+
+2005-11-22  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: added cc_item_dirty() to not depend on internal
+	signal names
+	* ccc/cc-rectangle.c: use cc_item_dirty() update even after changed
+	brushes
+	* doc/reference/ccc-custom-items.xml: added a paragraph about the
+	dirty signal
+	* doc/reference/ccc-sections.txt: added missing symbols
+
+2005-11-22  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item-view.c,
+	* ccc/cc-item-view.h: added item_dirty signal handler
+	* ccc/cc-item.c: added a 'dirty' signal, forward it from children
+	* ccc/cc-rectangle.c: emit the 'dirty' signal, reset default line
+	width to 1.0
+	* ccc/cc-view-widget.c,
+	* ccc/cc-view-widget.h: implement the item view interface, listen for
+	the dirty-signal from the root item to add a queued redraw
+
+2005-11-22  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/Makefile.am: added -std=c99 to the cflags
+	* ccc/cc-rectangle.c: use the new grid-align API
+	* ccc/cc-utils.c,
+	* ccc/cc-utils.h: extend the grid align API to work for any line width
+	* doc/reference/ccc-custom-items.xml: updated the grid API stuff
+
+2005-11-22  Sven Herzberg  <herzi@gnome-de.org>
+
+	* doc/reference/Makefile.am: added the pictures
+	* doc/reference/ccc-custom-items.xml: added lots of text
+	* doc/reference/ccc-docs.sgml: added missing sections
+	* doc/reference/ccc-grid-align-with.png,
+	* doc/reference/ccc-grid-align-without.png: added example images
+
+2005-11-22  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/Makefile.am: added the new source files
+	* ccc/cc-color-rgb.c: removed a debugging statement
+	* ccc/cc-d-rect.c,
+	* ccc/cc-d-rect.h: added a simple rectangle with gdouble coordinates
+	* ccc/cc-item-view.c,
+	* ccc/cc-item-view.h: added an interface that listens to changes of
+	items
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: implement the item view interface wrt children, added
+	_get_extents(), update the extents the childrens extents change
+	* ccc/cc-rectangle.c: emit notify::extents if necessary
+	* ccc/cc-utils.c,
+	* ccc/cc-utils.h: added documentation
+	* ccc/cc-view-cell-renderer.c,
+	* ccc/cc-view-cell-renderer.h: added _new(), added the root property,
+	implement some GObject and GtkCellRenderer methods
+	* ccc/cc-view-widget.c: redraw only if necessary
+	* ccc/cc-view.c,
+	* ccc/cc-view.h: added window_to_world, 
+	* ccc/ccc.h: added the new headers
+	* demo/demo-canvas.c: updated size and position of the rectangles
+	* demo/tree-integration.c: added a model for the tree interation demo,
+	added columns to the tree
+	* demo/zoom-and-scroll.c: some cleanup, initailize the spinbutton
+	* doc/reference/ccc-docs.sgml: added some structure to the manual
+	* doc/reference/ccc-sections.txt: added missing symbols
+
+2005-11-21  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/Makefile.am: added the new source files
+	* ccc/cc-brush-color.c,
+	* ccc/cc-brush-color.h,
+	* ccc/cc-color.c,
+	* ccc/cc-color.h,
+	* ccc/cc-rectangle.c,
+	* ccc/cc-rectangle.h: added gtk-doc compatibility
+	* ccc/cc-view-cell-renderer.c,
+	* ccc/cc-view-cell-renderer.h: added the skeleton for a cell renderer
+	* ccc/ccc.h: added the cell renderer header
+	* demo/Makefile.am: added the new source files
+	* demo/demo-window.c: added navigation and sort order
+	* demo/main.c: added the tree integration demo
+	* demo/tree-integration.c,
+	* demo/tree-integration.h: started a demo page about the tree
+	interation via cell renderer
+	* doc/reference/ccc-docs.sgml: added the object hierarchy
+	* doc/reference/ccc-sections.txt: reordered the elements
+	* doc/reference/ccc.types: added the cell renderer
+
+2005-11-21  Sven Herzberg  <herzi@gnome-de.org>
+
+	* configure.in: build the doc Makefiles
+	* Makefile.am: added doc subdir
+	* ccc/cc-rectangle.h: fix a macro
+	* doc/Makefile.am: added
+	* doc/reference/Makefile.am: added
+	* doc/reference/ccc-custom-items.xml: added
+	* doc/reference/ccc-docs.sgml: added manual
+	* doc/reference/ccc-overrides.txt: added
+	* doc/reference/ccc-sections.txt: added
+	* doc/reference/ccc.types: added
+
+2005-11-21  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/Makefile.am: added the new sources
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: added a flag to specify whether or not an element
+	should be grid-aligned
+	* ccc/cc-rectangle.c: align the rectangle properly to the grid is
+	requested
+	* ccc/cc-utils.c,
+	* ccc/cc-utils.h: some calculation helpers
+	* ccc/ccc.h: added the utils header
+	* demo/demo-canvas.c: set the rectangles to be grid-aligned
+
+2005-11-21  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/Makefile.am: added the new color files
+	* ccc/cc-brush-color.c,
+	* ccc/cc-brush-color.h: updated the new color API
+	* ccc/cc-brush.c,
+	* ccc/cc-brush.h: added apply(), made the brush class abstract
+	* ccc/cc-color-hsv.c: extracted the HSV code
+	* ccc/cc-color-rgb.c: extracted the RGB code
+	* ccc/cc-color.c,
+	* ccc/cc-color.h: some cleanup and extensions
+	* ccc/cc-item.h: fixed some macros
+	* ccc/cc-rectangle.c: added rendering code
+	* ccc/cc-view.c,
+	* ccc/cc-view.h: added world_to_window translation
+	* demo/demo-canvas.c: set and unref the colors correctly
+
+2005-11-21  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: added the render() stuff to diplay items
+	* ccc/cc-view-widget.c: render the canvas on expose events
+	* ccc/cc-view.h: improve the include sequence
+
+2005-11-21  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-rectangle.c,
+	* ccc/cc-rectangle.h: added an API for the position handling
+	* demo/demo-canvas.c,
+	* demo/demo-window.c: use the position API for the rectangle
+	* demo/main.c: show the window AFTER adding the content
+
+2005-11-21  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-view-widget.c,
+	* ccc/cc-view-widget.h: implement the root property
+	* ccc/cc-view.c,
+	* ccc/cc-view.h: added a call to implement the root property for
+	implementing classes
+
+2005-11-21  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-rectangle.c,
+	* ccc/cc-rectangle.h: implement the rectangle class
+	* demo/demo-canvas.c: updated to the new API
+
+2005-11-21  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-brush-color.c,
+	* ccc/cc-brush-color.h: implemented the color brush class
+	* demo/demo-canvas.c: don't unref the boxed type color
+
+2005-11-21  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-color.c: made the code a bit more robust
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: implement the item class
+
+2005-11-21  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/Makefile.am: added cc-brush.c, fixed the order of the others
+	* ccc/cc-brush.c,
+	* ccc/cc-brush.h: implemented the brush class
+
+2005-11-21  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-color.c,
+	* ccc/cc-color.h: implement the color stuff
+	* ccc/cc-view-widget.c,
+	* ccc/cc-view-widget.h: added cc_view_widget_new_root
+	* ccc/gobject-helpers.h: added G_BOXED_COPY_FUNC() and
+	G_BOXED_FREE_FUNC() macros
+	* demo/demo-canvas.c: free the colors
+	* demo/zoom-and-scroll.c: added the demo canvas to this page
+
+2005-11-21  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/Makefile.am: added new files
+	* ccc/cc-brush-color.c,
+	* ccc/cc-brush-color.h: skeleton for the simple color brush
+	* ccc/cc-brush.h: skeleton for the brush handling
+	* ccc/cc-color.c,
+	* ccc/cc-color.h: skeleton for the color handling
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: added _new and _append
+	* ccc/cc-rectangle.c,
+	* ccc/cc-rectangle.h: skeleton for a rectangle item
+	* ccc/ccc.h: added new files
+	* demo/Makefile.am: include the demo canvas
+	* demo/demo-canvas.c,
+	* demo/demo-canvas.h: create a demo canvas that can be used at several
+	places in the demo application
+
+2005-11-20  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/cc-view.c,
+	* ccc/cc-view.h: improve the code layout, add the root property
+	* ccc/ccc.h: added a common header for all files
+	* ccc/gobject-helpers.h: improve the interface macros
+	* demo/Makefile.am: added the new source files
+	* demo/demo-page.c,
+	* demo/demo-page.h: implement the demo page stuff
+	* demo/demo-window.c,
+	* demo/demo-window.h: added the content of the window
+	* demo/main.c: added the zoom and scroll page
+	* demo/zoom-and-scroll.c,
+	* demo/zoom-and-scroll.h: added the first content page
+
+2005-11-20  Sven Herzberg  <herzi@gnome-de.org>
+
+	* ccc/Makefile.am: added new source files
+	* ccc/cc-item.c,
+	* ccc/cc-item.h: added the base class for all the items
+	* ccc/cc-view-widget.c: implement the view interface, implemented the
+	cc_view_new method
+	* ccc/cc-view.c,
+	* ccc/cc-view.h: added the base interface for the canvas view classes
+	* ccc/glib-helpers.h,
+	* ccc/gobject-helpers.h: some helping macros
+
+2005-11-20  Sven Herzberg  <herzi@gnome-de.org>
+
+	* configure.in: generate the makefile of the demo application
+	* Makefile.am: added the demo directory
+	* demo/demo-window.c,
+	* demo/demo-window.h: added a class for the demo application's main
+	window
+	* demo/main.c: the main method for the demo application
+	* demo/Makefile.am: build the demo application
+	* ccc: updated svn:ignore
+	* ccc/Makefile.am: added rules to build the library
+	* ccc/cc-view-widget.c,
+	* ccc/cc-view-widget.h: added a widget that's supposed to become the
+	view of a canvas model
+	
+
+2005-11-20  Sven Herzberg  <herzi@gnome-de.org>
+
+	* .: updated svn:ignore
+	* autogen.sh: added gnome-autogen skeleton
+	* configure.in: added skeleton
+	* COPYING.LIB: added LGPL 2.1
+	* Makefile.am: added ccc to SUBDIRS
+	* README: added required file
+	* macros/herzi-cflags.m4: added some of my personal m4 macros
+	* macros/aclocal-include.m4: added a check to include the macros
+	directory
+	* ccc/minilgpl.h: added template for new code files
+	* ccc/Makefile.am: empty version
+

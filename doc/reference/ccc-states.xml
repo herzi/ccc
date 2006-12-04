@@ -1,0 +1,81 @@
+<chapter id="ccc-Item-States">
+	<title>Item States</title>
+	
+	<para>
+		This chapter provides an overview about the states of canvas items.
+	</para>
+		
+	<para>
+		There are several states that items want to <!-- FIXME -->
+	</para>
+
+	<sect1 id="ccc-State-Propagation">
+		<title>State Propagation</title>
+
+		<para>
+			State propagation is an important part of the item state
+			concept. Its the part of the internals that tell parent
+			items (and views) that a state has changed and views can
+			easily act on this notification (eg. cancel current
+			redraw requests and resume them once the canvas is ready).
+		</para>
+
+		<formalpara>
+			<title>State Signalling</title>
+			State propagation is quite easy. It's all handled in the CcItem
+			<!-- FIXME add link --> class. States can be (un)set per view.
+			If the style changes for a view, the parent item picks up this
+			change and changes its own state. This mechanism is executed
+			synchronously (but might be changed to a very high priority
+			idle handler).
+		</formalpara>
+
+		<formalpara>
+			<title>State Processing</title>
+		</formalpara>
+	</sect1>
+
+	<sect1 id="ccc-State-Collecting">
+		<title>Collecting</title>
+
+		<para>
+			CCC is supposed to get a feature called <ulink
+			url="http://bugzilla.gnome.org/show_bug.cgi?id=379823">Item
+			Clustering</ulink>. The state of updating the clusters will
+			be specifyable.
+		</para>
+	</sect1>
+
+	<sect1 id="ccc-State-Size-Request">
+		<title>Size Requests</title>
+
+		<para>
+			Size requests are not yet implemented in CCC. But the state
+			of managing size requests and size allocations will be
+			specifyable.
+		</para>
+	</sect1>
+
+	<sect1 id="ccc-State-Preparing">
+		<title>Preparing</title>
+
+		<para>
+			Not every item will update every detail just when an internal
+			attribute changes (eg. the text item doesn't update the caret
+			position immediately once the cursor position changes).
+		</para>
+
+		<para>
+			Items in this state shouldn't be drawn as they are in an
+			intermediate state that needs to be passed to be renderable.
+		</para>
+	</sect1>
+
+	<sect1 id="ccc-State-Disposing">
+		<title>Disposing</title>
+
+		<para>
+			As a part of the GObject memory management system…
+		</para>
+	</sect1>
+</chapter>

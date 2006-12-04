@@ -1,0 +1,46 @@
+<chapter id="ccc-Zoom-and-Scroll">
+
+  <title>Zooming and Scrolling</title>
+  <subtitle>An overview on zooming and scrolling in the CCC</subtitle>
+
+  <para>
+    This chapter describes the zoom and scroll mechanisms that are implemented
+    in the CCC.
+  </para>
+
+  <para>
+    In my first attempts on implementing zoom and scroll I often ran into the
+    problem that certain kinds of actions (e.g. a special combination of
+    scroll, zoom, scroll, zoom) lead into unwanted aspects. This was the result
+    of not splitting zoom and scrolling. When I zoomed, I was modifying the
+    scroll properties, which should not happen as I know now. As long as no
+    operation affects the other we cannot run into these side effects. So
+    here's how zoom and scroll are implemented in libccc.
+  </para>
+
+  <section id="ccc-Scrolling">
+    <title>Scrolling</title>
+
+    <para>
+      For scrolling we use the GtkAdjustment class to specify everything we
+      need. The GtkAdjustment has got these values of interest: lower, upper,
+      page-size, value. The value is the position of the adjustment, which is
+      between lower and (upper - page-size). So we can easily use it as an
+      offset like this: lower is the minimum axis coordinate of the root item;
+      upper is the maximum axis coordinate of the root item; page-size is the
+      number of visible canvas points on the widget (widget-dimension / zoom);
+      value is the current scroll offset.
+    </para>
+  </section>
+
+  <section id="ccc-Zooming">
+    <title>Zooming</title>
+
+    <para>
+      As read in scrolling, the page-size is dependent on the zoom value, but
+      all the others are not. So zooming just modifies the page-size and the
+      value.
+    </para>
+  </section>
+
+</chapter>

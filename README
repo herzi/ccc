@@ -1,0 +1,27 @@
+
+  README for libccc
+  =================
+
+This is criawips' cairo-based canvas (CCC). It was designed to be used as a
+replacement for Gnome Canvas in my presentaiton application. It tries to remain
+as easy to be used as Gnome Canvas but also to solve the problems that the
+current Gnome Canvas API is infected with.
+
+Requirements:
+=============
+ * Glib 2.10.0
+ * GTK+ 2.8.0
+ * cairo 1.2.0
+ * check (optional)
+ * gtk-doc (optional)
+
+Features:
+=========
+
+ * Gnome Canvas like API
+   * but now using things like gnome_canvas_item_new()
+ * finer grained event handling API
+ * every canvas item can be a container
+ * model/view split
+ * access to events on the view widget (no need for GnomeCanvasAcetate)
+

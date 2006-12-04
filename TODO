@@ -1,0 +1,6 @@
+canvas:
+  * show/hide
+  * rename "bounds" signals
+
+demo:
+  * show/hide demo

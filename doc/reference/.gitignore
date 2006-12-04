@@ -1,0 +1,15 @@
+xml
+*stamp
+html
+ccc.signals
+ccc.prerequisites
+ccc.interfaces
+ccc.hierarchy
+ccc.args
+ccc-unused.txt
+ccc-decl-list.txt
+ccc-decl-list.txt.bak
+ccc-decl.txt
+ccc-decl.txt.bak
+ccc-overrides.txt
+ccc-undocumented.txt

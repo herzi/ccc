@@ -1,0 +1,6 @@
+*.lo
+*.la
+cc-marshallers.[ch]
+cc-enumerations.[ch]
+Makefile
+Makefile.in

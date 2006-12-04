@@ -1,0 +1,76 @@
+<chapter id="ccc-Writing-custom-canvas-items">
+  <title>Writing custom canvas items</title>
+
+  <para>
+    This chapter leads you through the process of creating your first custom
+    canvas item.
+  </para>
+  
+  <sect1 id="ccc-Deriving-from-the Item">
+    <title>Deriving from the Item</title>
+
+    <sect2 id="ccc-Redrawing">
+      <title>Redrawing</title>
+      <para>
+        Once your item changed in a way that a part of it needs to be redrawn,
+	just call cc_item_dirty() to tell other items and all the renderers
+	that the item changed. If your item doesn't update after changes it
+	usually doesn't call cc_item_dirty().
+      </para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="ccc-Grid-Fitting">
+    <title>Grid-fitting</title>
+
+    <para>
+      When you create a custom item, you want it to look well on the displays;
+      e.g. you want to avoid unnecessary fuzzyness of lines. You can improve
+      the rendering quality of the item by using grid-fitting.
+    </para>
+
+    <para>
+      Grid-Fitting is the process of streching/moving the item by a minimum
+      extent to let it have sharp borders. Here are two examples from the
+      CcRectangle class:
+    </para>
+
+    <figure>
+      <title>Rectangles rendered without grid-fitting</title>
+      <graphic fileref="ccc-grid-fitting-without.png" format="png"></graphic>
+    </figure>
+
+    <figure>
+      <title>Rectangles rendered with grid-fitting</title>
+      <graphic fileref="ccc-grid-fitting-with.png" format="png"></graphic>
+    </figure>
+
+    <para>
+      As you can see, grid-fitting can let your application look better if
+      you're not completely in control of the item coordinates. Grid fitting
+      works like this: if you know where a line should be displayed and how
+      thick it is, you can move the line by a small value to get its borders as
+      close to the pixel borders as possible.
+    </para>
+
+    <para>
+      This adjustment needs a small amount of time, so it should be possible to
+      turn it off (honestly, it needs to be activated manually for your items).
+      Here's some example code from the CcRectangle class.
+    </para>
+
+    <informalexample><programlisting><![CDATA[
+cc_view_world_to_window(view, self->x, self->y, &x1, &y1);
+cc_view_world_to_window(view, self->x + self->w, self->y + self->h, &x2, &y2);
+
+if(CC_ITEM_GRID_ALIGNED(item)) {
+    cc_point_grid_align(&x1, &y1, &width, CC_GRID_ALIGN_DOWN);
+    cc_point_grid_align(&x2, &y2, &width, CC_GRID_ALIGN_UP);
+}
+]]></programlisting></informalexample>
+
+    <para>
+      You see, it's quite easy to render pixel-aligned.
+    </para>
+  </sect1>
+</chapter>

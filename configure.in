@@ -1,0 +1,212 @@
+dnl  -------------------------
+dnl | autotool initialization |-----------------------------------------------
+dnl  -------------------------
+
+AC_INIT(ccc)
+AM_CONFIG_HEADER(cc-config.h)
+AM_INIT_AUTOMAKE(libccc,0.0.4)
+AM_MAINTAINER_MODE
+AM_ACLOCAL_INCLUDE(macros)
+
+MILESTONE=0.1
+AC_SUBST(MILESTONE)
+
+dnl  ---------------------
+dnl | (un)necessary tools |---------------------------------------------------
+dnl  ---------------------
+
+dnl Don't let libtool check for these
+CXX=no
+F77=no
+GCJ=no
+
+AC_PROG_CC
+AC_PROG_INTLTOOL
+AC_PROG_LIBTOOL
+HERZI_PROG_RUBY([have_ruby=yes],[have_ruby=no])
+HERZI_PROG_GPROF
+
+AM_CONDITIONAL(WITH_RUBY,[test "x$have_ruby" = "xyes"])
+
+AC_MSG_CHECKING([for glib-genmarshal])
+GLIB_GENMARSHAL=`pkg-config --variable=glib_genmarshal glib-2.0`
+AC_SUBST(GLIB_GENMARSHAL)
+AC_MSG_RESULT($GLIB_GENMARSHAL)
+
+AC_MSG_CHECKING([for glib-mkenums])
+GLIB_MKENUMS=`pkg-config --variable=glib_mkenums glib-2.0`
+AC_SUBST(GLIB_MKENUMS)
+AC_MSG_RESULT($GLIB_MKENUMS)
+
+dnl  ---------
+dnl | gtk-doc |---------------------------------------------------------------
+dnl  ---------
+
+GTK_DOC_CHECK([1.0])
+DISTCHECK_CONFIGURE_FLAGS="--enable-gtk-doc --disable-scrollkeeper"
+AC_SUBST(DISTCHECK_CONFIGURE_FLAGS)
+
+dnl  ----------------------
+dnl | package dependencies |--------------------------------------------------
+dnl  ----------------------
+
+PKG_CHECK_MODULES(CCC,[
+	glib-2.0 >= 2.10.0
+	gtk+-2.0 >= 2.8.0
+	])
+
+dnl Check whether cairo has got ps support
+dnl AC_MSG_CHECKING([whether cairo can create ps])
+dnl AC_RUN_IFELSE([AC_LANG_PROGRAM([
+dnl [
+dnl #include <cairo/cairo-features.h>
+dnl ]
+dnl ], [[
+dnl #ifdef CAIRO_HAS_PS_SURFACE
+dnl 	return 0;
+dnl #else
+dnl 	return 1;
+dnl #endif
+dnl ]])], AC_MSG_RESULT(yes), [AC_MSG_RESULT(no)
+dnl 			   AC_MSG_ERROR(cairo needs to have PostScript output enabled)])
+
+PKG_CHECK_MODULES(DEMO,[
+	gtk+-unix-print-2.0
+	])
+
+dnl  -------------------
+dnl | testing framework |-----------------------------------------------------
+dnl  -------------------
+
+PKG_CHECK_MODULES(CHECK,[check >= 0.9.4],:,[
+		  ifdef([AM_PATH_CHECK],[AM_PATH_CHECK],[AC_MSG_RESULT([no, testing is disabled])])
+		  ])
+
+AM_CONDITIONAL([HAVE_CHECK],[test "x$CHECK_CFLAGS" != "x"])
+
+dnl  ---------------
+dnl | build options |---------------------------------------------------------
+dnl  ---------------
+
+dnl FIXME: add deprecation guards
+dnl FIXME: enable/disable cdebug
+dnl FIXME: add check for .svn and CVS directories
+HERZI_CHECK_DEVELOP_CFLAGS
+
+dnl  ------------------------------
+dnl | internationalization support |------------------------------------------
+dnl  ------------------------------
+
+ALL_LINGUAS="de"
+AM_GLIB_GNU_GETTEXT
+HERZI_GETTEXT([$PACKAGE-$MILESTONE])
+
+dnl  -----------------
+dnl | Python bindings |-------------------------------------------------------
+dnl  -----------------
+
+dnl required versions of other packages
+m4_define(pygtk_required_major_version, 2)
+m4_define(pygtk_required_minor_version, 8)
+m4_define(pygtk_required_micro_version, 0)
+m4_define(pygtk_required_version, pygtk_required_major_version.pygtk_required_minor_version.pygtk_required_micro_version)
+m4_define(gtk_required_version,               2.8.0)
+
+dnl Define pygtk required version, for runtime check
+AC_DEFINE(PYGTK_REQUIRED_MAJOR_VERSION, pygtk_required_major_version, [PyGTK required major version])
+AC_DEFINE(PYGTK_REQUIRED_MINOR_VERSION, pygtk_required_minor_version, [PyGTK required minor version])
+AC_DEFINE(PYGTK_REQUIRED_MICRO_VERSION, pygtk_required_micro_version, [PyGTK required micro version])
+
+dnl check for python
+AM_PATH_PYTHON(2.2)
+AM_CHECK_PYTHON_HEADERS([have_python="yes"],[have_python="no"])
+
+if test x$have_python = xno; then
+  AC_MSG_NOTICE([Python binding is disabled.])
+else
+
+ dnl check for pygtk
+ PKG_CHECK_MODULES(PYGTK, pygtk-2.0 >= pygtk_required_version,[
+		 have_python="yes"
+		 AC_MSG_RESULT(okay)
+		 ],[
+		 have_python="no"
+		 AC_MSG_RESULT(not found)
+		 ])
+ if test x$have_python = xyes; then
+    AC_SUBST(PYGTK_CFLAGS)
+   AC_PATH_PROG(PYGTK_CODEGEN, pygtk-codegen-2.0, no)
+   if test "x$PYGTK_CODEGEN" = xno; then
+     AC_MSG_NOTICE(could not find pygtk-codegen-2.0 script, Python binding is disabled.)
+     have_python="no"
+   fi
+
+   if test x$have_python = xyes; then
+    AC_MSG_CHECKING(for pygtk defs)
+    PYGTK_DEFSDIR=`$PKG_CONFIG --variable=defsdir pygtk-2.0`
+    AC_SUBST(PYGTK_DEFSDIR)
+    AC_MSG_RESULT($PYGTK_DEFSDIR)
+   fi
+ fi
+
+dnl required version substitutions for use in the spec file
+PYGTK_VERSION=pygtk_required_version
+GTK_VERSION=gtk_required_version
+
+fi
+
+AM_CONDITIONAL(WITH_PYTHON,[test "x$have_python" = "xyes"])
+
+dnl  ---------------
+dnl | Mono Bindings |---------------------------------------------------------
+dnl  ---------------
+
+AC_PATH_PROG(MONO,mono)
+AC_PATH_PROG(GAPI2_CODEGEN,gapi2-codegen)
+
+AM_CONDITIONAL(WITH_MONO,[test "x$MONO" != "x" -a "x$GAPI2_CODEGEN" != "x"])
+
+dnl  ---------------
+dnl | writing files |---------------------------------------------------------
+dnl  ---------------
+
+AC_OUTPUT([
+	ccc.pc
+	Makefile
+	ccc/Makefile
+	cdebug/Makefile
+	demo/Makefile
+	doc/Makefile
+	doc/reference/Makefile
+	editor/Makefile
+	po/Makefile.in
+        python/Makefile
+	ruby/Makefile
+	test/Makefile
+])
+
+dnl  --------------------
+dnl | status information |----------------------------------------------------
+dnl  --------------------
+
+echo
+echo "libccc configuration:"
+echo "====================="
+echo
+echo "Build Ruby Bindings:   $have_ruby"
+echo "Build Python Bindings: $have_python"
+echo "Enable Gprof:          $ENABLE_GPROF"
+echo -n "Build test system:     "
+if test "x$CHECK_LIBS" != "x"; then
+	echo "yes"
+else
+	echo "no"
+fi
+echo
+echo "CFLAGS:     ${CFLAGS}"
+echo "CCC_CFLAGS: ${CCC_CFLAGS}"
+echo "CCC_LIBS:   ${CCC_LIBS}"
+echo
+
+dnl FIXME add message of doom if development release
+

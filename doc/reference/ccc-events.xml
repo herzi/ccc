@@ -1,0 +1,26 @@
+<chapter id="ccc-Event-Handling">
+  <title>Event Handling</title>
+
+  <para>
+    This chapter provides a documentation about event handling internals of the
+    canvas.
+  </para>
+
+  <sect1 id="ccc-Picking-Events">
+    <title>Picking Events</title>
+
+    <para>
+      To add support for %GDK_EVENT_ENTER and %GDK_EVENT_LEAVE events, we need
+      some caching mechanism that stores the last element, so our synthesized
+      events can always appear in pairs.
+    </para>
+
+    <para>
+      On every %GDK_EVENT_MOTION event we look for the deepest nested child
+      that lies under the pointer. This will be store in the @current field
+      of the #CcViewWidget. If that changes, %GDK_EVENT_ENTER and
+      %GDK_EVENT_LEAVE events get emitted.
+    </para>
+  </sect1>
+  
+</chapter>
