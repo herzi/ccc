@@ -250,7 +250,7 @@ cs_render_border(CcShape* self, CcView* view, cairo_t* cr) {
 		  cairo_new_path(cr);
 		  CC_SHAPE_GET_CLASS(self)->path(self, view, cr);
 		  cairo_set_line_width(cr, width);
-		  cc_brush_apply(self->brush_border, cr);
+		  cc_brush_apply(self->brush_border, view, cr);
 		  cairo_stroke(cr);
 		cairo_restore(cr);
 	}
@@ -262,7 +262,7 @@ cs_render_content(CcShape* self, CcView* view, cairo_t* cr) {
 		cairo_save(cr);
 		  cairo_new_path(cr);
 		  CC_SHAPE_GET_CLASS(self)->path(self, view, cr);
-		  cc_brush_apply(self->brush_content, cr);
+		  cc_brush_apply(self->brush_content, view, cr);
 		  cairo_fill(cr);
 		cairo_restore(cr);
 	}

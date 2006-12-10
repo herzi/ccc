@@ -36,14 +36,17 @@ G_DEFINE_ABSTRACT_TYPE(CcBrush, cc_brush, G_TYPE_INITIALLY_UNOWNED);
  * implementations while rendering to a context.
  */
 void
-cc_brush_apply(CcBrush* self, cairo_t* cr) {
+cc_brush_apply(CcBrush* self,
+	       CcView * view,
+	       cairo_t* cr)
+{
 	g_return_if_fail(CC_IS_BRUSH(self));
 	g_return_if_fail(cr);
 
 	cc_return_if_unimplemented_code(CC_BRUSH_GET_CLASS(self), apply,
 					cairo_set_source_rgba(cr, 0.0, 0.0, 0.0, 0.0));
 
-	CC_BRUSH_GET_CLASS(self)->apply(self, cr);
+	CC_BRUSH_GET_CLASS(self)->apply(self, view, cr);
 }
 
 /* GType stuff */

@@ -23,10 +23,39 @@
 
 #include "cc-gradient.h"
 
+struct CcGradientPrivate {
+	cairo_pattern_t* pattern;
+};
+#define P(i) (G_TYPE_INSTANCE_GET_PRIVATE((i), CC_TYPE_GRADIENT, struct CcGradientPrivate))
+
 CcBrush*
 cc_gradient_new(void)
 {
 	return g_object_new(CC_TYPE_GRADIENT, NULL);
+}
+
+void
+cc_gradient_set_pattern(CcGradient     * self,
+			cairo_pattern_t* pattern)
+{
+	g_return_if_fail(CC_IS_GRADIENT(self));
+	g_return_if_fail(!pattern || cairo_pattern_status(pattern) == CAIRO_STATUS_SUCCESS);
+
+	if(P(self)->pattern == pattern) {
+		return;
+	}
+
+	if(P(self)->pattern) {
+		cairo_pattern_destroy(P(self)->pattern);
+		P(self)->pattern = NULL;
+	}
+
+	if(pattern) {
+		P(self)->pattern = cairo_pattern_reference(pattern);
+	}
+
+	// FIXME: enable
+	// g_object_notify(G_OBJECT(self), "pattern");
 }
 
 /* GType */
@@ -37,6 +66,40 @@ cc_gradient_init(CcGradient* self G_GNUC_UNUSED)
 {}
 
 static void
-cc_gradient_class_init(CcGradientClass* self_class G_GNUC_UNUSED)
-{}
+gradient_finalize(GObject* object)
+{
+	cc_gradient_set_pattern(CC_GRADIENT(object), NULL);
+
+	G_OBJECT_CLASS(cc_gradient_parent_class)->finalize(object);
+}
+
+static void
+gradient_apply(CcBrush* brush,
+	       CcView * view,
+	       cairo_t* cr)
+{
+	if(P(brush)->pattern) {
+		cairo_set_source(cr, P(brush)->pattern);
+	}
+	else
+	{
+		cairo_set_source_rgba(cr, 0.925, 0.16, 0.16, 0.0);
+	}
+}
+
+static void
+cc_gradient_class_init(CcGradientClass* self_class)
+{
+	GObjectClass* object_class = G_OBJECT_CLASS(self_class);
+	CcBrushClass* brush_class = CC_BRUSH_CLASS(self_class);
+
+	/* GObjectClass */
+	object_class->finalize = gradient_finalize;
+
+	/* CcBrushClass */
+	brush_class->apply = gradient_apply;
+
+	/* CcGradientClass */
+	g_type_class_add_private(self_class, sizeof(struct CcGradientPrivate));
+}
 

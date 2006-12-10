@@ -112,7 +112,10 @@ cbc_set_property(GObject* object, guint prop_id, GValue const* value, GParamSpec
 }
 
 static void
-cbc_apply(CcBrush* brush, cairo_t* cr) {
+cbc_apply(CcBrush* brush,
+	  CcView * view G_GNUC_UNUSED,
+	  cairo_t* cr)
+{
 	CcBrushColor* self = CC_BRUSH_COLOR(brush);
 
 	if(CC_IS_COLOR(self->color)) {

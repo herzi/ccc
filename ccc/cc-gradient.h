@@ -32,9 +32,16 @@ typedef CcBrush      CcGradient;
 typedef CcBrushClass CcGradientClass;
 
 #define CC_TYPE_GRADIENT         (cc_gradient_get_type())
+#define CC_GRADIENT(i)           (G_TYPE_CHECK_INSTANCE_CAST((i), CC_TYPE_GRADIENT, CcGradient))
+#define CC_GRADIENT_CLASS(c)     (G_TYPE_CHECK_CLASS_CAST((c), CC_TYPE_GRADIENT, CcGradientClass))
+#define CC_IS_GRADIENT(i)        (G_TYPE_CHECK_INSTANCE_TYPE((i), CC_TYPE_GRADIENT))
+#define CC_IS_GRADIENT_CLASS(c)  (G_TYPE_CHECK_CLASS_TYPE((c), CC_TYPE_GRADIENT))
+#define CC_GRADIENT_GET_CLASS(i) (G_TYPE_INSTANCE_GET_CLASS((i), CC_TYPE_GRADIENT, CcGradientClass))
 
-GType    cc_gradient_get_type(void);
-CcBrush* cc_gradient_new     (void);
+GType    cc_gradient_get_type   (void);
+CcBrush* cc_gradient_new        (void);
+void     cc_gradient_set_pattern(CcGradient     * self,
+				 cairo_pattern_t* pattern);
 
 G_END_DECLS
 

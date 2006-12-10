@@ -25,7 +25,7 @@
 #define CC_BRUSH_H
 
 #include <cairo.h>
-#include <glib-object.h>
+#include <ccc/cc-view.h>
 
 G_BEGIN_DECLS
 
@@ -42,6 +42,7 @@ typedef struct _CcBrushClass CcBrushClass;
 GType cc_brush_get_type(void);
 
 void cc_brush_apply(CcBrush* self,
+		    CcView * view,
 		    cairo_t* cr);
 
 struct _CcBrush {
@@ -53,6 +54,7 @@ struct _CcBrushClass {
 
 	/* vtable */
 	void (*apply) (CcBrush* brush,
+		       CcView * view,
 		       cairo_t* cr);
 };
 
