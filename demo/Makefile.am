@@ -20,6 +20,7 @@ ccc_demo_SOURCES=\
 	fifteen-grid.h \
 	fifteen-item.c \
 	fifteen-item.h \
+	gradient.c \
 	herzi-enum-combo.c \
 	herzi-enum-combo.h \
 	herzi-enum-model.c \

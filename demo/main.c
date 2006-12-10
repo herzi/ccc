@@ -48,6 +48,7 @@ main(int argc, char* argv[]) {
 	demo_window_add(DEMO_WINDOW(mainwin), tree_integration());
 	demo_window_add(DEMO_WINDOW(mainwin), zoom_and_scroll());
 	demo_window_add(DEMO_WINDOW(mainwin), camera_demo());
+	demo_window_add(DEMO_WINDOW(mainwin), gradient_demo());
 #ifdef BUILD_UNFINISHED
 	demo_window_add(DEMO_WINDOW(mainwin), credits());
 	demo_window_add(DEMO_WINDOW(mainwin), planet_page());
