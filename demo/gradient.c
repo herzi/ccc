@@ -26,6 +26,7 @@
 #include "main.h"
 
 #include <ccc/cc-brush-color.h>
+#include <ccc/cc-gradient.h>
 #include <ccc/cc-rounded-rectangle.h>
 #include <ccc/cc-view-widget.h>
 
@@ -74,12 +75,15 @@ view_size_allocate(GtkWidget    * widget,
 DemoPage*
 gradient_demo(void)
 {
+	CcBrush  * brush;
 	CcItem   * root = cc_item_new();
 	GtkWidget* widget = cc_view_widget_new_root(root);
 	rrect = cc_rounded_rectangle_new();
 	CC_ITEM_SET_FLAGS(rrect, CC_GRID_ALIGNED);
 	cc_shape_set_brush_border(CC_SHAPE(rrect), cc_brush_color_new(cc_color_new_rgb(0.8, 0.1, 0.2)));
 	cc_shape_set_width_pixels(CC_SHAPE(rrect), 2.0);
+	brush = cc_gradient_new();
+	cc_shape_set_brush_content(CC_SHAPE(rrect), brush);
 	cc_rounded_rectangle_set_radius(CC_ROUNDED_RECTANGLE(rrect), 20.0);
 	cc_item_append(root, rrect);
 	g_signal_connect_after(widget, "size-allocate",

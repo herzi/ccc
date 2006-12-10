@@ -30,6 +30,7 @@
 #include <ccc/cc-circle.h>
 #include <ccc/cc-color.h>
 #include <ccc/cc-d-rect.h>
+#include <ccc/cc-gradient.h>
 #include <ccc/cc-enumerations.h>
 #include <ccc/cc-item.h>
 #include <ccc/cc-item-view.h>

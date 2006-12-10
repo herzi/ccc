@@ -15,6 +15,7 @@ static_headers=\
 	cc-color-rgb.c \
 	cc-circle.h \
 	cc-d-rect.h \
+	cc-gradient.h \
 	cc-hash-map.h \
 	cc-item.h \
 	cc-item-view.h \
@@ -58,6 +59,7 @@ libccc_0_1_la_SOURCES=\
 	cc-color-hsv.c \
 	cc-circle.c \
 	cc-d-rect.c \
+	cc-gradient.c \
 	cc-hash-map.c \
 	cc-item.c \
 	cc-item-view.c \
