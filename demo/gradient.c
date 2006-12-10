@@ -78,7 +78,7 @@ gradient_demo(void)
 	CcBrush  * brush;
 	CcItem   * root = cc_item_new();
 	GtkWidget* widget = cc_view_widget_new_root(root);
-	cairo_pattern_t* pattern = cairo_pattern_create_linear(0.0, 0.0, 100.0, 100.0);
+	cairo_pattern_t* pattern = cairo_pattern_create_linear(0.0, 25.0, 0.0, 250.0);
 	rrect = cc_rounded_rectangle_new();
 	CC_ITEM_SET_FLAGS(rrect, CC_GRID_ALIGNED);
 	cc_shape_set_brush_border(CC_SHAPE(rrect), cc_brush_color_new(cc_color_new_rgb(0.8, 0.1, 0.2)));
@@ -86,9 +86,9 @@ gradient_demo(void)
 	brush = cc_gradient_new();
 	cc_gradient_set_pattern(CC_GRADIENT(brush), pattern);
 	cairo_pattern_destroy(pattern);
-	cairo_pattern_add_color_stop_rgba(pattern, 0.0, 0.925, 0.16, 0.16, 0.25);
+	cairo_pattern_add_color_stop_rgba(pattern, 0.0, 0.925, 0.16, 0.16, 0.75);
 	cairo_pattern_add_color_stop_rgba(pattern, 0.25, 0.65, 0.0, 0.0, 1.0);
-	cairo_pattern_add_color_stop_rgba(pattern, 1.0, 0.925, 0.16, 0.16, 0.25);
+	cairo_pattern_add_color_stop_rgba(pattern, 1.0, 0.925, 0.16, 0.16, 0.75);
 	cc_shape_set_brush_content(CC_SHAPE(rrect), brush);
 	cc_rounded_rectangle_set_radius(CC_ROUNDED_RECTANGLE(rrect), 20.0);
 	cc_item_append(root, rrect);
