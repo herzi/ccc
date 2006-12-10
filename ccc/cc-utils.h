@@ -44,12 +44,15 @@ typedef enum {
 	CC_ZOOM_AUTO
 } CcZoomMode;
 
-#define cc_return_if_unimplemented(klass, member) G_STMT_START {\
+#define cc_return_if_unimplemented_code(klass, member, CODE) G_STMT_START {\
 	if(!klass->member) {\
 		g_warning("%s doesn't implement %s", g_type_name(G_TYPE_FROM_CLASS(klass)), G_STRINGIFY(member));\
+		CODE;\
 		return;\
 	}\
 } G_STMT_END;
+
+#define cc_return_if_unimplemented(klass, member) cc_return_if_unimplemented_code(klass, member, {})
 
 G_END_DECLS
 
