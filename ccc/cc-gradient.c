@@ -26,6 +26,17 @@
 CcBrush*
 cc_gradient_new(void)
 {
-	return NULL;
+	return g_object_new(CC_TYPE_GRADIENT, NULL);
 }
+
+/* GType */
+G_DEFINE_TYPE(CcGradient, cc_gradient, CC_TYPE_BRUSH);
+
+static void
+cc_gradient_init(CcGradient* self G_GNUC_UNUSED)
+{}
+
+static void
+cc_gradient_class_init(CcGradientClass* self_class G_GNUC_UNUSED)
+{}
 

@@ -28,7 +28,13 @@
 
 G_BEGIN_DECLS
 
-CcBrush* cc_gradient_new(void);
+typedef CcBrush      CcGradient;
+typedef CcBrushClass CcGradientClass;
+
+#define CC_TYPE_GRADIENT         (cc_gradient_get_type())
+
+GType    cc_gradient_get_type(void);
+CcBrush* cc_gradient_new     (void);
 
 G_END_DECLS
 
