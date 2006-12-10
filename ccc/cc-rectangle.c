@@ -218,7 +218,7 @@ cr_update_bounds(CcItem* item, CcView const* view, gpointer data) {
 	gdouble half_width = cc_shape_get_width(CC_SHAPE(item), view) / 2.0;
 	CcDRect drect = {
 		self->x - half_width, self->y - half_width,
-		self->x + self->w + half_width, self->y + self->h + half_width
+		self->x + self->w - 1.0 + half_width, self->y + self->h - 1.0 + half_width
 	};
 	CcDRect* bounds = cc_hash_map_lookup(item->bounds, view);
 
