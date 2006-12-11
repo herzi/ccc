@@ -25,6 +25,7 @@
 
 #include "main.h"
 
+#include <math.h>
 #include <ccc/cc-brush-color.h>
 #include <ccc/cc-circle.h>
 #include <ccc/cc-linear-gradient.h>
@@ -38,7 +39,53 @@
 
 #undef DEBUG_GRADIENT
 
-static CcItem* rrect    = NULL;
+static CcItem* rrect     = NULL;
+static CcItem* knobs[3]  = {};
+static gdouble offset    = 0.25;
+static CcDRect rect = {};
+
+static void
+update_stops(void)
+{
+	CcBrush* brush = cc_linear_gradient_new(rect.x1, rect.y1, rect.x2, rect.y2);
+	cc_shape_set_brush_content(CC_SHAPE(rrect), brush);
+	cc_gradient_add_stop(CC_GRADIENT(brush), 0.0,    cc_color_new_rgba(0.925, 0.16, 0.16, 0.75));
+	cc_gradient_add_stop(CC_GRADIENT(brush), offset, cc_color_new_rgba(0.65,  0.0,  0.0,  1.0));
+	cc_gradient_add_stop(CC_GRADIENT(brush), 1.0,    cc_color_new_rgba(0.925, 0.16, 0.16, 0.75));
+}
+
+static void
+update_box(void)
+{
+	rect.x1 = (CC_CIRCLE(knobs[0])->x - CC_RECTANGLE(rrect)->x)/(CC_RECTANGLE(rrect)->w - CC_RECTANGLE(rrect)->x);
+	rect.y1 = (CC_CIRCLE(knobs[0])->y - CC_RECTANGLE(rrect)->y)/(CC_RECTANGLE(rrect)->h - CC_RECTANGLE(rrect)->y);
+	rect.x2 = (CC_CIRCLE(knobs[2])->x - CC_RECTANGLE(rrect)->x)/(CC_RECTANGLE(rrect)->w - CC_RECTANGLE(rrect)->x);
+	rect.y2 = (CC_CIRCLE(knobs[2])->y - CC_RECTANGLE(rrect)->y)/(CC_RECTANGLE(rrect)->h - CC_RECTANGLE(rrect)->y);
+	cc_circle_set_anchor(CC_CIRCLE(knobs[1]),
+			     CC_CIRCLE(knobs[0])->x + offset * (CC_CIRCLE(knobs[2])->x - CC_CIRCLE(knobs[0])->x),
+			     CC_CIRCLE(knobs[0])->y + offset * (CC_CIRCLE(knobs[2])->y - CC_CIRCLE(knobs[0])->y));
+	update_stops();
+}
+
+static void
+update_offset(gdouble x,
+	      gdouble y)
+{
+	gdouble diff0,
+		diff1,
+		diff2;
+	diff0 = hypot(x - CC_CIRCLE(knobs[0])->x,
+		      y - CC_CIRCLE(knobs[0])->y);
+	diff1 = hypot(CC_CIRCLE(knobs[2])->x - CC_CIRCLE(knobs[0])->x,
+		      CC_CIRCLE(knobs[2])->y - CC_CIRCLE(knobs[0])->y);
+	diff2 = hypot(x - CC_CIRCLE(knobs[2])->x,
+		      y - CC_CIRCLE(knobs[2])->y);
+	offset = CLAMP(diff0 / (diff0 + diff2), 0.0, 1.0);
+	cc_circle_set_anchor(CC_CIRCLE(knobs[1]),
+			     CC_CIRCLE(knobs[0])->x + offset * (CC_CIRCLE(knobs[2])->x - CC_CIRCLE(knobs[0])->x),
+			     CC_CIRCLE(knobs[0])->y + offset * (CC_CIRCLE(knobs[2])->y - CC_CIRCLE(knobs[0])->y));
+	update_stops();
+}
 
 static gboolean
 knob_button_press_event(CcCircle      * knob,
@@ -60,7 +107,13 @@ knob_button_release_event(CcCircle      * knob,
 			  GdkEventButton* ev)
 {
 	gdouble* offset = g_object_get_data(G_OBJECT(knob), "CccDemoKnobOffset");
-	cc_circle_set_anchor(knob, ev->x + offset[0], ev->y + offset[1]);
+	if(knob == knobs[0] || knob == knobs[2]) {
+		cc_circle_set_anchor(knob, ev->x + offset[0], ev->y + offset[1]);
+		update_box();
+	}
+	else {
+		update_offset(ev->x, ev->y);
+	}
 	g_object_set_data(G_OBJECT(knob), "CccDemoKnobOffset", NULL);
 	cc_view_ungrab_item(view, CC_ITEM(knob), ev->time);
 	return TRUE;
@@ -73,7 +126,13 @@ knob_motion_notify_event(CcCircle      * knob,
 {
 	gdouble* offset = g_object_get_data(G_OBJECT(knob), "CccDemoKnobOffset");
 	if(G_LIKELY(offset)) {
-		cc_circle_set_anchor(knob, ev->x + offset[0], ev->y + offset[1]);
+		if(knob == knobs[0] || knob == knobs[2]) {
+			cc_circle_set_anchor(knob, ev->x + offset[0], ev->y + offset[1]);
+			update_box();
+		}
+		else {
+			update_offset(ev->x, ev->y);
+		}
 		return TRUE;
 	}
 	return FALSE;
@@ -110,6 +169,14 @@ view_size_allocate(GtkWidget    * widget,
 	item_debug_bounds(rrect, CC_VIEW(widget));
 	g_debug("end resize");
 #endif
+
+	cc_circle_set_anchor(CC_CIRCLE(knobs[0]),
+			     rect.x1 * (allocation->width - 50),
+			     rect.y1 * (allocation->height - 50));
+	cc_circle_set_anchor(CC_CIRCLE(knobs[2]),
+			     rect.x2 * (allocation->width - 50),
+			     rect.y2 * (allocation->height - 50));
+	update_box();
 }
 
 DemoPage*
@@ -118,7 +185,6 @@ gradient_demo(void)
 	GtkWidget* widget;
 	CcBrush  * brush;
 	CcItem   * root = cc_item_new();
-	CcItem   * knob;
 
 	rrect = cc_rounded_rectangle_new();
 	CC_ITEM_SET_FLAGS(rrect, CC_GRID_ALIGNED);
@@ -127,47 +193,47 @@ gradient_demo(void)
 	cc_rounded_rectangle_set_radius(CC_ROUNDED_RECTANGLE(rrect), 20.0);
 	cc_item_append(root, rrect);
 
-	brush = cc_linear_gradient_new(0.5, 0.0, 0.5, 1.0);
-	cc_gradient_add_stop(CC_GRADIENT(brush), 0.0,  cc_color_new_rgba(0.925, 0.16, 0.16, 0.75));
-	cc_gradient_add_stop(CC_GRADIENT(brush), 0.25, cc_color_new_rgba(0.65,  0.0,  0.0,  1.0));
-	cc_gradient_add_stop(CC_GRADIENT(brush), 1.0,  cc_color_new_rgba(0.925, 0.16, 0.16, 0.75));
-	cc_shape_set_brush_content(CC_SHAPE(rrect), brush);
+	rect.x1 = 0.5;
+	rect.y1 = 0.0;
+	rect.x2 = 0.5;
+	rect.y2 = 1.0;
 
-	knob = cc_circle_new();
-	cc_circle_set_anchor(CC_CIRCLE(knob), 100.0, 100.0);
-	cc_circle_set_radius(CC_CIRCLE(knob), 5.0);
-	cc_shape_set_brush_content(CC_SHAPE(knob), cc_brush_color_new(cc_color_new_rgba(0.36, 0.21, 0.40, 0.75)));
-	g_signal_connect(knob, "button-press-event",
+	brush = cc_brush_color_new(cc_color_new_rgba(0.36, 0.21, 0.40, 0.75));
+	knobs[0] = cc_circle_new();
+	cc_circle_set_anchor(CC_CIRCLE(knobs[0]), 100.0, 100.0);
+	cc_circle_set_radius(CC_CIRCLE(knobs[0]), 5.0);
+	cc_shape_set_brush_content(CC_SHAPE(knobs[0]), brush);
+	g_signal_connect(knobs[0], "button-press-event",
 			 G_CALLBACK(knob_button_press_event), NULL);
-	g_signal_connect(knob, "button-release-event",
+	g_signal_connect(knobs[0], "button-release-event",
 			 G_CALLBACK(knob_button_release_event), NULL);
-	g_signal_connect(knob, "motion-notify-event",
+	g_signal_connect(knobs[0], "motion-notify-event",
 			 G_CALLBACK(knob_motion_notify_event), NULL);
-	cc_item_append(root, knob);
+	cc_item_append(root, knobs[0]);
 
-	knob = cc_circle_new();
-	cc_circle_set_anchor(CC_CIRCLE(knob), 150.0, 100.0);
-	cc_circle_set_radius(CC_CIRCLE(knob), 5.0);
-	cc_shape_set_brush_content(CC_SHAPE(knob), cc_brush_color_new(cc_color_new_rgba(0.36, 0.21, 0.40, 0.75)));
-	g_signal_connect(knob, "button-press-event",
+	knobs[1] = cc_circle_new();
+	cc_circle_set_anchor(CC_CIRCLE(knobs[1]), 150.0, 100.0);
+	cc_circle_set_radius(CC_CIRCLE(knobs[1]), 5.0);
+	cc_shape_set_brush_content(CC_SHAPE(knobs[1]), brush);
+	g_signal_connect(knobs[1], "button-press-event",
 			 G_CALLBACK(knob_button_press_event), NULL);
-	g_signal_connect(knob, "button-release-event",
+	g_signal_connect(knobs[1], "button-release-event",
 			 G_CALLBACK(knob_button_release_event), NULL);
-	g_signal_connect(knob, "motion-notify-event",
+	g_signal_connect(knobs[1], "motion-notify-event",
 			 G_CALLBACK(knob_motion_notify_event), NULL);
-	cc_item_append(root, knob);
+	cc_item_append(root, knobs[1]);
 
-	knob = cc_circle_new();
-	cc_circle_set_anchor(CC_CIRCLE(knob), 200.0, 100.0);
-	cc_circle_set_radius(CC_CIRCLE(knob), 5.0);
-	cc_shape_set_brush_content(CC_SHAPE(knob), cc_brush_color_new(cc_color_new_rgba(0.36, 0.21, 0.40, 0.75)));
-	g_signal_connect(knob, "button-press-event",
+	knobs[2] = cc_circle_new();
+	cc_circle_set_anchor(CC_CIRCLE(knobs[2]), 200.0, 100.0);
+	cc_circle_set_radius(CC_CIRCLE(knobs[2]), 5.0);
+	cc_shape_set_brush_content(CC_SHAPE(knobs[2]), brush);
+	g_signal_connect(knobs[2], "button-press-event",
 			 G_CALLBACK(knob_button_press_event), NULL);
-	g_signal_connect(knob, "button-release-event",
+	g_signal_connect(knobs[2], "button-release-event",
 			 G_CALLBACK(knob_button_release_event), NULL);
-	g_signal_connect(knob, "motion-notify-event",
+	g_signal_connect(knobs[2], "motion-notify-event",
 			 G_CALLBACK(knob_motion_notify_event), NULL);
-	cc_item_append(root, knob);
+	cc_item_append(root, knobs[2]);
 
 	widget = cc_view_widget_new_root(root);
 	g_signal_connect_after(widget, "size-allocate",
