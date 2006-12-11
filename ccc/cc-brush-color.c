@@ -114,12 +114,15 @@ cbc_set_property(GObject* object, guint prop_id, GValue const* value, GParamSpec
 static void
 cbc_apply(CcBrush* brush,
 	  CcView * view G_GNUC_UNUSED,
+	  CcItem * item G_GNUC_UNUSED,
 	  cairo_t* cr)
 {
 	CcBrushColor* self = CC_BRUSH_COLOR(brush);
 
 	if(CC_IS_COLOR(self->color)) {
-		cc_color_apply(self->color, cr);
+		gdouble red, green, blue, alpha;
+		cc_color_apply(self->color, &red, &green, &blue, &alpha);
+		cairo_set_source_rgba(cr, red, green, blue, alpha);
 	}
 }
 

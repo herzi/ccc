@@ -20,6 +20,7 @@ static_headers=\
 	cc-item.h \
 	cc-item-view.h \
 	cc-line.h \
+	cc-linear-gradient.h \
 	cc-pixbuf.h \
 	cc-printer.h \
 	cc-rectangle.h \
@@ -64,6 +65,7 @@ libccc_0_1_la_SOURCES=\
 	cc-item.c \
 	cc-item-view.c \
 	cc-line.c \
+	cc-linear-gradient.c \
 	cc-pixbuf.c \
 	cc-printer.c \
 	cc-rectangle.c \

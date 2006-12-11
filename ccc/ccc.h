@@ -35,6 +35,7 @@
 #include <ccc/cc-item.h>
 #include <ccc/cc-item-view.h>
 #include <ccc/cc-line.h>
+#include <ccc/cc-linear-gradient.h>
 #include <ccc/cc-pixbuf.h>
 #include <ccc/cc-printer.h>
 #include <ccc/cc-rectangle.h>

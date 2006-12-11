@@ -23,39 +23,56 @@
 
 #include "cc-gradient.h"
 
+#include <ccc/cc-utils.h>
+
+struct CcGradientStop {
+	gdouble  offset;
+	CcColor* color;
+};
 struct CcGradientPrivate {
-	cairo_pattern_t* pattern;
+	GSList* stops;
 };
 #define P(i) (G_TYPE_INSTANCE_GET_PRIVATE((i), CC_TYPE_GRADIENT, struct CcGradientPrivate))
 
-CcBrush*
-cc_gradient_new(void)
+static gint
+gradient_compare_stops(struct CcGradientStop* first,
+		       struct CcGradientStop* second)
 {
-	return g_object_new(CC_TYPE_GRADIENT, NULL);
+	if(first->offset > second->offset) {
+		return 1;
+	} else if(first->offset < second->offset) {
+		return -1;
+	}
+	return 0;
 }
 
 void
-cc_gradient_set_pattern(CcGradient     * self,
-			cairo_pattern_t* pattern)
+cc_gradient_add_stop(CcGradient* self,
+		     gdouble     offset,
+		     CcColor   * color)
 {
+	struct CcGradientStop* stop;
+
 	g_return_if_fail(CC_IS_GRADIENT(self));
-	g_return_if_fail(!pattern || cairo_pattern_status(pattern) == CAIRO_STATUS_SUCCESS);
+	g_return_if_fail(0.0 <= offset && offset <= 1.0);
+	g_return_if_fail(CC_IS_COLOR(color));
 
-	if(P(self)->pattern == pattern) {
-		return;
-	}
+	stop = g_new0(struct CcGradientStop, 1);
+	stop->offset = offset;
+	stop->color  = g_object_ref_sink(color);
+	P(self)->stops = g_slist_insert_sorted(P(self)->stops, stop, (GCompareFunc)gradient_compare_stops);
 
-	if(P(self)->pattern) {
-		cairo_pattern_destroy(P(self)->pattern);
-		P(self)->pattern = NULL;
-	}
+	// FIXME: emit a changed signal to update items
+}
 
-	if(pattern) {
-		P(self)->pattern = cairo_pattern_reference(pattern);
-	}
+cairo_pattern_t*
+cc_gradient_create_pattern(CcGradient const* gradient,
+			   CcView const    * view,
+			   CcItem const    * item)
+{
+	g_return_val_if_fail(CC_GRADIENT_GET_CLASS(gradient)->create_pattern, NULL);
 
-	// FIXME: enable
-	// g_object_notify(G_OBJECT(self), "pattern");
+	return CC_GRADIENT_GET_CLASS(gradient)->create_pattern(gradient, view, item);
 }
 
 /* GType */
@@ -66,35 +83,32 @@ cc_gradient_init(CcGradient* self G_GNUC_UNUSED)
 {}
 
 static void
-gradient_finalize(GObject* object)
-{
-	cc_gradient_set_pattern(CC_GRADIENT(object), NULL);
-
-	G_OBJECT_CLASS(cc_gradient_parent_class)->finalize(object);
-}
-
-static void
 gradient_apply(CcBrush* brush,
 	       CcView * view,
+	       CcItem * item,
 	       cairo_t* cr)
 {
-	if(P(brush)->pattern) {
-		cairo_set_source(cr, P(brush)->pattern);
+	cairo_pattern_t* pattern = cc_gradient_create_pattern(CC_GRADIENT(brush), view, item);
+
+	if(G_LIKELY(pattern)) {
+		struct CcGradientStop* stop;
+		GSList* it;
+		for(it = P(brush)->stops; it; it = g_slist_next(it)) {
+			stop = it->data;
+			cc_color_stop(stop->color, pattern, stop->offset);
+		}
+		cairo_set_source(cr, pattern);
+		cairo_pattern_destroy(pattern);
 	}
-	else
-	{
-		cairo_set_source_rgba(cr, 0.925, 0.16, 0.16, 0.0);
+	else {
+		cairo_set_source_rgba(cr, 0.925, 0.16, 0.16, 1.0);
 	}
 }
 
 static void
 cc_gradient_class_init(CcGradientClass* self_class)
 {
-	GObjectClass* object_class = G_OBJECT_CLASS(self_class);
 	CcBrushClass* brush_class = CC_BRUSH_CLASS(self_class);
-
-	/* GObjectClass */
-	object_class->finalize = gradient_finalize;
 
 	/* CcBrushClass */
 	brush_class->apply = gradient_apply;

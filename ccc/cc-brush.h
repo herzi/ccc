@@ -43,6 +43,7 @@ GType cc_brush_get_type(void);
 
 void cc_brush_apply(CcBrush* self,
 		    CcView * view,
+		    CcItem * item,
 		    cairo_t* cr);
 
 struct _CcBrush {
@@ -55,6 +56,7 @@ struct _CcBrushClass {
 	/* vtable */
 	void (*apply) (CcBrush* brush,
 		       CcView * view,
+		       CcItem * item,
 		       cairo_t* cr);
 };
 
