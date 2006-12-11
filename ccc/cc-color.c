@@ -27,6 +27,17 @@
 
 G_DEFINE_TYPE(CcColor, cc_color, G_TYPE_INITIALLY_UNOWNED);
 
+/**
+ * cc_color_apply:
+ * @self: a #CcColor
+ * @red: target for red component
+ * @green: target for green component
+ * @blue: target for blue component
+ * @alpha: target for alpha value
+ *
+ * Initializes @red, @green, @blue and @alpha to represent the color specified
+ * by @self:
+ */
 void
 cc_color_apply(CcColor const* self,
 	       gdouble      * red,
@@ -43,6 +54,14 @@ cc_color_apply(CcColor const* self,
 	CC_COLOR_GET_CLASS(self)->apply(self, red, green, blue, alpha);
 }
 
+/**
+ * cc_color_stop:
+ * @self: a #CcColor
+ * @pattern: a #cairo_pattern_t
+ * @offset: [0.0..1.0]
+ *
+ * Specify a color stop in @pattern at @offset with the color of @self.
+ */
 void
 cc_color_stop(CcColor const  * self,
 	      cairo_pattern_t* pattern,
