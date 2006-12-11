@@ -27,6 +27,7 @@
 #include <ccc/cc-brush.h>
 #include <ccc/cc-brush-color.h>
 #include <ccc/cc-camera.h>
+#include <ccc/cc-caret.h>
 #include <ccc/cc-circle.h>
 #include <ccc/cc-color.h>
 #include <ccc/cc-d-rect.h>

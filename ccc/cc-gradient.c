@@ -46,6 +46,15 @@ gradient_compare_stops(struct CcGradientStop* first,
 	return 0;
 }
 
+/**
+ * cc_gradient_add_stop:
+ * @self: a #CcGradient
+ * @offset: the offset of the color stop (in [0.0;1.0])
+ * @color: the #CcColor for this stop
+ *
+ * Adds a color stop to a gradient. Color stops don't need to be inserted in
+ * order sorting happens automatically.
+ */
 void
 cc_gradient_add_stop(CcGradient* self,
 		     gdouble     offset,
@@ -65,18 +74,28 @@ cc_gradient_add_stop(CcGradient* self,
 	// FIXME: emit a changed signal to update items
 }
 
+/**
+ * cc_gradient_create_pattern:
+ * @self: a #CcGradient
+ * @view: a #CcView
+ * @item: a #CcItem
+ *
+ * Creates a #cairo_pattern_t for rendering a gradient on @item in @view.
+ *
+ * Returns a #cairo_pattern_t.
+ */
 cairo_pattern_t*
-cc_gradient_create_pattern(CcGradient const* gradient,
+cc_gradient_create_pattern(CcGradient const* self,
 			   CcView const    * view,
 			   CcItem const    * item)
 {
-	g_return_val_if_fail(CC_GRADIENT_GET_CLASS(gradient)->create_pattern, NULL);
+	g_return_val_if_fail(CC_GRADIENT_GET_CLASS(self)->create_pattern, NULL);
 
-	return CC_GRADIENT_GET_CLASS(gradient)->create_pattern(gradient, view, item);
+	return CC_GRADIENT_GET_CLASS(self)->create_pattern(self, view, item);
 }
 
 /* GType */
-G_DEFINE_TYPE(CcGradient, cc_gradient, CC_TYPE_BRUSH);
+G_DEFINE_ABSTRACT_TYPE(CcGradient, cc_gradient, CC_TYPE_BRUSH);
 
 static void
 cc_gradient_init(CcGradient* self G_GNUC_UNUSED)

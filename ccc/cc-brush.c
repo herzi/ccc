@@ -30,10 +30,14 @@ G_DEFINE_ABSTRACT_TYPE(CcBrush, cc_brush, G_TYPE_INITIALLY_UNOWNED);
 /**
  * cc_brush_apply:
  * @self: a #CcBrush
+ * @view: a #CcView
+ * @item: a #CcItem
  * @cr: a cairo context
  *
- * Apply a brush to a cairo context. This is usually used from item
- * implementations while rendering to a context.
+ * Apply a brush to a cairo context. The brush will be used to display @item in
+ * @view.
+ *
+ * This is usually used from item implementations while rendering to a context.
  */
 void
 cc_brush_apply(CcBrush* self,

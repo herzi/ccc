@@ -3,14 +3,17 @@
 cc_brush_color_get_type
 cc_brush_get_type
 cc_camera_get_type
+cc_caret_get_type
 cc_circle_get_type
 cc_color_get_type
 cc_color_hsv_get_type
 cc_color_rgb_get_type
+cc_gradient_get_type
 cc_hash_map_get_type
 cc_item_get_type
 cc_item_view_get_type
 cc_line_get_type
+cc_linear_gradient_get_type
 cc_pixbuf_get_type
 cc_printer_get_type
 cc_rectangle_get_type

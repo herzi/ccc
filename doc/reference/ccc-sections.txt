@@ -52,6 +52,22 @@ CC_TYPE_CAMERA
 </SECTION>
 
 <SECTION>
+<FILE>cc-caret</FILE>
+CcCaret
+CcCaretClass
+cc_caret_new
+cc_caret_set_position
+<SUBSECTION Standard>
+CC_CARET
+CC_CARET_CLASS
+CC_CARET_GET_CLASS
+CC_IS_CARET
+CC_IS_CARET_CLASS
+CC_TYPE_CARET
+cc_caret_get_type
+</SECTION>
+
+<SECTION>
 <FILE>circle</FILE>
 CcCircle
 CcCircleClass
@@ -79,6 +95,7 @@ cc_color_new_hsva
 cc_color_new_rgb
 cc_color_new_rgba
 cc_color_apply
+cc_color_stop
 <TITLE>Colors</TITLE>
 <SUBSECTION Standard>
 cc_color_get_type
@@ -103,6 +120,23 @@ cc_d_rect_union
 <SUBSECTION Standard>
 CC_TYPE_D_RECT
 cc_d_rect_get_type
+</SECTION>
+
+<SECTION>
+<FILE>cc-gradient</FILE>
+<TITLE>CcGradient</TITLE>
+CcGradient
+CcGradientClass
+cc_gradient_add_stop
+cc_gradient_create_pattern
+cc_gradient_get_type
+<SUBSECTION Standard>
+CC_GRADIENT
+CC_GRADIENT_CLASS
+CC_GRADIENT_GET_CLASS
+CC_IS_GRADIENT
+CC_IS_GRADIENT_CLASS
+CC_TYPE_GRADIENT
 </SECTION>
 
 <SECTION>
@@ -202,6 +236,16 @@ CC_TYPE_LINE
 </SECTION>
 
 <SECTION>
+<FILE>cc-linear-gradient</FILE>
+CcLinearGradient
+CcLinearGradientClass
+cc_linear_gradient_get_type
+cc_linear_gradient_new
+<SUBSECTION Standard>
+CC_TYPE_LINEAR_GRADIENT
+</SECTION>
+
+<SECTION>
 <FILE>pixbuf</FILE>
 CcPixbuf
 CcPixbufClass
@@ -260,6 +304,8 @@ CC_RECTANGLE_GET_CLASS
 <FILE>rounded-rectangle</FILE>
 CcRoundedRectangle
 CcRoundedRectangleClass
+cc_rounded_rectangle_new
+cc_rounded_rectangle_set_radius
 <SUBSECTION Standard>
 CC_ROUNDED_RECTANGLE
 CC_ROUNDED_RECTANGLE_CLASS
@@ -402,6 +448,7 @@ cc_view_widget_set_zoom_mode
 cc_accumulator_boolean
 cc_point_grid_align
 cc_return_if_unimplemented
+cc_return_if_unimplemented_code
 <TITLE>Utilities</TITLE>
 <SUBSECTION Standard>
 </SECTION>
