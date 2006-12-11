@@ -41,8 +41,8 @@
       <xi:include href="xml/brush.xml"/>
       <xi:include href="xml/brush-color.xml"/>
       <xi:include href="xml/color.xml"/>
-      <xi:include href="xml/gradient.xml"/>
-      <xi:include href="xml/linear-gradient.xml"/>
+      <xi:include href="xml/cc-gradient.xml"/>
+      <xi:include href="xml/cc-linear-gradient.xml"/>
       <xi:include href="xml/d-rect.xml"/>
       <xi:include href="xml/utils.xml"/>
     </chapter>
@@ -57,7 +57,7 @@
       <xi:include href="xml/rounded-rectangle.xml"/>
       <xi:include href="xml/pixbuf.xml"/>
       <xi:include href="xml/text.xml"/>
-      <xi:include href="xml/caret.xml"/>
+      <xi:include href="xml/cc-caret.xml"/>
       <xi:include href="xml/camera.xml"/>
     </chapter>
 
