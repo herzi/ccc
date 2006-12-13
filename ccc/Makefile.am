@@ -23,7 +23,6 @@ static_headers=\
 	cc-linear-gradient.h \
 	cc-pixbuf.h \
 	cc-printer.h \
-	cc-radial-gradient.h \
 	cc-rectangle.h \
 	cc-rounded-rectangle.h \
 	cc-shape.h \
@@ -69,7 +68,6 @@ libccc_0_1_la_SOURCES=\
 	cc-linear-gradient.c \
 	cc-pixbuf.c \
 	cc-printer.c \
-	cc-radial-gradient.c \
 	cc-rectangle.c \
 	cc-rounded-rectangle.c \
 	cc-shape.c \

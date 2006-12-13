@@ -39,7 +39,6 @@
 #include <ccc/cc-linear-gradient.h>
 #include <ccc/cc-pixbuf.h>
 #include <ccc/cc-printer.h>
-#include <ccc/cc-radial-gradient.h>
 #include <ccc/cc-rectangle.h>
 #include <ccc/cc-rounded-rectangle.h>
 #include <ccc/cc-text.h>
