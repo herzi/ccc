@@ -16,6 +16,7 @@ cc_line_get_type
 cc_linear_gradient_get_type
 cc_pixbuf_get_type
 cc_printer_get_type
+cc_radial_gradient_get_type
 cc_rectangle_get_type
 cc_rounded_rectangle_get_type
 cc_shape_get_type

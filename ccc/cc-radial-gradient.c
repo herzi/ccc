@@ -35,6 +35,20 @@ struct CcRadialGradientPrivate {
 };
 #define P(i) (G_TYPE_INSTANCE_GET_PRIVATE((i), CC_TYPE_RADIAL_GRADIENT, struct CcRadialGradientPrivate))
 
+/**
+ * cc_radial_gradient_new:
+ * @x: the x position of the gradient's center
+ * @y: the y position of the gradient's center
+ * @radius: the radius of the gradient's circle
+ *
+ * Create a new radial gradient.
+ *
+ * @x, @y and @radius are given in a relation to the item's size and position:
+ * eg. 0.5 means either "in the middle" (for @x and @y) or "half the size" (for
+ * @radius).
+ *
+ * Returns a new #CcRadialGradient.
+ */
 CcBrush*
 cc_radial_gradient_new(gdouble x,
 		       gdouble y,

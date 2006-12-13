@@ -280,6 +280,21 @@ CC_TYPE_PRINTER
 </SECTION>
 
 <SECTION>
+<FILE>cc-radial-gradient</FILE>
+CcRadialGradient
+CcRadialGradientClass
+cc_radial_gradient_new
+cc_radial_gradient_get_type
+<SUBSECTION Standard>
+CC_IS_RADIAL_GRADIENT
+CC_IS_RADIAL_GRADIENT_CLASS
+CC_RADIAL_GRADIENT
+CC_RADIAL_GRADIENT_CLASS
+CC_RADIAL_GRADIENT_GET_CLASS
+CC_TYPE_RADIAL_GRADIENT
+</SECTION>
+
+<SECTION>
 <FILE>rectangle</FILE>
 CcRectangle
 CcRectangleClass
