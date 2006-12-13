@@ -190,7 +190,9 @@ DemoPage*
 gradient_demo(void)
 {
 	GtkWidget* widget;
+	CcColor  * color;
 	CcBrush  * brush;
+	CcBrush  * brush2;
 	CcItem   * root = cc_item_new();
 
 	rrect = cc_rounded_rectangle_new();
@@ -213,12 +215,15 @@ gradient_demo(void)
 	rect.x2 = 0.5;
 	rect.y2 = 1.0;
 
+	color = cc_color_new_rgb(0.0, 0.0, 0.0);
 	brush = cc_radial_gradient_new(0.5, 0.5, 0.5);
-	cc_gradient_add_stop(CC_GRADIENT(brush), 0.4, cc_color_new_rgb(0.36, 0.21, 0.40));
-	cc_gradient_add_stop(CC_GRADIENT(brush), 1.0, cc_color_new_rgb(0.0, 0.0, 0.0));
+	cc_gradient_add_stop(CC_GRADIENT(brush), 0.6, cc_color_new_rgb(0.36, 0.21, 0.40));
+	cc_gradient_add_stop(CC_GRADIENT(brush), 1.0, color);
+	brush2 = cc_brush_color_new(color);
 	knobs[0] = cc_circle_new();
 	cc_circle_set_radius(CC_CIRCLE(knobs[0]), 5.0);
 	cc_shape_set_brush_content(CC_SHAPE(knobs[0]), brush);
+	cc_shape_set_brush_border(CC_SHAPE(knobs[0]), brush2);
 	g_signal_connect(knobs[0], "button-press-event",
 			 G_CALLBACK(knob_button_press_event), NULL);
 	g_signal_connect(knobs[0], "button-release-event",
@@ -230,6 +235,7 @@ gradient_demo(void)
 	knobs[2] = cc_circle_new();
 	cc_circle_set_radius(CC_CIRCLE(knobs[2]), 5.0);
 	cc_shape_set_brush_content(CC_SHAPE(knobs[2]), brush);
+	cc_shape_set_brush_border(CC_SHAPE(knobs[2]), brush2);
 	g_signal_connect(knobs[2], "button-press-event",
 			 G_CALLBACK(knob_button_press_event), NULL);
 	g_signal_connect(knobs[2], "button-release-event",
@@ -241,6 +247,7 @@ gradient_demo(void)
 	knobs[1] = cc_circle_new();
 	cc_circle_set_radius(CC_CIRCLE(knobs[1]), 5.0);
 	cc_shape_set_brush_content(CC_SHAPE(knobs[1]), brush);
+	cc_shape_set_brush_border(CC_SHAPE(knobs[1]), brush2);
 	g_signal_connect(knobs[1], "button-press-event",
 			 G_CALLBACK(knob_button_press_event), NULL);
 	g_signal_connect(knobs[1], "button-release-event",
