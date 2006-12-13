@@ -190,7 +190,6 @@ DemoPage*
 gradient_demo(void)
 {
 	GtkWidget* widget;
-	CcColor  * color;
 	CcBrush  * brush;
 	CcBrush  * brush2;
 	CcItem   * root = cc_item_new();
@@ -215,11 +214,10 @@ gradient_demo(void)
 	rect.x2 = 0.5;
 	rect.y2 = 1.0;
 
-	color = cc_color_new_rgb(0.0, 0.0, 0.0);
 	brush = cc_radial_gradient_new(0.5, 0.5, 0.5);
-	cc_gradient_add_stop(CC_GRADIENT(brush), 0.6, cc_color_new_rgb(0.36, 0.21, 0.40));
-	cc_gradient_add_stop(CC_GRADIENT(brush), 1.0, color);
-	brush2 = cc_brush_color_new(color);
+	cc_gradient_add_stop(CC_GRADIENT(brush), 0.0, cc_color_new_rgb(0.68, 0.50, 0.66));
+	cc_gradient_add_stop(CC_GRADIENT(brush), 1.0, cc_color_new_rgb(0.36, 0.21, 0.40));
+	brush2 = cc_brush_color_new(cc_color_new_rgb(0.0, 0.0, 0.0));
 	knobs[0] = cc_circle_new();
 	cc_circle_set_radius(CC_CIRCLE(knobs[0]), 5.0);
 	cc_shape_set_brush_content(CC_SHAPE(knobs[0]), brush);
