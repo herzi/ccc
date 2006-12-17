@@ -32,6 +32,14 @@ struct CcViewCellRendererPrivate {
 };
 #define P(i) (G_TYPE_INSTANCE_GET_PRIVATE((i), CC_TYPE_VIEW_CELL_RENDERER, struct CcViewCellRendererPrivate))
 
+/**
+ * cc_view_cell_renderer_new:
+ *
+ * Creates a #GtkCellRenderer that can be used to display a canvas in a
+ * #GtkCellLayout (like #GtkTreeView or #GtkComboBox).
+ *
+ * Returns a new instance of #CcViewCellRenderer.
+ */
 GtkCellRenderer*
 cc_view_cell_renderer_new(void) {
 	return g_object_new(CC_TYPE_VIEW_CELL_RENDERER, NULL);

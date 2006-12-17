@@ -748,6 +748,15 @@ cc_item_class_init(CcItemClass* self_class) {
 	go_class->dispose      = ci_dispose;
 	go_class->get_property = ci_get_property;
 
+	/**
+	 * CcItem::all-bounds-changed
+	 * @self: a #Ccitem
+	 * @view: the #CcView belonging to this event
+	 * @box: a #CcDRect specifying the new bounding box
+	 *
+	 * This signal gets emitted when the total bounding box of an item
+	 * changed. See also <xref linkend="ccc-Bounds-Handling"/>.
+	 */
 	cc_item_signals[ALL_BOUNDS_CHANGED] =
 		g_signal_new("all-bounds-changed", CC_TYPE_ITEM,
 			     0,0, NULL, NULL,
@@ -862,6 +871,17 @@ cc_item_class_init(CcItemClass* self_class) {
 			     cc_marshal_BOOLEAN__OBJECT_ENUM,
 			     G_TYPE_BOOLEAN, 2,
 			     CC_TYPE_VIEW, GTK_TYPE_DIRECTION_TYPE);
+	/**
+	 * CcItem::focus-enter
+	 * @self: a #CcItem
+	 * @view: a #CcView
+	 * @event: a #GdkEventFocus
+	 *
+	 * This signal gets emitted when the focus enters this item.
+	 *
+	 * Returns %TRUE to stop other signal handlers, %FALSE to allow their
+	 * execution.
+	 */
 	cc_item_signals[FOCUS_ENTER] =
 		g_signal_new("focus-enter", CC_TYPE_ITEM,
 			     G_SIGNAL_RUN_LAST, G_STRUCT_OFFSET(CcItemClass, focus_enter),
@@ -869,6 +889,17 @@ cc_item_class_init(CcItemClass* self_class) {
 			     cc_marshal_BOOLEAN__OBJECT_BOXED,
 			     G_TYPE_BOOLEAN, 2,
 			     CC_TYPE_VIEW, GDK_TYPE_EVENT | G_SIGNAL_TYPE_STATIC_SCOPE);
+	/**
+	 * CcItem::focus-leave
+	 * @self: a #CcItem
+	 * @view: a #CcView
+	 * @event: a #GdkEventFocus
+	 *
+	 * This signal gets emitted when the focus leaves this item.
+	 *
+	 * Returns %TRUE to stop other signal handlers, %FALSE to allow their
+	 * execution.
+	 */
 	cc_item_signals[FOCUS_LEAVE] =
 		g_signal_new("focus-leave", CC_TYPE_ITEM,
 			     G_SIGNAL_RUN_LAST, G_STRUCT_OFFSET(CcItemClass, focus_leave),
@@ -876,6 +907,17 @@ cc_item_class_init(CcItemClass* self_class) {
 			     cc_marshal_BOOLEAN__OBJECT_BOXED,
 			     G_TYPE_BOOLEAN, 2,
 			     CC_TYPE_VIEW, GDK_TYPE_EVENT | G_SIGNAL_TYPE_STATIC_SCOPE);
+	/**
+	 * CcItem::key-press-event
+	 * @self: a #CcItem
+	 * @view: a #CcView
+	 * @event: a #GdkEventKey
+	 *
+	 * This signal gets emitted when a key gets pressed.
+	 *
+	 * Returns %TRUE to stop other signal handlers, %FALSE to allow their
+	 * execution.
+	 */
 	cc_item_signals[KEY_PRESS_EVENT] =
 		g_signal_new("key-press-event", CC_TYPE_ITEM,
 			     G_SIGNAL_RUN_LAST, G_STRUCT_OFFSET(CcItemClass, key_press_event),
@@ -883,6 +925,17 @@ cc_item_class_init(CcItemClass* self_class) {
 			     cc_marshal_BOOLEAN__OBJECT_BOXED,
 			     G_TYPE_BOOLEAN, 2,
 			     CC_TYPE_VIEW, GDK_TYPE_EVENT | G_SIGNAL_TYPE_STATIC_SCOPE);
+	/**
+	 * CcItem::key-release-event
+	 * @self: a #CcItem
+	 * @view: a #CcView
+	 * @event: a #GdkEventKey
+	 *
+	 * This signal gets emitted when a key gets released.
+	 *
+	 * Returns %TRUE to stop other signal handlers, %FALSE to allow their
+	 * execution.
+	 */
 	cc_item_signals[KEY_RELEASE_EVENT] =
 		g_signal_new("key-release-event", CC_TYPE_ITEM,
 			     G_SIGNAL_RUN_LAST, G_STRUCT_OFFSET(CcItemClass, key_release_event),
