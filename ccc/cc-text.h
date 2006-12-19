@@ -51,6 +51,8 @@ void         cc_text_set_anchor          (CcText              * self,
 			                  gdouble               y);
 void         cc_text_set_anchor_type     (CcText              * self,
 				          GtkAnchorType         anchor);
+void         cc_text_set_attributes      (CcText              * self,
+					  PangoAttrList       * attrs);
 void         cc_text_set_editable        (CcText              * self,
 				          gboolean              editable);
 void         cc_text_set_font_description(CcText              * self,
