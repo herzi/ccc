@@ -36,6 +36,9 @@
 #include "glib-helpers.h"
 #include "pango-helpers.h"
 
+#define CDEBUG_TYPE cc_text_get_type
+#include <cdebug/cdebug.h>
+
 #include <cc-config.h>
 #include <glib/gi18n-lib.h>
 
@@ -126,6 +129,21 @@ cc_text_set_anchor_type(CcText* self, GtkAnchorType anchor) {
 }
 
 void
+cc_text_set_attributes(CcText       * self,
+		       PangoAttrList* attrs)
+{
+	g_return_if_fail(CC_IS_TEXT(self));
+
+	cdebug("set_attributes()", "pango_layout_set_attributes()");
+	pango_layout_set_attributes(self->layout, attrs);
+	cc_item_update_bounds(CC_ITEM(self), NULL);
+	// FIXME: mark dirty
+
+	g_object_notify(G_OBJECT(self), "attributes");
+
+}
+
+void
 cc_text_set_editable(CcText* self, gboolean editable) {
 	g_return_if_fail(CC_IS_TEXT(self));
 
@@ -148,6 +166,7 @@ cc_text_set_editable(CcText* self, gboolean editable) {
  */
 void
 cc_text_set_font_description(CcText* self, PangoFontDescription* desc) {
+	cdebug("set_font_description()", "pango_layout_set_font_description()");
 	pango_layout_set_font_description(self->layout, desc);
 	// FIXME: forward the description-changed signal
 	cc_item_update_bounds(CC_ITEM(self), NULL);
@@ -248,6 +267,7 @@ cc_text_set_text(CcText* self, gchar const* text) {
 		ct_move_cursor();
 	}
 #endif
+	cdebug("set_text()", "pango_layout_set_text()");
 	pango_layout_set_text(self->layout, text, -1);
 	cc_item_update_bounds(CC_ITEM(self), NULL);
 
@@ -260,6 +280,7 @@ G_DEFINE_TYPE(CcText, cc_text, CC_TYPE_SHAPE);
 enum {
 	PROP_0,
 	PROP_ANCHOR,
+	PROP_ATTRIBUTES,
 	PROP_BRUSH_CARET,
 	PROP_CURSOR,
 	PROP_EDITABLE,
@@ -291,6 +312,7 @@ cc_text_init(CcText* self)
 {
 	CcBrush* brush;
 
+	//cdebug("init()", "pango_layout_new_cairo()");
 	self->layout = pango_layout_new_cairo();
 
 	self->im_contexts = cc_hash_map_new(GTK_TYPE_IM_CONTEXT);
@@ -370,6 +392,7 @@ ct_path(CcShape* shape, CcView* view, cairo_t* cr) {
 			pango_font_description_set_size(desc_new, new_size);
 		}
 
+		//cdebug("path()", "pango_layout_set_font_description()");
 		pango_layout_set_font_description(layout, desc_new);
 	}
 
@@ -379,7 +402,9 @@ ct_path(CcShape* shape, CcView* view, cairo_t* cr) {
 	}
 
 	cairo_move_to(cr, x, y);
+	//cdebug("path()", "pango_cairo_update_layout()");
 	pango_cairo_update_layout(cr, layout);
+	//cdebug("path()", "pango_cairo_layout_path()");
 	pango_cairo_layout_path(cr, layout);
 
 	if(!self->size_pixels) {
@@ -397,6 +422,9 @@ ct_get_property(GObject* object, guint prop_id, GValue* value, GParamSpec* pspec
 	switch(prop_id) {
 	case PROP_ANCHOR:
 		g_value_set_enum(value, self->anchor);
+		break;
+	case PROP_ATTRIBUTES:
+		g_value_set_boxed(value, pango_layout_get_attributes(self->layout));
 		break;
 	case PROP_BRUSH_CARET:
 		g_value_set_object(value, cc_shape_get_brush_border(CC_SHAPE(P(object)->caret)));
@@ -423,6 +451,9 @@ ct_set_property(GObject* object, guint prop_id, GValue const* value, GParamSpec*
 	switch(prop_id) {
 	case PROP_ANCHOR:
 		cc_text_set_anchor_type(self, g_value_get_enum(value));
+		break;
+	case PROP_ATTRIBUTES:
+		cc_text_set_attributes(self, g_value_get_boxed(value));
 		break;
 	case PROP_BRUSH_CARET:
 		cc_shape_set_brush_border(CC_SHAPE(P(object)->caret), g_value_get_object(value));
@@ -743,11 +774,18 @@ cc_text_class_init(CcTextClass* self_class) {
 	g_object_class_install_property(go_class,
 					PROP_ANCHOR,
 					g_param_spec_enum("anchor",
-							  "Anchor",
-							  "The location of the anchor point of the text element",
+							  _("Anchor"),
+							  _("The location of the anchor point of the text element"),
 							  GTK_TYPE_ANCHOR_TYPE,
 							  GTK_ANCHOR_NW,
 							  G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+	g_object_class_install_property(go_class,
+					PROP_ATTRIBUTES,
+					g_param_spec_boxed("attributes",
+							   _("Attributes"),
+							   _("The PangoAttrList that specifies the "),
+							   PANGO_TYPE_ATTR_LIST,
+							   G_PARAM_READWRITE));
 	g_object_class_install_property(go_class,
 					PROP_BRUSH_CARET,
 					g_param_spec_object("brush-caret",
