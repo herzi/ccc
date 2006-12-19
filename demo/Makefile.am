@@ -2,6 +2,7 @@ NULL=
 noinst_PROGRAMS=ccc-demo
 
 ccc_demo_SOURCES=\
+	behavior.c \
 	camera.c \
 	credits.c \
 	crossing.c \

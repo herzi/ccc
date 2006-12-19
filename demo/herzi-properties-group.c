@@ -44,13 +44,17 @@ struct _HerziPropertiesGroupClass {
 	GtkHBoxClass base_class;
 };
 
-HerziPropertiesGroup*
-herzi_properties_group_new(gchar const* label) {
+GtkWidget*
+herzi_properties_group_new(gchar const* label)
+{
 	return g_object_new(HERZI_TYPE_PROPERTIES_GROUP, "label", label, NULL);
 }
 
 void
-herzi_properties_group_add(HerziPropertiesGroup* self, gchar const* label, GtkWidget* widget) {
+herzi_properties_group_add(GtkWidget  * self,
+			   gchar const* label,
+			   GtkWidget  * widget)
+{
 	GtkWidget* label_w;
 	GtkWidget* box;
 
@@ -62,13 +66,13 @@ herzi_properties_group_add(HerziPropertiesGroup* self, gchar const* label, GtkWi
 	gtk_label_set_mnemonic_widget(GTK_LABEL(label_w), widget);
 	gtk_misc_set_alignment(GTK_MISC(label_w), 0.0, 0.5);
 
-	gtk_size_group_add_widget(self->groups[0], label_w);
+	gtk_size_group_add_widget(HERZI_PROPERTIES_GROUP(self)->groups[0], label_w);
 	gtk_box_pack_start_defaults(GTK_BOX(box), label_w);
 
-	gtk_size_group_add_widget(self->groups[1], widget);
+	gtk_size_group_add_widget(HERZI_PROPERTIES_GROUP(self)->groups[1], widget);
 	gtk_box_pack_start(GTK_BOX(box), widget, FALSE, FALSE, 0);
 
-	gtk_box_pack_start(self->intern, box, FALSE, FALSE, 0);
+	gtk_box_pack_start(HERZI_PROPERTIES_GROUP(self)->intern, box, FALSE, FALSE, 0);
 }
 
 /* GType stuff */

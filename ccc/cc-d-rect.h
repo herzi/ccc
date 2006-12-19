@@ -39,7 +39,7 @@ typedef struct {
 
 GType cc_d_rect_get_type(void);
 
-CcDRect* cc_d_rect_copy     (CcDRect* one);
+CcDRect* cc_d_rect_copy     (CcDRect const* one);
 gboolean cc_d_rect_equal    (CcDRect  one,
 			     CcDRect  two);
 gboolean cc_d_rect_intersect(CcDRect  one,

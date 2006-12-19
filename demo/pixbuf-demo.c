@@ -69,18 +69,6 @@ pixbuf_rotation_changed(GtkSpinButton* spin, CcPixbuf* pbuf) {
 }
 
 static void
-text_text_changed(GtkEntry* entry, GParamSpec* pspec, CcText* text) {
-	gchar const* t_layout = cc_text_get_text(text);
-	gchar const* t_entry  = gtk_entry_get_text(entry);
-
-	if(t_layout && t_entry && !strcmp(t_layout, t_entry)) {
-		return;
-	}
-
-	cc_text_set_text(text, t_entry);
-}
-
-static void
 update_bounds(CcItem* text, CcView* view, CcDRect* bounds, CcRectangle* rectangle) {
 	if(!bounds) {
 		return;
@@ -90,20 +78,6 @@ update_bounds(CcItem* text, CcView* view, CcDRect* bounds, CcRectangle* rectangl
 				  bounds->x1, bounds->y1,
 				  bounds->x2 - bounds->x1,
 				  bounds->y2 - bounds->y1);
-}
-
-static void
-update_entry_from_layout(CcText* text, GParamSpec* pspec, GtkEntry* entry) {
-	gchar const* t_layout = cc_text_get_text(text);
-	gchar const* t_entry  = gtk_entry_get_text(entry);
-
-	if(t_layout && t_entry && !strcmp(t_layout, t_entry)) {
-		return;
-	}
-
-	g_object_freeze_notify(G_OBJECT(entry));
-	gtk_entry_set_text(entry, t_layout);
-	g_object_freeze_notify(G_OBJECT(entry));
 }
 
 static CcItem* root = NULL;

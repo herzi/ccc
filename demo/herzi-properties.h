@@ -47,8 +47,8 @@ G_BEGIN_DECLS
 GType herzi_properties_get_type(void);
 
 GtkWidget* herzi_properties_new(void);
-GtkWidget* herzi_properties_add(HerziProperties* self,
-				gchar const    * label);
+GtkWidget* herzi_properties_add(GtkWidget  * self,
+				gchar const* label);
 
 G_END_DECLS
 

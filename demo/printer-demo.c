@@ -38,7 +38,7 @@
 #include <glib/gi18n-lib.h>
 
 static void
-print_canvas(GtkButton* button)
+print_canvas(GtkWidget* button)
 {
 	GtkWidget* dialog = gtk_print_unix_dialog_new(_("Printing the demo canvas"),
 						      GTK_WINDOW(gtk_widget_get_toplevel(button)));

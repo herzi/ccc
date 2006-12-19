@@ -173,7 +173,10 @@ cc_view_set_zoom(CcView* self, gdouble zoom) {
  * Convert @window_x and @window_y to @world_x and @world_y if given.
  */
 void
-cc_view_window_to_world(CcView* self, gdouble* x, gdouble* y) {
+cc_view_window_to_world(CcView const* self,
+			gdouble     * x,
+			gdouble     * y)
+{
 	g_return_if_fail(CC_VIEW_GET_CLASS(self)->window_to_world);
 
 	CC_VIEW_GET_CLASS(self)->window_to_world(self, x, y);
@@ -188,7 +191,10 @@ cc_view_window_to_world(CcView* self, gdouble* x, gdouble* y) {
  * Convert @x and @y to window coordinates if given.
  */
 void
-cc_view_world_to_window(CcView* self, gdouble* x, gdouble* y) {
+cc_view_world_to_window(CcView const* self,
+			gdouble     * x,
+			gdouble     * y)
+{
 	cc_return_if_unimplemented(CC_VIEW_GET_CLASS(self), world_to_window);
 
 	CC_VIEW_GET_CLASS(self)->world_to_window(self, x, y);
@@ -203,7 +209,10 @@ cc_view_world_to_window(CcView* self, gdouble* x, gdouble* y) {
  * Convert @x and @y to window coordinates
  */
 void
-cc_view_world_to_window_distance(CcView* self, gdouble* x, gdouble* y) {
+cc_view_world_to_window_distance(CcView const* self,
+				 gdouble     * x,
+				 gdouble     * y)
+{
 	g_return_if_fail(CC_VIEW_GET_CLASS(self)->world_to_window_distance);
 
 	CC_VIEW_GET_CLASS(self)->world_to_window_distance(self, x, y);

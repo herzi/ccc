@@ -73,11 +73,7 @@ cvcr_dispose(GObject* object) {
 	}
 	self->disposed = TRUE;
 
-	if(P(self)->root) {
-#warning "use set_root()"
-		g_object_unref(P(self)->root);
-		P(self)->root = NULL;
-	}
+	cc_view_set_root(CC_VIEW(object), NULL);
 
 	G_OBJECT_CLASS(cc_view_cell_renderer_parent_class)->dispose(object);
 }
@@ -210,9 +206,9 @@ cell_render_implement_item_view(CcItemViewIface* iface G_GNUC_UNUSED)
 
 /* CcViewIface */
 static void
-cell_renderer_world_to_window(CcView * view,
-			      gdouble* x,
-			      gdouble* y)
+cell_renderer_world_to_window(CcView const* view,
+			      gdouble     * x,
+			      gdouble     * y)
 {
 	cairo_matrix_transform_point(&P(view)->matrix, x, y);
 }

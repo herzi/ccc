@@ -281,7 +281,6 @@ cvw_update_adjustment_allocation(GtkAdjustment* adjustment, gdouble size, gboole
 		     "page-size",      size,
 		     "page-increment", size,
 		     "step-increment", size > 20 ? 10.0 : 1.0,
-#warning "FIXME: let this scale up to bigger values"
 		     NULL);
 
 	if(update_adjustment) {
@@ -990,7 +989,10 @@ cvw_ungrab_item(CcView* view, CcItem* item, guint32 time) {
 }
 
 static void
-cvw_window_to_world(CcView* view, gdouble* x, gdouble* y) {
+cvw_window_to_world(CcView const* view,
+		    gdouble     * x,
+		    gdouble     * y)
+{
 	cairo_matrix_t inverse;
 
 	memcpy(&inverse, &CC_VIEW_WIDGET(view)->display_matrix, sizeof(cairo_matrix_t));
@@ -1000,13 +1002,18 @@ cvw_window_to_world(CcView* view, gdouble* x, gdouble* y) {
 }
 
 static void
-cvw_world_to_window(CcView* view, gdouble* x, gdouble* y) {
+cvw_world_to_window(CcView const* view,
+		    gdouble     * x,
+		    gdouble     * y)
+{
 	gdouble tx, ty;
 	cairo_matrix_transform_point(&CC_VIEW_WIDGET(view)->display_matrix, x ? x : &tx, y ? y : &ty);
 }
 
 static void
-cvw_world_to_window_distance(CcView* view, gdouble* x, gdouble* y) {
+cvw_world_to_window_distance(CcView const* view,
+			     gdouble     * x,
+			     gdouble     * y) {
 	gdouble tx, ty;
 	cairo_matrix_transform_distance(&CC_VIEW_WIDGET(view)->display_matrix, x ? x : &tx, y ? y : &ty);
 }

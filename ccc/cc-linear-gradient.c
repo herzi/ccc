@@ -29,7 +29,28 @@
 #include <glib/gi18n-lib.h>
 
 #define P(i) (G_TYPE_INSTANCE_GET_PRIVATE((i), CC_TYPE_LINEAR_GRADIENT, CcDRect))
-#warning "FIXME: add some section documentation about how the positioning works"
+
+/**
+ * SECTION:cc-linear-gradient
+ *
+ * Linear gradients are a very nice pattern to fill items with. To permit
+ * gradients to be applied to different items, the API got designed a bit
+ * tricky (but still easy to understand).
+ *
+ * Instead of working with exact coordinates on items, you specify two points
+ * for the gradient (the start and the end) relative to the item's bounding
+ * box.
+ *
+ * A gradient from (0.0; 0.0) to (1.0; 1.0) applied to a square will result in
+ * a linear gradient from the north-western corner of the square to the
+ * south-eastern corner.
+ *
+ * A gradient from (0.5; 0.0) to (0.5; 1.0) applied to a square will result in
+ * a gradient from the top to the bottom.
+ *
+ * Of course, you are not limited to the bounding box of your item. A gradient
+ * like this can also be applied: (-0.25; 0.0) to (0.5; 1.0).
+ */
 
 CcBrush*
 cc_linear_gradient_new(gdouble x1,

@@ -40,10 +40,10 @@ typedef struct _HerziPropertiesGroupClass HerziPropertiesGroupClass;
 
 GType herzi_properties_group_get_type(void);
 
-HerziPropertiesGroup* herzi_properties_group_new(gchar const         * label);
-void                  herzi_properties_group_add(HerziPropertiesGroup* self,
-						 gchar const         * label,
-						 GtkWidget           * widget);
+GtkWidget* herzi_properties_group_new(gchar const* label);
+void       herzi_properties_group_add(GtkWidget  * self,
+				      gchar const* label,
+				      GtkWidget  * widget);
 
 G_END_DECLS
 

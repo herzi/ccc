@@ -41,9 +41,11 @@ herzi_properties_new(void) {
 }
 
 GtkWidget*
-herzi_properties_add(HerziProperties* self, gchar const* label) {
+herzi_properties_add(GtkWidget  * self,
+		     gchar const* label)
+{
 	HerziPropertiesGroup* retval = herzi_properties_group_new(label);
-	self->groups = g_list_append(self->groups, retval);
+	HERZI_PROPERTIES(self)->groups = g_list_append(HERZI_PROPERTIES(self)->groups, retval);
 	gtk_box_pack_start(GTK_BOX(self), GTK_WIDGET(retval), FALSE, FALSE, 0);
 	return GTK_WIDGET(retval);
 }

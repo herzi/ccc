@@ -106,7 +106,6 @@ void
 cc_pixbuf_set_position(CcPixbuf* self, gdouble x, gdouble y, gdouble w, gdouble h) {
 	g_return_if_fail(CC_IS_PIXBUF(self));
 
-#warning "FIXME: complete..."
 	g_object_set(self,
 		     "position-x", x,
 		     "position-y", y,
@@ -128,7 +127,7 @@ pixbuf_set_dirty(CcItem  * item,
 		 CcView  * view,
 		 gpointer  unused G_GNUC_UNUSED)
 {
-	CcDRect* bbox = cc_item_get_all_bounds(item, view);
+	CcDRect const* bbox = cc_item_get_all_bounds(item, view);
 	if(bbox) {
 		cc_item_dirty(item, view, *bbox);
 	}
@@ -193,25 +192,25 @@ cp_get_property(GObject* object, guint prop_id, GValue* value, GParamSpec* pspec
 		g_value_set_object(value, P(self)->pixbuf);
 		break;
 	case PROP_POS_X:
-#warning "implement"
+		g_value_set_double(value, P(self)->pos_x);
 		break;
 	case PROP_POS_Y:
-#warning "implement"
+		g_value_set_double(value, P(self)->pos_y);
 		break;
 	case PROP_POS_W:
 		g_value_set_double(value, P(self)->width);
 		break;
 	case PROP_POS_W_SET:
-#warning "implement"
+		g_value_set_boolean(value, P(self)->width_set);
 		break;
 	case PROP_POS_H:
 		g_value_set_double(value, P(self)->height);
 		break;
 	case PROP_POS_H_SET:
-#warning "implement"
+		g_value_set_boolean(value, P(self)->height_set);
 		break;
 	case PROP_ROTATION:
-#warning "implement"
+		g_value_set_double(value, P(self)->rotation);
 		break;
 	default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID(object, prop_id, pspec);

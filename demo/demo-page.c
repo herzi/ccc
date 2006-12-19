@@ -27,7 +27,7 @@ DemoPage*
 demo_page_new(GtkWidget* w, gchar const* text) {
 	DemoPage* page = g_object_new(DEMO_TYPE_PAGE, NULL);
 	page->widget = w;
-	page->title = text;
+	page->title = g_strdup(text);
 	return page;
 }
 
@@ -38,5 +38,19 @@ static void
 demo_page_init(DemoPage* self) {}
 
 static void
-demo_page_class_init(DemoPageClass* self_class) {}
+page_finalize(GObject* object)
+{
+	DemoPage* self = DEMO_PAGE(object);
+
+	g_free(self->title);
+	self->title = NULL;
+
+	G_OBJECT_CLASS(demo_page_parent_class)->finalize(object);
+}
+
+static void
+demo_page_class_init(DemoPageClass* self_class) {
+	GObjectClass* object_class = G_OBJECT_CLASS(self_class);
+	object_class->finalize = page_finalize;
+}
 

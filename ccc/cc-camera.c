@@ -227,9 +227,9 @@ camera_init_matrix(CcCamera* self, cairo_matrix_t* matrix)
 }
 
 static void
-camera_world_to_window(CcView * view,
-		       gdouble* x,
-		       gdouble* y)
+camera_world_to_window(CcView const* view,
+		       gdouble     * x,
+		       gdouble     * y)
 {
 	cairo_matrix_t matrix;
 	gdouble real_x = x ? *x : 0.0,
@@ -247,9 +247,9 @@ camera_world_to_window(CcView * view,
 }
 
 static void
-camera_world_to_window_distance(CcView * view,
-				gdouble* x,
-				gdouble* y)
+camera_world_to_window_distance(CcView const* view,
+				gdouble     * x,
+				gdouble     * y)
 {
 	cairo_matrix_t matrix;
 	gdouble real_x = x ? *x : 0.0,

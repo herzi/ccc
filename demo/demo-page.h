@@ -32,7 +32,7 @@ typedef struct _DemoPage      DemoPage;
 typedef struct _DemoPageClass DemoPageClass;
 
 #define DEMO_TYPE_PAGE         (demo_page_get_type())
-#define DEMO_PAGE(i)           (G_TYPE_CHECK_INSTANCE_CAST((i), DMEO_TYPE_PAGE, DemoPage))
+#define DEMO_PAGE(i)           (G_TYPE_CHECK_INSTANCE_CAST((i), DEMO_TYPE_PAGE, DemoPage))
 #define DEMO_PAGE_CLASS(c)     (G_TYPE_CHECK_CLASS_CAST((c), DEMO_TYPE_PAGE, DemoPageClass))
 #define DEMO_IS_PAGE(i)        (G_TYPE_CHECK_INSTANCE_TYPE((i), DEMO_TYPE_PAGE))
 #define DEMO_IS_PAGE_CLASS(c)  (G_TYPE_CHECK_CLASS_TYPE((c), DEMO_TYPE_PAGE))
