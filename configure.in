@@ -175,6 +175,7 @@ AC_OUTPUT([
 	Makefile
 	ccc/Makefile
 	cdebug/Makefile
+	csharp/Makefile
 	demo/Makefile
 	doc/Makefile
 	doc/reference/Makefile
