@@ -28,7 +28,6 @@
 
 #include "demo-page.h"
 
-DemoPage* behavior_demo   (void);
 DemoPage* camera_demo     (void);
 DemoPage* credits         (void);
 DemoPage* gradient_demo   (void);
