@@ -38,13 +38,29 @@ G_DEFINE_TYPE_WITH_CODE(CcTestView, cc_test_view, G_TYPE_OBJECT,
 			G_IMPLEMENT_INTERFACE(CC_TYPE_ITEM_VIEW, test_view_init_item_view);
 			G_IMPLEMENT_INTERFACE(CC_TYPE_VIEW, test_view_init_view));
 
+enum {
+	PROP_0,
+	PROP_FOCUS,
+	PROP_ROOT,
+	PROP_SCROLLED_REGION,
+	PROP_ZOOM,
+	PROP_ZOOM_MODE
+};
+
 static void
 cc_test_view_init(CcTestView* self G_GNUC_UNUSED)
 {}
 
 static void
-cc_test_view_class_init(CcTestViewClass* self_class G_GNUC_UNUSED)
-{}
+cc_test_view_class_init(CcTestViewClass* self_class)
+{
+	GObjectClass* object_class = G_OBJECT_CLASS(self_class);
+
+	/* CcViewIface */
+	_cc_view_install_property(object_class, PROP_ROOT,
+				  PROP_SCROLLED_REGION, PROP_ZOOM,
+				  PROP_ZOOM_MODE, PROP_FOCUS);
+}
 
 /* CcViewIface */
 static void
