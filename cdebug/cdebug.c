@@ -47,7 +47,7 @@ cdebug_init(void) {
 	gchar**contextv = NULL;
 	guint  i;
 
-	if(contexts) {
+	if(G_LIKELY(contexts)) {
 		contextv = g_strsplit_set(contexts, CDEBUG_DELIMITERS, -1);
 		pspecs = g_new0(GPatternSpec*, g_strv_length(contextv) + 1);
 	} else {
