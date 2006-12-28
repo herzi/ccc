@@ -38,6 +38,12 @@ START_TEST(test_item_crossing_single)
 				  0.0, 0.0, 100.0, 100.0);
 	cc_view_set_root(view, root);
 #warning "FIXME: finish"
+	// - emit the first motion notify (outside of root)
+	// - make sure the item is not picked
+	// - emit the second motion notify (inside of root)
+	// - make sure the item is picked
+	// - emit the third motion notify (outside of root)
+	// - make sure the item is not picked
 	g_object_unref(view);
 	fail_unless(implemented);
 }
@@ -45,24 +51,34 @@ END_TEST
 
 START_TEST(test_item_crossing_into)
 {
+	// - emit the first motion notify (outside of root)
+	// - emit the second motion notify (inside of root, outside of child)
+	// - emit the third motion notify (inside of root, inside of child)
 	fail_unless(implemented);
 }
 END_TEST
 
 START_TEST(test_item_crossing_into_jumping)
 {
+	// - emit the first motion notify (outside of both)
+	// - emit the second motion notify (inside of root, inside of child)
 	fail_unless(implemented);
 }
 END_TEST
 
 START_TEST(test_item_crossing_out)
 {
+	// - emit the first motion notify (inside of root, inside of child)
+	// - emit the second motion notify (inside of root, outside of child)
+	// - emit the third motion notify (outside of root)
 	fail_unless(implemented);
 }
 END_TEST
 
 START_TEST(test_item_crossing_out_jumping)
 {
+	// - emit the first motion notify (inside of root, inside of child)
+	// - emit the second motion notify (outside of root)
 	fail_unless(implemented);
 }
 END_TEST
