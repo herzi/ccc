@@ -52,6 +52,30 @@ cc_test_view_init(CcTestView* self G_GNUC_UNUSED)
 {}
 
 static void
+test_view_get_property(GObject   * object,
+		       guint       prop_id,
+		       GValue    * value,
+		       GParamSpec* pspec)
+{
+	switch(prop_id) {
+	case PROP_FOCUS:
+#warning "FIXME: implement focus property"
+	case PROP_ROOT:
+#warning "FIXME: implement root property"
+	case PROP_SCROLLED_REGION:
+#warning "FIXME: implement scrolled region property"
+	case PROP_ZOOM:
+#warning "FIXME: implement zoom property"
+	case PROP_ZOOM_MODE:
+#warning "FIXME: implement zoom mode property"
+		break;
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID(object, prop_id, pspec);
+		break;
+	}
+}
+
+static void
 test_view_set_property(GObject     * object,
 		       guint         prop_id,
 		       GValue const* value,
@@ -61,13 +85,13 @@ test_view_set_property(GObject     * object,
 	case PROP_FOCUS:
 #warning "FIXME: implement focus property"
 	case PROP_ROOT:
-#warning "FIXME: implement focus property"
+#warning "FIXME: implement root property"
 	case PROP_SCROLLED_REGION:
-#warning "FIXME: implement focus property"
+#warning "FIXME: implement scrolled region property"
 	case PROP_ZOOM:
-#warning "FIXME: implement focus property"
+#warning "FIXME: implement zoom property"
 	case PROP_ZOOM_MODE:
-#warning "FIXME: implement focus property"
+#warning "FIXME: implement zoom mode property"
 		break;
 	default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID(object, prop_id, pspec);
@@ -80,6 +104,7 @@ cc_test_view_class_init(CcTestViewClass* self_class)
 {
 	GObjectClass* object_class = G_OBJECT_CLASS(self_class);
 
+	object_class->get_property = test_view_get_property;
 	object_class->set_property = test_view_set_property;
 
 	/* CcViewIface */
