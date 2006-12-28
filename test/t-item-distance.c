@@ -26,6 +26,7 @@
 #include "s-item.h"
 
 #include "cc-test-view.h"
+#include <ccc/cc-rectangle.h>
 
 static gboolean implemented = FALSE;
 
@@ -33,20 +34,30 @@ START_TEST(test_item_distance_empty)
 {
 	/* we want to get the maximum distance if the item doesn't have a
 	 * bounding box */
-	CcView* view = cc_test_view_new();
 	CcItem* root = cc_item_new();
-	cc_view_set_root(view, root);
-#warning "FIXME: finish"
-	g_object_unref(view);
-	fail_unless(implemented);
+	CcItem* hit = NULL;
+	gdouble distance;
+	distance = cc_item_distance(root, 0.0, 0.0, &hit);
+	fail_unless(distance == G_MAXDOUBLE);
+	fail_if(CC_IS_ITEM(hit));
 }
 END_TEST
 
 START_TEST(test_item_distance_self)
 {
 	// we want to get a points that's definitely inside of an item
-#warning "FIXME: implement"
-	fail_unless(implemented);
+	CcItem* root = cc_rectangle_new();
+	CcItem* hit = NULL;
+	gdouble distance;
+	cc_rectangle_set_position(CC_RECTANGLE(root),
+				  0.0, 0.0,
+				  100.0, 100.0);
+	distance = cc_item_distance(root, 200.0, 0.0, &hit);
+	fail_unless(distance > 0.0);
+	fail_if(CC_IS_ITEM(hit));
+	distance = cc_item_distance(root, 50.0, 50.0, &hit);
+	fail_if(distance > 0.0);
+	fail_unless(CC_IS_ITEM(hit));
 }
 END_TEST
 

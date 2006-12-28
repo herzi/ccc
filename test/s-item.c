@@ -32,6 +32,7 @@ suite_item(void)
 {
 	Suite* self = suite_create(g_type_name(CC_TYPE_ITEM));
 	suite_add_tcase(self, test_item_distance());
+	// FIXME: add a testcase for the enter/leave stuff
 	return self;
 }
 
