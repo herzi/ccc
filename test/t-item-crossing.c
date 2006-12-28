@@ -25,12 +25,20 @@
 
 #include "s-item.h"
 
+#include <ccc/cc-rectangle.h>
 #include "cc-test-view.h"
 
 static gint implemented = FALSE;
 
 START_TEST(test_item_crossing_single)
 {
+	CcView* view = cc_test_view_new();
+	CcItem* root = cc_rectangle_new();
+	cc_rectangle_set_position(CC_RECTANGLE(root),
+				  0.0, 0.0, 100.0, 100.0);
+	cc_view_set_root(view, root);
+#warning "FIXME: finish"
+	g_object_unref(view);
 	fail_unless(implemented);
 }
 END_TEST
