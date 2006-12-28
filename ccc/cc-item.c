@@ -547,63 +547,73 @@ ci_distance(CcItem* self, gdouble x, gdouble y, CcItem** found) {
 
 	g_return_val_if_fail(found && !CC_IS_ITEM(*found), distance);
 
-	for(child = g_list_last(self->children); child ; child = child->prev) {
-	  child_found = NULL;
-	  gdouble new_dist = cc_item_distance(CC_ITEM(child->data), x, y, &child_found);
-	  //distance = MIN(distance, new_dist);
+	for(child = g_list_last(self->children); child ; child = child->prev, child_found = NULL) {
+		gdouble new_dist = cc_item_distance(CC_ITEM(child->data), x, y, &child_found);
 
-	  if (distance > new_dist){
-	    distance = new_dist;
-	    if (child_found)
-	      *found = child_found;
-	    else
-	      *found = CC_ITEM(child->data);
-	  }
+		if(distance > new_dist) {
+			distance = new_dist;
+			if (child_found) {
+				*found = child_found;
+			} else {
+				*found = CC_ITEM(child->data);
+			}
+		}
 	}
 
 	return distance;
 }
 
 static gboolean
-ci_event(CcItem* self, CcView* view, GdkEvent* ev) {
+item_event(CcItem  * self,
+	   CcView  * view,
+	   GdkEvent* event)
+{
 	gboolean retval = FALSE;
 
 	g_return_val_if_fail(CC_IS_ITEM(self), FALSE);
 	g_return_val_if_fail(CC_IS_VIEW(view), FALSE);
 
-	switch(ev->type) {
+	CDEBUG(GEnumClass* clss = g_type_class_ref(GDK_TYPE_EVENT_TYPE);
+	       cdebug("event()", "%s (%p) received an event of type \"%s\": %p",
+		      G_OBJECT_TYPE_NAME(self), self,
+		      g_enum_get_value(clss, event->type)->value_name,
+		      event);
+	       g_type_class_unref(clss);
+	);
+
+	switch(event->type) {
 	case GDK_BUTTON_PRESS:
 	case GDK_2BUTTON_PRESS:
 	case GDK_3BUTTON_PRESS:
-		g_signal_emit(self, cc_item_signals[BUTTON_PRESS_EVENT], 0, view, ev, &retval);
+		g_signal_emit(self, cc_item_signals[BUTTON_PRESS_EVENT], 0, view, event, &retval);
 		break;
 	case GDK_BUTTON_RELEASE:
-		g_signal_emit(self, cc_item_signals[BUTTON_RELEASE_EVENT], 0, view, ev, &retval);
+		g_signal_emit(self, cc_item_signals[BUTTON_RELEASE_EVENT], 0, view, event, &retval);
 		break;
 	case GDK_MOTION_NOTIFY:
-		g_signal_emit(self, cc_item_signals[MOTION_NOTIFY_EVENT], 0, view, ev, &retval);
+		g_signal_emit(self, cc_item_signals[MOTION_NOTIFY_EVENT], 0, view, event, &retval);
 		break;
 	case GDK_ENTER_NOTIFY:
-		g_signal_emit(self, cc_item_signals[ENTER_NOTIFY_EVENT], 0, view, ev, &retval);
+		g_signal_emit(self, cc_item_signals[ENTER_NOTIFY_EVENT], 0, view, event, &retval);
 		break;
 	case GDK_LEAVE_NOTIFY:
-		g_signal_emit(self, cc_item_signals[LEAVE_NOTIFY_EVENT], 0, view, ev, &retval);
+		g_signal_emit(self, cc_item_signals[LEAVE_NOTIFY_EVENT], 0, view, event, &retval);
 		break;
 	case GDK_KEY_PRESS:
-		g_signal_emit(self, cc_item_signals[KEY_PRESS_EVENT], 0, view, ev, &retval);
+		g_signal_emit(self, cc_item_signals[KEY_PRESS_EVENT], 0, view, event, &retval);
 		break;
 	case GDK_KEY_RELEASE:
-		g_signal_emit(self, cc_item_signals[KEY_RELEASE_EVENT], 0, view, ev, &retval);
+		g_signal_emit(self, cc_item_signals[KEY_RELEASE_EVENT], 0, view, event, &retval);
 		break;
 	case GDK_FOCUS_CHANGE:
-		if(!ev->focus_change.in) {
-			g_signal_emit(self, cc_item_signals[FOCUS_LEAVE], 0, view, ev, &retval);
+		if(!event->focus_change.in) {
+			g_signal_emit(self, cc_item_signals[FOCUS_LEAVE], 0, view, event, &retval);
 		}
 		break;
 	default:
 		{
 			GEnumClass* klass = g_type_class_ref(GDK_TYPE_EVENT_TYPE);
-			GEnumValue* value = g_enum_get_value(klass, ev->type);
+			GEnumValue* value = g_enum_get_value(klass, event->type);
 			g_type_class_unref(klass);
 
 			g_message("CcItem::event(): got an unhandled '%s' event", value->value_name);
@@ -613,7 +623,7 @@ ci_event(CcItem* self, CcView* view, GdkEvent* ev) {
 
 	if(!retval && self->parent) {
 		// FIXME: make sure item->parent is displayed in view
-		g_signal_emit(self->parent, cc_item_signals[EVENT], 0, view, ev, &retval);
+		g_signal_emit(self->parent, cc_item_signals[EVENT], 0, view, event, &retval);
 	}
 
 	return retval;
@@ -1043,7 +1053,7 @@ cc_item_class_init(CcItemClass* self_class) {
 
 	/* CriaItemClass */
 	self_class->distance            = ci_distance;
-	self_class->event               = ci_event;
+	self_class->event               = item_event;
 	self_class->focus               = ci_focus;
 	self_class->render              = ci_render;
 	self_class->notify_child_bounds = ci_notify_child_bounds_real;
