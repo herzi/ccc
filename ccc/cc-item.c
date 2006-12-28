@@ -263,6 +263,9 @@ cc_item_distance(CcItem* self, gdouble x, gdouble y, CcItem** found) {
 	if(distance <= 0.0 && !CC_IS_ITEM(*found)) {
 		g_warning("%sClass->distance() should set *found", G_OBJECT_TYPE_NAME(self));
 		*found = self;
+	} else if(distance > 0 && CC_IS_ITEM(*found)) {
+		g_warning("%sClass->distance() should not set *found", G_OBJECT_TYPE_NAME(self));
+		*found = NULL;
 	}
 #endif
 
@@ -562,8 +565,6 @@ item_distance(CcItem * self,
 			distance = new_dist;
 			if (child_found) {
 				*found = child_found;
-			} else {
-				*found = CC_ITEM(child->data);
 			}
 		}
 	}
