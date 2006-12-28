@@ -23,6 +23,8 @@
 
 #include "cc-test-view.h"
 
+#include <ccc/cc-item-view.h>
+
 CcView*
 cc_test_view_new(void)
 {
@@ -30,8 +32,10 @@ cc_test_view_new(void)
 }
 
 /* GType */
-static void test_view_init_view(CcViewIface* iface);
+static void test_view_init_item_view(CcItemViewIface* iface);
+static void test_view_init_view     (CcViewIface    * iface);
 G_DEFINE_TYPE_WITH_CODE(CcTestView, cc_test_view, G_TYPE_OBJECT,
+			G_IMPLEMENT_INTERFACE(CC_TYPE_ITEM_VIEW, test_view_init_item_view);
 			G_IMPLEMENT_INTERFACE(CC_TYPE_VIEW, test_view_init_view));
 
 static void
@@ -40,6 +44,11 @@ cc_test_view_init(CcTestView* self G_GNUC_UNUSED)
 
 static void
 cc_test_view_class_init(CcTestViewClass* self_class G_GNUC_UNUSED)
+{}
+
+/* CcViewIface */
+static void
+test_view_init_item_view(CcItemViewIface* iface G_GNUC_UNUSED)
 {}
 
 /* CcViewIface */
