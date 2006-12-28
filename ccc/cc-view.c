@@ -246,6 +246,7 @@ cc_view_iface_init(gpointer iface) {
 								"The root element of this canvas",
 								CC_TYPE_ITEM,
 								G_PARAM_READWRITE));
+#warning "FIXME: rename scrolled region"
 	g_object_interface_install_property(iface,
 					    g_param_spec_boxed("scrolled-region",
 							       "scrolled-region",
