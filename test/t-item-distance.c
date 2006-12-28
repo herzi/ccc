@@ -28,8 +28,6 @@
 #include "cc-test-view.h"
 #include <ccc/cc-rectangle.h>
 
-static gboolean implemented = FALSE;
-
 START_TEST(test_item_distance_empty)
 {
 	/* we want to get the maximum distance if the item doesn't have a
@@ -73,9 +71,10 @@ START_TEST(test_item_distance_children)
 	cc_rectangle_set_position(CC_RECTANGLE(child),
 				  0.0, 0.0,
 				  100.0, 100.0);
+	cc_item_append(root, child);
 	distance = cc_item_distance(root, 200.0, 0.0, &hit);
 	fail_unless(distance > 0.0);
-	fail_if(CC_IS_ITEM(hit));
+	fail_if(hit);
 	distance = cc_item_distance(root, 50.0, 50.0, &hit);
 	fail_if(distance > 0.0);
 	fail_unless(CC_IS_ITEM(hit) && hit == child);
@@ -84,8 +83,25 @@ END_TEST
 
 START_TEST(test_item_distance_order)
 {
-#warning "FIXME: implement"
-	fail_unless(implemented);
+	gdouble distance;
+	CcItem* root   = cc_item_new();
+	CcItem* child1 = cc_rectangle_new();
+	CcItem* child2 = cc_rectangle_new();
+	CcItem* hit = NULL;
+	cc_rectangle_set_position(CC_RECTANGLE(child1),
+				  0.0, 0.0,
+				  100.0, 100.0);
+	cc_rectangle_set_position(CC_RECTANGLE(child2),
+				  0.0, 0.0,
+				  100.0, 100.0);
+	cc_item_append(root, child1);
+	cc_item_append(root, child2);
+	distance = cc_item_distance(root, 200.0, 0.0, &hit);
+	fail_unless(distance > 0.0);
+	fail_if(CC_IS_ITEM(hit));
+	distance = cc_item_distance(root, 50.0, 50.0, &hit);
+	fail_if(distance > 0.0);
+	fail_unless(CC_IS_ITEM(hit) && hit == child2);
 }
 END_TEST
 
