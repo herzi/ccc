@@ -82,7 +82,7 @@ PKG_CHECK_MODULES(CHECK,[check >= 0.9.4],:,[
 		  ifdef([AM_PATH_CHECK],[AM_PATH_CHECK],[AC_MSG_RESULT([no, testing is disabled])])
 		  ])
 
-AM_CONDITIONAL([HAVE_CHECK],[test "x$CHECK_CFLAGS" != "x"])
+AM_CONDITIONAL([HAVE_CHECK],[test "x$CHECK_CFLAGS" != "x" -o "x$CHECK_LIBS" != "x"])
 
 dnl  ---------------
 dnl | build options |---------------------------------------------------------
