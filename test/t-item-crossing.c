@@ -25,9 +25,49 @@
 
 #include "s-item.h"
 
+#include "cc-test-view.h"
+
+static gint implemented = FALSE;
+
+START_TEST(test_item_crossing_single)
+{
+	fail_unless(implemented);
+}
+END_TEST
+
+START_TEST(test_item_crossing_into)
+{
+	fail_unless(implemented);
+}
+END_TEST
+
+START_TEST(test_item_crossing_into_jumping)
+{
+	fail_unless(implemented);
+}
+END_TEST
+
+START_TEST(test_item_crossing_out)
+{
+	fail_unless(implemented);
+}
+END_TEST
+
+START_TEST(test_item_crossing_out_jumping)
+{
+	fail_unless(implemented);
+}
+END_TEST
+
 TCase*
 test_item_crossing(void)
 {
-	return NULL;
+	TCase* self = tcase_create("Crossing Events");
+	tcase_add_test(self, test_item_crossing_single);
+	tcase_add_test(self, test_item_crossing_into);
+	tcase_add_test(self, test_item_crossing_into_jumping);
+	tcase_add_test(self, test_item_crossing_out);
+	tcase_add_test(self, test_item_crossing_out_jumping);
+	return self;
 }
 
