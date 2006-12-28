@@ -4,3 +4,7 @@ canvas:
 
 demo:
   * show/hide demo
+
+tests:
+  * add a CcTestView that renders into a GdkWindow so we can safely emit events
+    from there

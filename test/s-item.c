@@ -1,4 +1,4 @@
-/* This file is part of libccc
+/* This file is part of CCC
  *
  * AUTHORS
  *     Sven Herzberg  <herzi@gnome-de.org>
@@ -24,26 +24,14 @@
  */
 
 #include "s-item.h"
-#include "s-text.h"
 
-#include <glib/gi18n.h>
-#include <gtk/gtkmain.h>
+#include <ccc/cc-item.h>
 
-int
-main(int argc, char** argv)
+Suite*
+suite_item(void)
 {
-	SRunner* r;
-	int      failed = 0;
-
-	gtk_init(&argc, &argv);
-
-	r = srunner_create(suite_text_item());
-	srunner_add_suite(r, suite_item());
-	srunner_set_fork_status(r, CK_NOFORK);
-	srunner_run_all(r, CK_NORMAL);
-	failed = srunner_ntests_failed(r);
-	srunner_free(r);
-
-	return failed != 0;
+	Suite* self = suite_create(g_type_name(CC_TYPE_ITEM));
+	suite_add_tcase(self, test_item_distance());
+	return self;
 }
 

@@ -1,4 +1,4 @@
-/* This file is part of libccc
+/* This file is part of CCC
  *
  * AUTHORS
  *     Sven Herzberg  <herzi@gnome-de.org>
@@ -24,26 +24,38 @@
  */
 
 #include "s-item.h"
-#include "s-text.h"
 
-#include <glib/gi18n.h>
-#include <gtk/gtkmain.h>
+#define implemented 0
 
-int
-main(int argc, char** argv)
+START_TEST(test_item_distance_self)
 {
-	SRunner* r;
-	int      failed = 0;
+	// we want to get a points that's definitely inside of an item
+#warning "FIXME: implement"
+	fail_unless(implemented);
+}
+END_TEST
 
-	gtk_init(&argc, &argv);
+START_TEST(test_item_distance_children)
+{
+	fail_unless(implemented);
+}
+END_TEST
 
-	r = srunner_create(suite_text_item());
-	srunner_add_suite(r, suite_item());
-	srunner_set_fork_status(r, CK_NOFORK);
-	srunner_run_all(r, CK_NORMAL);
-	failed = srunner_ntests_failed(r);
-	srunner_free(r);
+START_TEST(test_item_distance_order)
+{
+#warning "FIXME: implement"
+	fail_unless(implemented);
+}
+END_TEST
 
-	return failed != 0;
+TCase*
+test_item_distance(void)
+{
+#warning "FIXME: iterate through the types"
+	TCase* self = tcase_create("Distance Function");
+	tcase_add_test(self, test_item_distance_self);
+	tcase_add_test(self, test_item_distance_children);
+	tcase_add_test(self, test_item_distance_order);
+	return self;
 }
 

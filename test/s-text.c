@@ -25,10 +25,12 @@
 
 #include "s-text.h"
 
+#include <ccc/cc-text.h>
+
 Suite*
 suite_text_item(void)
 {
-	Suite* self = suite_create("Text Item");
+	Suite* self = suite_create(g_type_name(CC_TYPE_TEXT));
 	suite_add_tcase(self, test_text_utf8_editing());
 	return self;
 }

@@ -8,7 +8,10 @@ noinst_PROGRAMS=\
 m_ccc_SOURCES=\
 	m-ccc.c \
 	m-ccc.h \
+	s-item.h \
+	s-item.c \
 	s-text.c \
+	t-item-distance.c \
 	t-text-utf8-editing.c \
 	glib-helpers.h \
 	gtk-helpers.c \
