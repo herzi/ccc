@@ -1,4 +1,4 @@
-/* This file is part of ...
+/* This file is part of CCC
  *
  * AUTHORS
  *     Sven Herzberg  <herzi@gnome-de.org>
@@ -22,4 +22,10 @@
  */
 
 #include "cc-test-view.h"
+
+CcView*
+cc_test_view_new(void)
+{
+	return NULL;
+}
 

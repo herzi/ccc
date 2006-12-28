@@ -25,7 +25,20 @@
 
 #include "s-item.h"
 
-#define implemented 0
+#include "cc-test-view.h"
+
+static gboolean implemented = FALSE;
+
+START_TEST(test_item_distance_empty)
+{
+	/* we want to get the maximum distance if the item doesn't have a
+	 * bounding box */
+	CcView* view = cc_test_view_new();
+#warning "FIXME: finish"
+	g_object_unref(view);
+	fail_unless(implemented);
+}
+END_TEST
 
 START_TEST(test_item_distance_self)
 {
@@ -53,6 +66,7 @@ test_item_distance(void)
 {
 #warning "FIXME: iterate through the types"
 	TCase* self = tcase_create("Distance Function");
+	tcase_add_test(self, test_item_distance_empty);
 	tcase_add_test(self, test_item_distance_self);
 	tcase_add_test(self, test_item_distance_children);
 	tcase_add_test(self, test_item_distance_order);

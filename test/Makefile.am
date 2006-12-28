@@ -6,6 +6,8 @@ noinst_PROGRAMS=\
 	$(TESTS)
 
 m_ccc_SOURCES=\
+	cc-test-view.c \
+	cc-test-view.h \
 	m-ccc.c \
 	m-ccc.h \
 	s-item.h \
