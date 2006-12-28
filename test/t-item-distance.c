@@ -34,6 +34,8 @@ START_TEST(test_item_distance_empty)
 	/* we want to get the maximum distance if the item doesn't have a
 	 * bounding box */
 	CcView* view = cc_test_view_new();
+	CcItem* root = cc_item_new();
+	cc_view_set_root(view, root);
 #warning "FIXME: finish"
 	g_object_unref(view);
 	fail_unless(implemented);
