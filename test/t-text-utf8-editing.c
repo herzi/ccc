@@ -33,6 +33,8 @@
 
 #include "gtk-helpers.h"
 
+static gboolean implemented = FALSE;
+
 static void
 check_cursor(CcText* text, gint expected_position, gint expected_trail)
 {
@@ -67,6 +69,7 @@ START_TEST(test_cursor_navigation)
 	gboolean retval = FALSE;
 	gtk_init(NULL, NULL);
 	text = CC_TEXT(cc_text_new("Zwölf"));
+#warning "FIXME: use the test view"
 	view = CC_VIEW(cc_view_widget_new_root(CC_ITEM(text)));
 	win = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_container_add(GTK_CONTAINER(win), GTK_WIDGET(view));
@@ -119,9 +122,7 @@ START_TEST(test_utf8_backspace)
 	// FIXME: check cursor position
 	// FIXME: check multiple backspace hits
 	// FIXME: check backspace IN the string, not just at the end
-#define implemented 0
 	fail_unless(implemented);
-#undef implemented
 }
 END_TEST
 
@@ -130,9 +131,7 @@ START_TEST(test_utf8_delete)
 	// FIXME: check cursor position
 	// FIXME: check mutiple delete presses
 	// FIXME: check both in the beginning and IN the string
-#define implemented 0
 	fail_unless(implemented);
-#undef implemented
 }
 END_TEST
 
