@@ -28,7 +28,18 @@
 
 G_BEGIN_DECLS
 
-CcView* cc_test_view_new(void);
+typedef GObject      CcTestView;
+typedef GObjectClass CcTestViewClass;
+
+#define CC_TYPE_TEST_VIEW         (cc_test_view_get_type())
+#define CC_TEST_VIEW(i)           (G_TYPE_CHECK_INSTANCE_CAST((i), CC_TYPE_TEST_VIEW, CcTestView))
+#define CC_TEST_VIEW_CLASS(c)     (G_TYPE_CHECK_CLASS_CAST((c), CC_TYPE_TEST_VIEW, CcTestViewClass))
+#define CC_IS_TEST_VIEW(i)        (G_TYPE_CHECK_INSTANCE_TYPE((i), CC_TYPE_TEST_VIEW))
+#define CC_IS_TEST_VIEW_CLASS(c)  (G_TYPE_CHECK_CLASS_TYPE((c), CC_TYPE_TEST_VIEW))
+#define CC_TEST_VIEW_GET_CLASS(i) (G_TYPE_INSTANCE_GET_CLASS((i), CC_TYPE_TEST_VIEW, CcTestView))
+
+GType   cc_test_view_get_type(void);
+CcView* cc_test_view_new     (void);
 
 G_END_DECLS
 

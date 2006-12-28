@@ -26,6 +26,17 @@
 CcView*
 cc_test_view_new(void)
 {
-	return NULL;
+	return g_object_new(CC_TYPE_TEST_VIEW, NULL);
 }
+
+/* GType */
+G_DEFINE_TYPE(CcTestView, cc_test_view, G_TYPE_OBJECT);
+
+static void
+cc_test_view_init(CcTestView* self G_GNUC_UNUSED)
+{}
+
+static void
+cc_test_view_class_init(CcTestViewClass* self_class G_GNUC_UNUSED)
+{}
 
