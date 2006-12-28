@@ -50,6 +50,7 @@ END_TEST
 
 START_TEST(test_item_distance_children)
 {
+#warning "FIXME: implement"
 	fail_unless(implemented);
 }
 END_TEST
