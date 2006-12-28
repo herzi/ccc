@@ -261,10 +261,12 @@ cc_item_distance(CcItem* self, gdouble x, gdouble y, CcItem** found) {
 #ifndef G_DISABLE_CHECKS
 	// enable this on experimental builds, but not on performance builds
 	if(distance <= 0.0 && !CC_IS_ITEM(*found)) {
-		g_warning("%sClass->distance() should set *found", G_OBJECT_TYPE_NAME(self));
+		g_warning("%sClass->distance() should set *found if the returned distance is <= 0.0",
+			  G_OBJECT_TYPE_NAME(self));
 		*found = self;
 	} else if(distance > 0 && CC_IS_ITEM(*found)) {
-		g_warning("%sClass->distance() should not set *found", G_OBJECT_TYPE_NAME(self));
+		g_warning("%sClass->distance() should not set *found if distance is larger than 0.0",
+			  G_OBJECT_TYPE_NAME(self));
 		*found = NULL;
 	}
 #endif

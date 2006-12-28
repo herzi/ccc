@@ -25,14 +25,9 @@
 
 #include "s-item.h"
 
-#include <ccc/cc-item.h>
-
-Suite*
-suite_item(void)
+TCase*
+test_item_crossing(void)
 {
-	Suite* self = suite_create(g_type_name(CC_TYPE_ITEM));
-	suite_add_tcase(self, test_item_distance());
-	suite_add_tcase(self, test_item_crossing());
-	return self;
+	return NULL;
 }
 

@@ -13,6 +13,7 @@ m_ccc_SOURCES=\
 	s-item.h \
 	s-item.c \
 	s-text.c \
+	t-item-crossing.c \
 	t-item-distance.c \
 	t-text-utf8-editing.c \
 	glib-helpers.h \

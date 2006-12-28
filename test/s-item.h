@@ -29,6 +29,7 @@
 #include <check.h>
 
 Suite* suite_item(void);
+TCase* test_item_crossing(void);
 TCase* test_item_distance(void);
 
 #endif /* !S_ITEM_H */
