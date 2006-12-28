@@ -257,7 +257,8 @@ cc_item_distance(CcItem* self, gdouble x, gdouble y, CcItem** found) {
 	g_return_val_if_fail(!CC_IS_ITEM(*found), G_MAXDOUBLE);
 
 	distance = CC_ITEM_GET_CLASS(self)->distance(self, x, y, found);
-#if 1
+
+#ifndef G_DISABLE_CHECKS
 	// enable this on experimental builds, but not on performance builds
 	if(distance <= 0.0 && !CC_IS_ITEM(*found)) {
 		g_warning("%sClass->distance() should set *found", G_OBJECT_TYPE_NAME(self));
@@ -540,12 +541,19 @@ ci_get_property(GObject* object, guint prop_id, GValue* value, GParamSpec* pspec
 }
 
 static gdouble
-ci_distance(CcItem* self, gdouble x, gdouble y, CcItem** found) {
+item_distance(CcItem * self,
+	      gdouble  x,
+	      gdouble  y,
+	      CcItem **found)
+{
 	gdouble  distance = G_MAXDOUBLE;
 	GList  * child;
 	CcItem * child_found = NULL;
 
+	g_return_val_if_fail(CC_IS_ITEM(self), distance);
 	g_return_val_if_fail(found && !CC_IS_ITEM(*found), distance);
+
+	cdebug("distance()", "start on %p", self);
 
 	for(child = g_list_last(self->children); child ; child = child->prev, child_found = NULL) {
 		gdouble new_dist = cc_item_distance(CC_ITEM(child->data), x, y, &child_found);
@@ -560,6 +568,9 @@ ci_distance(CcItem* self, gdouble x, gdouble y, CcItem** found) {
 		}
 	}
 
+	cdebug("distance()", "end: distance to %s (%p) is %f",
+	       *found ? G_OBJECT_TYPE_NAME(*found) : "NULL",
+	       *found, distance);
 	return distance;
 }
 
@@ -1052,7 +1063,7 @@ cc_item_class_init(CcItemClass* self_class) {
 			     CC_TYPE_VIEW);
 
 	/* CriaItemClass */
-	self_class->distance            = ci_distance;
+	self_class->distance            = item_distance;
 	self_class->event               = item_event;
 	self_class->focus               = ci_focus;
 	self_class->render              = ci_render;
