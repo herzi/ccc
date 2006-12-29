@@ -25,7 +25,8 @@
 
 #include "main.h"
 
-#include <gtk/gtklabel.h>
+#include <ccc/cc-text.h>
+#include <ccc/cc-view-widget.h>
 
 #ifdef HAVE_CONFIG_H
 # include <cc-config.h>
@@ -35,6 +36,12 @@
 DemoPage*
 animation_demo(void)
 {
-	return demo_page_new(gtk_label_new("Animation support is supposed to come"), _("Animation"));
+	GtkWidget* view = cc_view_widget_new();
+	CcItem   * root = cc_item_new();
+	CcItem   * text = cc_text_new(PACKAGE " " VERSION);
+	cc_view_set_root(CC_VIEW(view), root);
+	cc_item_append(root, text);
+	cc_text_set_anchor_type(CC_TEXT(text), GTK_ANCHOR_CENTER);
+	return demo_page_new(view, _("Animation"));
 }
 
