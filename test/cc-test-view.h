@@ -38,8 +38,11 @@ typedef GObjectClass CcTestViewClass;
 #define CC_IS_TEST_VIEW_CLASS(c)  (G_TYPE_CHECK_CLASS_TYPE((c), CC_TYPE_TEST_VIEW))
 #define CC_TEST_VIEW_GET_CLASS(i) (G_TYPE_INSTANCE_GET_CLASS((i), CC_TYPE_TEST_VIEW, CcTestView))
 
-GType   cc_test_view_get_type(void);
-CcView* cc_test_view_new     (void);
+GType    cc_test_view_get_type     (void);
+CcView*  cc_test_view_new          (void);
+gboolean cc_test_view_motion_notify(CcTestView* view,
+				    gdouble     x,
+				    gdouble     y);
 
 G_END_DECLS
 
