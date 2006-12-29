@@ -129,7 +129,7 @@ pixbuf_demo(void) {
 	gtk_box_pack_start(GTK_BOX(retval->widget), notebook, FALSE, FALSE, 0);
 
 	props = herzi_properties_new();
-	prop_group = herzi_properties_add(HERZI_PROPERTIES(props), "Canvas View");
+	prop_group = herzi_properties_add(props, "Canvas View");
 
 	// Center View
 	widget = gtk_toggle_button_new();
@@ -151,7 +151,7 @@ pixbuf_demo(void) {
 			         gtk_label_new("Canvas View"));
 
 	props = herzi_properties_new();
-	prop_group = herzi_properties_add(HERZI_PROPERTIES(props), "Pixbuf");
+	prop_group = herzi_properties_add(props, "Pixbuf");
 
 	// Position
 	widget = gtk_spin_button_new_with_range(-G_MAXDOUBLE, G_MAXDOUBLE, 1.0);
