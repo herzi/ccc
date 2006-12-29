@@ -1,6 +1,8 @@
 canvas:
   * show/hide
   * rename "bounds" signals
+  * make the "path" vfunc of the CcShape a signal so people can post-process it,
+    fix the bounds function to use path
 
 demo:
   * show/hide demo
