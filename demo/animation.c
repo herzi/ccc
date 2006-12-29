@@ -33,6 +33,18 @@
 #endif
 #include <glib/gi18n-lib.h>
 
+static gint step = 0;
+
+static gboolean
+animate(gpointer data)
+{
+	CcText* text = data;
+	gdouble pos = 100.0*(step > 100 ? 200 - step : step)/100-50.0;
+	cc_text_set_anchor(text, pos, text->y);
+	step = (step+1)%200;
+	return TRUE;
+}
+
 DemoPage*
 animation_demo(void)
 {
@@ -42,6 +54,8 @@ animation_demo(void)
 	cc_view_set_root(CC_VIEW(view), root);
 	cc_item_append(root, text);
 	cc_text_set_anchor_type(CC_TEXT(text), GTK_ANCHOR_CENTER);
+	cc_view_set_scrolled_region(CC_VIEW(view), cc_item_get_all_bounds(root, CC_VIEW(view)));
+	g_timeout_add(30, animate, text);
 	return demo_page_new(view, _("Animation"));
 }
 
