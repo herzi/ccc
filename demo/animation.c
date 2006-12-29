@@ -1,4 +1,4 @@
-/* This file is part of CCC, a cairo-based canvas
+/* This file is part of CCC
  *
  * AUTHORS
  *     Sven Herzberg  <herzi@gnome-de.org>
@@ -23,19 +23,18 @@
  * if advised of the possibility of such damage.
  */
 
-#ifndef MAIN_H
-#define MAIN_H
+#include "main.h"
 
-#include "demo-page.h"
+#include <gtk/gtklabel.h>
 
-DemoPage* animation_demo  (void);
-DemoPage* camera_demo     (void);
-DemoPage* credits         (void);
-DemoPage* fifteen         (void);
-DemoPage* gradient_demo   (void);
-DemoPage* pixbuf_demo     (void);
-DemoPage* printer_demo    (void);
-DemoPage* text_demo       (void);
-DemoPage* tree_integration(void);
+#ifdef HAVE_CONFIG_H
+# include <cc-config.h>
+#endif
+#include <glib/gi18n-lib.h>
 
-#endif /* !MAIN_H */
+DemoPage*
+animation_demo(void)
+{
+	return demo_page_new(gtk_label_new("Animation support is supposed to come"), _("Animation"));
+}
+
