@@ -58,8 +58,8 @@ void    cc_view_set_focus               (CcView      * self,
 					 CcItem      * focus);
 void    cc_view_set_root                (CcView * self,
 			                 CcItem * root);
-void    cc_view_set_scrolled_region     (CcView      * self,
-					 CcDRect     * scrolled_region);
+void    cc_view_set_scrolled_region     (CcView       * self,
+					 CcDRect const* scrolled_region);
 void    cc_view_set_zoom                (CcView      * self,
 				         gdouble       zoom);
 gint    cc_view_grab_item               (CcView      * self,

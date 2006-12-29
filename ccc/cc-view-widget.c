@@ -499,7 +499,9 @@ cvw_update_vadjustment_root(CcViewWidget* self, gboolean update_adjustment) {
 }
 
 static void
-cvw_set_scrolled_region(CcViewWidget* self, CcDRect* scrolled_region) {
+cvw_set_scrolled_region(CcViewWidget * self,
+			CcDRect const* scrolled_region)
+{
 	if(self->scrolled_region == scrolled_region) {
 		return;
 	}
