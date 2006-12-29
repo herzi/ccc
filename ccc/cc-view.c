@@ -146,7 +146,9 @@ cc_view_set_root(CcView* self, CcItem* new_root) {
  * scrollbars.
  */
 void
-cc_view_set_scrolled_region(CcView* self, CcDRect* scrolled_region) {
+cc_view_set_scrolled_region(CcView       * self,
+			    CcDRect const* scrolled_region)
+{
 	g_return_if_fail(CC_IS_VIEW(self));
 	g_object_set(self, "scrolled-region", scrolled_region, NULL);
 }

@@ -21,7 +21,7 @@
  * USA
  */
 
-#include "fifteen.h"
+#include "main.h"
 
 #include <gtk/gtk.h>
 #include <ccc.h>

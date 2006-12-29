@@ -1,4 +1,4 @@
-/* This file is part of CCC, a cairo-based canvas
+/* This file is part of CCC
  *
  * AUTHORS
  *     Sven Herzberg  <herzi@gnome-de.org>
@@ -23,19 +23,39 @@
  * if advised of the possibility of such damage.
  */
 
-#ifndef MAIN_H
-#define MAIN_H
+#include "main.h"
 
-#include "demo-page.h"
+#include <ccc/cc-text.h>
+#include <ccc/cc-view-widget.h>
 
-DemoPage* animation_demo  (void);
-DemoPage* camera_demo     (void);
-DemoPage* credits         (void);
-DemoPage* fifteen         (void);
-DemoPage* gradient_demo   (void);
-DemoPage* pixbuf_demo     (void);
-DemoPage* printer_demo    (void);
-DemoPage* text_demo       (void);
-DemoPage* tree_integration(void);
+#ifdef HAVE_CONFIG_H
+# include <cc-config.h>
+#endif
+#include <glib/gi18n-lib.h>
 
-#endif /* !MAIN_H */
+static gint step = 0;
+
+static gboolean
+animate(gpointer data)
+{
+	CcText* text = data;
+	gdouble pos = 100.0*(step > 100 ? 200 - step : step)/100-50.0;
+	cc_text_set_anchor(text, pos, text->y);
+	step = (step+1)%200;
+	return TRUE;
+}
+
+DemoPage*
+animation_demo(void)
+{
+	GtkWidget* view = cc_view_widget_new();
+	CcItem   * root = cc_item_new();
+	CcItem   * text = cc_text_new(PACKAGE " " VERSION);
+	cc_view_set_root(CC_VIEW(view), root);
+	cc_item_append(root, text);
+	cc_text_set_anchor_type(CC_TEXT(text), GTK_ANCHOR_CENTER);
+	cc_view_set_scrolled_region(CC_VIEW(view), cc_item_get_all_bounds(root, CC_VIEW(view)));
+	g_timeout_add(30, animate, text);
+	return demo_page_new(view, _("Animation"));
+}
+
