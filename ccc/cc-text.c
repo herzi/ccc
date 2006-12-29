@@ -106,18 +106,46 @@ ct_get_y_offset(CcText* self, gdouble y, gdouble height) {
 	}
 }
 
+/**
+ * cc_text_set_anchor:
+ * @self: a #CcText
+ * @x: the horizontal position of the anchor point
+ * @y: the vertical position of the anchor point
+ *
+ * Specify the location of the anchor point of the text item.
+ */
 void
-cc_text_set_anchor(CcText* self, gdouble x, gdouble y) {
-	CcItem* item = CC_ITEM(self);
+cc_text_set_anchor(CcText * self,
+		   gdouble  x,
+		   gdouble  y)
+{
+	g_return_if_fail(CC_IS_TEXT(self));
+
+	// FIXME: add some necessity check
 
 	self->x = x;
 	self->y = y;
 
-	cc_item_update_bounds(item, NULL);
+	cc_item_update_bounds(CC_ITEM(self), NULL);
+	// FIXME: add some notification
 }
 
+/**
+ * cc_text_set_anchor_type:
+ * @self: a #CcText
+ * @anchor: the anchor type to be specified
+ *
+ * Set the anchor type of the text item. It specifies the location of the
+ * anchor point relative to the text (so that north-west would become the
+ * top-left corner).
+ */
 void
-cc_text_set_anchor_type(CcText* self, GtkAnchorType anchor) {
+cc_text_set_anchor_type(CcText       * self,
+			GtkAnchorType  anchor)
+{
+	g_return_if_fail(CC_IS_TEXT(self));
+	// FIXME: check enum value
+
 	if(self->anchor == anchor) {
 		return;
 	}
@@ -360,7 +388,10 @@ ct_render(CcItem* item, CcView* view, cairo_t* cr) {
 }
 
 static void
-ct_path(CcShape* shape, CcView* view, cairo_t* cr) {
+ct_path(CcShape* shape,
+	CcView * view,
+	cairo_t* cr)
+{
 	CcText     * self   = CC_TEXT(shape);
 	PangoLayout* layout = self->layout;
 	CcDRect    * bounds;
