@@ -30,6 +30,7 @@
 
 DemoPage* camera_demo     (void);
 DemoPage* credits         (void);
+DemoPage* fifteen         (void);
 DemoPage* gradient_demo   (void);
 DemoPage* pixbuf_demo     (void);
 DemoPage* printer_demo    (void);

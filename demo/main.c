@@ -25,7 +25,6 @@
 
 #include "crossing.h"
 #include "demo-window.h"
-#include "fifteen.h"
 #include "line.h"
 #include "main.h"
 #include "planets.h"

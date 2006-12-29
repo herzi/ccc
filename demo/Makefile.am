@@ -15,7 +15,6 @@ ccc_demo_SOURCES=\
 	demo-window.c \
 	demo-window.h \
 	fifteen.c \
-	fifteen.h \
 	fifteen-grid.c \
 	fifteen-grid.h \
 	fifteen-item.c \
