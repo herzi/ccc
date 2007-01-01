@@ -57,7 +57,6 @@ libccc_0_1_la_SOURCES=\
 	cc-brush-color.c \
 	cc-camera.c \
 	cc-caret.c \
-	cc-caret.h \
 	cc-color.c \
 	cc-color-hsv.c \
 	cc-circle.c \
