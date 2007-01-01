@@ -517,7 +517,8 @@ cc_item_set_position(CcItem* child, CcItem* parent, gint position)
  * @child: a #CcItem
  * @parent: another #CcItem, parent of @child
  *
- * Changes the position of @child relative to @parent to the top layer.
+ * Raises an @child to the top. It will be displayed over all of the other
+ * children of @parent.
  */
 void
 cc_item_raise_to_top(CcItem* child, CcItem* parent)
@@ -536,7 +537,7 @@ cc_item_raise_to_top(CcItem* child, CcItem* parent)
  * @child: a #CcItem
  * @parent: another #CcItem, parent of @child
  *
- * Changes the position of @child relative to @parent by 1.
+ * Raises @child by one level.
  */
 void
 cc_item_raise(CcItem* child, CcItem* parent)
@@ -558,7 +559,7 @@ cc_item_raise(CcItem* child, CcItem* parent)
  * @child: a #CcItem
  * @parent: another #CcItem, parent of @child
  *
- * Changes the position of @child relative to @parent by -1.
+ * Lowers @child by one level.
  */
 void
 cc_item_lower(CcItem* child, CcItem* parent)
@@ -580,7 +581,7 @@ cc_item_lower(CcItem* child, CcItem* parent)
  * @child: a #CcItem
  * @parent: another #CcItem, parent of @child
  *
- * Changes the position of @child relative to @parent to the bottom layer.
+ * Lowers @child to be displayed behind all the other children of @parent.
  */
 void
 cc_item_lower_to_bottom(CcItem* child, CcItem* parent)
