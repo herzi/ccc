@@ -13,6 +13,7 @@ static_headers=\
 	cc-camera.h \
 	cc-color.h \
 	cc-color-rgb.c \
+	cc-caret.h \
 	cc-circle.h \
 	cc-d-rect.h \
 	cc-gradient.h \
