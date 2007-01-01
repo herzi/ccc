@@ -171,6 +171,11 @@ cc_item_insert
 cc_item_remove
 cc_item_render
 cc_item_set_grid_aligned
+cc_item_lower
+cc_item_lower_to_bottom
+cc_item_raise
+cc_item_raise_to_top
+cc_item_set_position
 CcItemFlags
 CC_ITEM_FLAGS
 CC_ITEM_DISPOSED

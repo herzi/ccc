@@ -108,6 +108,17 @@ void          cc_item_add_view              (CcItem* self,
 					     CcView* view);
 void          cc_item_remove_view           (CcItem* self,
 					     CcView* view);
+void          cc_item_set_position          (CcItem* child,
+					     CcItem* parent,
+					     gint    position);
+void          cc_item_raise_to_top          (CcItem* child,
+					     CcItem* parent);
+void          cc_item_raise                 (CcItem* child,
+					     CcItem* parent);
+void          cc_item_lower                 (CcItem* child,
+					     CcItem* parent);
+void          cc_item_lower_to_bottom       (CcItem* child,
+					     CcItem* parent);
 
 struct _CcItem {
 	GInitiallyUnowned      base_instance;

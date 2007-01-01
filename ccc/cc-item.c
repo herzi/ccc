@@ -484,6 +484,116 @@ cc_item_update_bounds_for_view(CcItem* self, CcView* view) {
 	ci_update_bounds_per_view(view, self_and_data);
 }
 
+static void
+ci_update_view(CcItem* self, CcView* view, gpointer data) {
+	CcDRect const *dirty_region = cc_item_get_all_bounds(self, view);
+	g_return_if_fail(dirty_region != NULL);
+	cc_item_dirty(self, view, *dirty_region);
+}
+
+/**
+ * cc_item_set_position:
+ * @child: a #CcItem
+ * @parent: another #CcItem, parent of @child
+ * @position: the new position of the #CcItem (0 means at the bottom,
+ * bigger numbers mean higher layers, -1 means top layer)
+ *
+ * Changes the position of @child relative to @parent.
+ */
+void
+cc_item_set_position(CcItem* child, CcItem* parent, gint position)
+{
+	g_return_if_fail(CC_IS_ITEM(child));
+	g_return_if_fail(CC_IS_ITEM(parent));
+	g_return_if_fail(cc_item_is_child_of(child, parent));
+
+	parent->children = g_list_remove(parent->children, child);
+	parent->children = g_list_insert(parent->children, child, position);
+	cc_item_foreach_view(child, ci_update_view, NULL);
+}
+
+/**
+ * cc_item_raise_to_top:
+ * @child: a #CcItem
+ * @parent: another #CcItem, parent of @child
+ *
+ * Changes the position of @child relative to @parent to the top layer.
+ */
+void
+cc_item_raise_to_top(CcItem* child, CcItem* parent)
+{
+	g_return_if_fail(CC_IS_ITEM(child));
+	g_return_if_fail(CC_IS_ITEM(parent));
+	g_return_if_fail(cc_item_is_child_of(child, parent));
+
+	parent->children = g_list_remove(parent->children, child);
+	parent->children = g_list_append(parent->children, child);
+	cc_item_foreach_view(child, ci_update_view, NULL);
+}
+
+/**
+ * cc_item_raise:
+ * @child: a #CcItem
+ * @parent: another #CcItem, parent of @child
+ *
+ * Changes the position of @child relative to @parent by 1.
+ */
+void
+cc_item_raise(CcItem* child, CcItem* parent)
+{
+	gint position;
+	
+	g_return_if_fail(CC_IS_ITEM(child));
+	g_return_if_fail(CC_IS_ITEM(parent));
+	g_return_if_fail(cc_item_is_child_of(child, parent));
+
+	position = g_list_index(parent->children, child);
+	parent->children = g_list_remove(parent->children, child);
+	parent->children = g_list_insert(parent->children, child, position+1);
+	cc_item_foreach_view(child, ci_update_view, NULL);
+}
+
+/**
+ * cc_item_lower:
+ * @child: a #CcItem
+ * @parent: another #CcItem, parent of @child
+ *
+ * Changes the position of @child relative to @parent by -1.
+ */
+void
+cc_item_lower(CcItem* child, CcItem* parent)
+{
+	gint position;
+	
+	g_return_if_fail(CC_IS_ITEM(child));
+	g_return_if_fail(CC_IS_ITEM(parent));
+	g_return_if_fail(cc_item_is_child_of(child, parent));
+
+	position = g_list_index(parent->children, child);
+	parent->children = g_list_remove(parent->children, child);
+	parent->children = g_list_insert(parent->children, child, position-1);
+	cc_item_foreach_view(child, ci_update_view, NULL);
+}
+
+/**
+ * cc_item_lower_to_bottom:
+ * @child: a #CcItem
+ * @parent: another #CcItem, parent of @child
+ *
+ * Changes the position of @child relative to @parent to the bottom layer.
+ */
+void
+cc_item_lower_to_bottom(CcItem* child, CcItem* parent)
+{
+	g_return_if_fail(CC_IS_ITEM(child));
+	g_return_if_fail(CC_IS_ITEM(parent));
+	g_return_if_fail(cc_item_is_child_of(child, parent));
+
+	parent->children = g_list_remove(parent->children, child);
+	parent->children = g_list_prepend(parent->children, child);
+	cc_item_foreach_view(child, ci_update_view, NULL);
+}
+
 /* GType stuff */
 enum {
 	PROP_0,
