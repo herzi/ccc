@@ -9,25 +9,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libccc 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-22 13:50+0100\n"
-"PO-Revision-Date: 2006-01-19 13:13+0100\n"
+"POT-Creation-Date: 2007-01-02 11:06+0100\n"
+"PO-Revision-Date: 2007-01-02 11:08+0100\n"
 "Last-Translator:  <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: ../ccc/cc-enumerations.c:18
-msgid "disposed"
-msgstr ""
+msgid "can-focus"
+msgstr "Kann Fokus erhalten"
 
 #: ../ccc/cc-enumerations.c:19
-msgid "grid-aligned"
-msgstr ""
+msgid "disposed"
+msgstr "bereinigt"
 
 #: ../ccc/cc-enumerations.c:20
-msgid "no-search-children"
-msgstr ""
+msgid "grid-aligned"
+msgstr "eingerastet"
 
 #: ../ccc/cc-enumerations.c:36
 msgid "pixels"
@@ -49,6 +49,7 @@ msgstr "Automatisch"
 #. * printer, you might want to have a lowercase only word here, even if
 #. * the correct translation would have been a capitalized word in your
 #. * language.
-#: ../ccc/cc-printer.c:61
+#: ../ccc/cc-printer.c:63
 msgid "output"
-msgstr "ausgabe"
+msgstr "Ausgabe"
+

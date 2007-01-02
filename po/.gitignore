@@ -2,3 +2,4 @@ stamp-it
 *.gmo
 POTFILES
 Makefile*
+libccc.pot
