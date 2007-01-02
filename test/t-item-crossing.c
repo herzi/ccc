@@ -37,7 +37,7 @@ START_TEST(test_item_crossing_single)
 	cc_rectangle_set_position(CC_RECTANGLE(root),
 				  0.0, 0.0, 100.0, 100.0);
 	cc_view_set_root(view, root);
-#warning "FIXME: finish"
+	cc_test_view_motion_notify(CC_TEST_VIEW(view), 150.0, 150.0);
 	// - emit the first motion notify (outside of root)
 	// - make sure the item is not picked
 	// - emit the second motion notify (inside of root)
