@@ -13,6 +13,8 @@ ccc_demo_SOURCES=\
 	demo-page.h \
 	demo-polygon.c \
 	demo-polygon.h \
+	demo-layers.c \
+	demo-layers.h \
 	demo-window.c \
 	demo-window.h \
 	fifteen.c \
