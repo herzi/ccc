@@ -10,3 +10,6 @@ demo:
 tests:
   * add a CcTestView that renders into a GdkWindow so we can safely emit events
     from there
+  * add a test that makes sure that a new canvas gets displayed with the right
+    adjustments
+
