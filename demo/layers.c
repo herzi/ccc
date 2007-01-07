@@ -21,7 +21,8 @@
  * USA
  */
 
-#include "demo-layers.h"
+#include "main.h"
+
 #include <gtk/gtkscrolledwindow.h>
 #include <gtk/gtkvbox.h>
 #include <gtk/gtkhbox.h>
@@ -67,10 +68,10 @@ layers_demo(void) {
 	CcItem* root = cc_item_new();
 	GtkWidget* view = cc_view_widget_new_root(root);
 
-	CcColor* red_color = cc_color_new_rgb(1.0, 0.0, 0.0);
-	CcColor* green_color = cc_color_new_rgb(0.0, 1.0, 0.0);
-	CcColor* blue_color = cc_color_new_rgb(0.0, 0.0, 1.0);
-	CcColor* gray_color = cc_color_new_rgb(0.5, 0.5, 0.5);
+	CcColor* red_color   = cc_color_new_rgba(0.9, 0.9, 0.0, 0.5);
+	CcColor* green_color = cc_color_new_rgba(0.0, 0.9, 0.9, 0.5);
+	CcColor* blue_color  = cc_color_new_rgba(0.9, 0.0, 0.9, 0.5);
+	CcColor* gray_color  = cc_color_new_rgb(0.5, 0.5, 0.5);
 	CcColor* black_color = cc_color_new_rgb(0.0, 0.0, 0.0);
 	CcBrush* black_brush = cc_brush_color_new(black_color);
 
@@ -83,6 +84,7 @@ layers_demo(void) {
 	gtk_container_add(GTK_CONTAINER(swin), view);
 
 	CcItem* circle = cc_circle_new();
+	CC_ITEM_SET_FLAGS(circle, CC_GRID_ALIGNED);
 	cc_circle_set_anchor(CC_CIRCLE(circle), 275, 300);
 	cc_circle_set_radius(CC_CIRCLE(circle), 100);
 	cc_shape_set_brush_border(CC_SHAPE(circle), black_brush);
@@ -90,23 +92,26 @@ layers_demo(void) {
 	cc_item_append(root, circle);
 	
 	CcItem* rect = cc_rounded_rectangle_new();
+	CC_ITEM_SET_FLAGS(rect, CC_GRID_ALIGNED);
 	cc_rounded_rectangle_set_radius(CC_ROUNDED_RECTANGLE(rect), RECT_RADIUS);
 	cc_rectangle_set_position(CC_RECTANGLE(rect), 200, 200, 300, 175);
-	cc_shape_set_brush_border(CC_SHAPE(rect), black_brush);
+	cc_shape_set_brush_border(CC_SHAPE(rect), cc_brush_color_new(cc_color_new_rgb(0.9, 0.9, 0.0)));
 	cc_shape_set_brush_content(CC_SHAPE(rect), cc_brush_color_new(red_color));
 	cc_item_append(root, rect);
 	
 	rect = cc_rounded_rectangle_new();
+	CC_ITEM_SET_FLAGS(rect, CC_GRID_ALIGNED);
 	cc_rounded_rectangle_set_radius(CC_ROUNDED_RECTANGLE(rect), RECT_RADIUS);
 	cc_rectangle_set_position(CC_RECTANGLE(rect), 220, 180, 300, 175);
-	cc_shape_set_brush_border(CC_SHAPE(rect), black_brush);
+	cc_shape_set_brush_border(CC_SHAPE(rect), cc_brush_color_new(cc_color_new_rgb(0.0, 0.9, 0.9)));
 	cc_shape_set_brush_content(CC_SHAPE(rect), cc_brush_color_new(green_color));
 	cc_item_append(root, rect);
 
 	rect = cc_rounded_rectangle_new();
+	CC_ITEM_SET_FLAGS(rect, CC_GRID_ALIGNED);
 	cc_rounded_rectangle_set_radius(CC_ROUNDED_RECTANGLE(rect), RECT_RADIUS);
 	cc_rectangle_set_position(CC_RECTANGLE(rect), 240, 160, 300, 175);
-	cc_shape_set_brush_border(CC_SHAPE(rect), black_brush);
+	cc_shape_set_brush_border(CC_SHAPE(rect), cc_brush_color_new(cc_color_new_rgb(0.9, 0.0, 0.9)));
 	cc_shape_set_brush_content(CC_SHAPE(rect), cc_brush_color_new(blue_color));
 	cc_item_append(root, rect);
 	

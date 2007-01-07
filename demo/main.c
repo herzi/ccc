@@ -29,7 +29,6 @@
 #include "main.h"
 #include "planets.h"
 #include "zoom-and-scroll.h"
-#include "demo-layers.h"
 
 int
 main(int argc, char* argv[]) {

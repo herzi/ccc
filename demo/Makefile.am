@@ -9,8 +9,6 @@ ccc_demo_SOURCES=\
 	crossing.h \
 	demo-canvas.c \
 	demo-canvas.h \
-	demo-layers.c \
-	demo-layers.h \
 	demo-page.c \
 	demo-page.h \
 	demo-polygon.c \
@@ -32,6 +30,7 @@ ccc_demo_SOURCES=\
 	herzi-properties.h \
 	herzi-properties-group.c \
 	herzi-properties-group.h \
+	layers.c \
 	line.c \
 	line.h \
 	main.c \
