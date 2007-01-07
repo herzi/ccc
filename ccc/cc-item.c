@@ -578,7 +578,7 @@ cc_item_lower(CcItem* child, CcItem* parent)
 	g_return_if_fail(CC_IS_ITEM(parent));
 	g_return_if_fail(cc_item_is_child_of(child, parent));
 
-	if(child == CC_ITEM(g_list_last(parent->children)->data)) {
+	if(child == CC_ITEM(parent->children->data)) {
 		return;
 	}
 	
@@ -602,7 +602,7 @@ cc_item_lower_to_bottom(CcItem* child, CcItem* parent)
 	g_return_if_fail(CC_IS_ITEM(parent));
 	g_return_if_fail(cc_item_is_child_of(child, parent));
 
-	if(child == CC_ITEM(g_list_last(parent->children)->data)) {
+	if(child == CC_ITEM(parent->children->data)) {
 		return;
 	}
 
