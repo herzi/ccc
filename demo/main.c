@@ -29,7 +29,6 @@
 #include "main.h"
 #include "planets.h"
 #include "zoom-and-scroll.h"
-#include "demo-layers.h"
 
 int
 main(int argc, char* argv[]) {
@@ -50,7 +49,6 @@ main(int argc, char* argv[]) {
 	demo_window_add(DEMO_WINDOW(mainwin), camera_demo());
 	demo_window_add(DEMO_WINDOW(mainwin), gradient_demo());
 	demo_window_add(DEMO_WINDOW(mainwin), animation_demo());
-	demo_window_add(DEMO_WINDOW(mainwin), layers_demo());
 #ifdef BUILD_UNFINISHED
 	demo_window_add(DEMO_WINDOW(mainwin), credits());
 	demo_window_add(DEMO_WINDOW(mainwin), planet_page());
