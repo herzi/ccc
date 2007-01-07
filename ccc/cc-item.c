@@ -527,6 +527,10 @@ cc_item_raise_to_top(CcItem* child, CcItem* parent)
 	g_return_if_fail(CC_IS_ITEM(parent));
 	g_return_if_fail(cc_item_is_child_of(child, parent));
 
+	if(child == CC_ITEM(g_list_last(parent->children)->data)) {
+		return;
+	}
+
 	parent->children = g_list_remove(parent->children, child);
 	parent->children = g_list_append(parent->children, child);
 	cc_item_foreach_view(child, ci_update_view, NULL);
@@ -547,6 +551,10 @@ cc_item_raise(CcItem* child, CcItem* parent)
 	g_return_if_fail(CC_IS_ITEM(child));
 	g_return_if_fail(CC_IS_ITEM(parent));
 	g_return_if_fail(cc_item_is_child_of(child, parent));
+
+	if(child == CC_ITEM(g_list_last(parent->children)->data)) {
+		return;
+	}
 
 	position = g_list_index(parent->children, child);
 	parent->children = g_list_remove(parent->children, child);
@@ -570,6 +578,10 @@ cc_item_lower(CcItem* child, CcItem* parent)
 	g_return_if_fail(CC_IS_ITEM(parent));
 	g_return_if_fail(cc_item_is_child_of(child, parent));
 
+	if(child == CC_ITEM(parent->children->data)) {
+		return;
+	}
+	
 	position = g_list_index(parent->children, child);
 	parent->children = g_list_remove(parent->children, child);
 	parent->children = g_list_insert(parent->children, child, position-1);
@@ -589,6 +601,10 @@ cc_item_lower_to_bottom(CcItem* child, CcItem* parent)
 	g_return_if_fail(CC_IS_ITEM(child));
 	g_return_if_fail(CC_IS_ITEM(parent));
 	g_return_if_fail(cc_item_is_child_of(child, parent));
+
+	if(child == CC_ITEM(parent->children->data)) {
+		return;
+	}
 
 	parent->children = g_list_remove(parent->children, child);
 	parent->children = g_list_prepend(parent->children, child);

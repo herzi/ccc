@@ -9,6 +9,8 @@ ccc_demo_SOURCES=\
 	crossing.h \
 	demo-canvas.c \
 	demo-canvas.h \
+	demo-layers.c \
+	demo-layers.h \
 	demo-page.c \
 	demo-page.h \
 	demo-polygon.c \
