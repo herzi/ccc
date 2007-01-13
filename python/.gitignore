@@ -2,6 +2,5 @@ Makefile
 Makefile.in
 cccanvas_la-cccanvas.lo
 cccanvas_la-cccanvasmodule.lo
-cccanvas.override
 cccanvas.la
 cccanvas.c
