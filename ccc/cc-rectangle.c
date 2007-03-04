@@ -35,6 +35,16 @@ cc_rectangle_new(void) {
 	return g_object_new(CC_TYPE_RECTANGLE, NULL);
 }
 
+/**
+ * cc_rectangle_set_position:
+ * @self: a #CcRectangle
+ * @x: the horizontal position
+ * @y: the vertical position
+ * @w: the width of the rectangle
+ * @h: the eight of the rectangle
+ *
+ * Specify the position of a rectangle.
+ */
 void
 cc_rectangle_set_position(CcRectangle* self, gdouble x, gdouble y, gdouble w, gdouble h) {
 	g_object_set(self,
